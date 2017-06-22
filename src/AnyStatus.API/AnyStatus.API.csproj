@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C2526D04-D1C7-4CEA-910B-C952C00B00D4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AnyStatus.API</RootNamespace>
+    <AssemblyName>AnyStatus.API</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Key.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="Xceed.Wpf.Toolkit, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Items\Build.cs" />
+    <Compile Include="Items\Folder.cs" />
+    <Compile Include="Items\Item.cs" />
+    <Compile Include="Items\Metric.cs" />
+    <Compile Include="Items\RootItem.cs" />
+    <Compile Include="Utils\Enumeration.cs" />
+    <Compile Include="Items\ItemBase.cs" />
+    <Compile Include="Utils\Editors\DataGridEditor.cs" />
+    <Compile Include="Utils\Editors\FileEditor.cs" />
+    <Compile Include="Utils\Editors\PasswordEditor.cs" />
+    <Compile Include="Tasks\ICanOpenInBrowser.cs" />
+    <Compile Include="Tasks\ICanRestartWindowsService.cs" />
+    <Compile Include="Tasks\ICanStartWindowsService.cs" />
+    <Compile Include="Tasks\ICanStopWindowsService.cs" />
+    <Compile Include="Tasks\ICanTriggerBuild.cs" />
+    <Compile Include="Utils\ICompiler.cs" />
+    <Compile Include="Utils\IDialogService.cs" />
+    <Compile Include="Handlers\IHandler.cs" />
+    <Compile Include="Utils\ILogger.cs" />
+    <Compile Include="Handlers\IMonitor.cs" />
+    <Compile Include="Handlers\IOpenInBrowser.cs" />
+    <Compile Include="Utils\IProcessStarter.cs" />
+    <Compile Include="Items\IReportProgress.cs" />
+    <Compile Include="Handlers\IRestartWindowsService.cs" />
+    <Compile Include="Items\ISchedulable.cs" />
+    <Compile Include="Handlers\IStartWindowsService.cs" />
+    <Compile Include="Handlers\IStopWindowsService.cs" />
+    <Compile Include="Tasks\ITask.cs" />
+    <Compile Include="Handlers\ITriggerBuild.cs" />
+    <Compile Include="Items\IValidatable.cs" />
+    <Compile Include="Common\NameValuePair.cs" />
+    <Compile Include="Common\NotifyPropertyChanged.cs" />
+    <Compile Include="Common\Notification.cs" />
+    <Compile Include="Common\State.cs" />
+    <Compile Include="Common\StateMetadata.cs" />
+    <Compile Include="Utils\Preconditions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AnyStatus.API.nuspec" />
+    <None Include="Key.snk" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
