@@ -11,7 +11,7 @@ namespace AnyStatus.API
     [CategoryOrder("General", 1)]
     [XmlInclude(typeof(Folder))]
     [XmlInclude(typeof(RootItem))]
-    public partial class Item : ItemBase
+    public class Item : ItemBase
     {
         private Item _parent;
         private ObservableCollection<Item> _items;
