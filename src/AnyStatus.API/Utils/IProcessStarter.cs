@@ -7,7 +7,6 @@ namespace AnyStatus.API
     {
         void Start(string fileName);
 
-
         int Start(ProcessStartInfo info, TimeSpan timeout);
     }
 }
