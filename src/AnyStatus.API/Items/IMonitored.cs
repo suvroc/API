@@ -1,6 +1,6 @@
 ﻿namespace AnyStatus.API
 {
-    public interface IAmMonitored
+    public interface IMonitored
     {
     }
 }

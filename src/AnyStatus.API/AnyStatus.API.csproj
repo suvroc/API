@@ -79,7 +79,7 @@
     <Compile Include="Utils\IProcessStarter.cs" />
     <Compile Include="Items\IReportProgress.cs" />
     <Compile Include="Handlers\IRestartWindowsService.cs" />
-    <Compile Include="Items\IAmMonitored.cs" />
+    <Compile Include="Items\IMonitored.cs" />
     <Compile Include="Handlers\IStartWindowsService.cs" />
     <Compile Include="Handlers\IStopWindowsService.cs" />
     <Compile Include="Tasks\ITask.cs" />

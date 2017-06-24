@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,6 +8,10 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace AnyStatus.API
 {
+    [Serializable]
+    [CategoryOrder("General", 1)]
+    [XmlInclude(typeof(Folder))]
+    [XmlInclude(typeof(RootItem))]
     public class Item : NotifyPropertyChanged, IValidatable, ICloneable
     {
         #region Fields
@@ -18,6 +23,8 @@ namespace AnyStatus.API
         private bool _isEditing;
         private bool _isSelected;
         private bool _showNotifications;
+        private Item _parent;
+        private ObservableCollection<Item> _items;
 
         [NonSerialized]
         private State _state;
@@ -36,6 +43,7 @@ namespace AnyStatus.API
             IsExpanded = false;
             Interval = 5;
             State = State.None;
+            Items = new ObservableCollection<Item>(); //todo: set only if is folder
         }
 
         #endregion
@@ -44,6 +52,21 @@ namespace AnyStatus.API
 
         [Browsable(false)]
         public Guid Id { get; set; }
+
+        [Browsable(false)]
+        public ObservableCollection<Item> Items
+        {
+            get { return _items; }
+            set { _items = value; OnPropertyChanged(); }
+        }
+
+        [XmlIgnore]
+        [Browsable(false)]
+        public Item Parent
+        {
+            get { return _parent; }
+            set { _parent = value; OnPropertyChanged(); }
+        }
 
         [Required]
         [Category("General")]
@@ -184,6 +207,30 @@ namespace AnyStatus.API
             return Notification.Empty;
         }
 
+        public static bool IsNullOrError(object obj)
+        {
+            return obj == null || !(obj is Item item) || item.State == State.Error;
+        }
+
+        public virtual void Add(Item item)
+        {
+            if (item == null)
+                throw new ArgumentNullException(nameof(item));
+
+            if (Items == null)
+                Items = new ObservableCollection<Item>();
+
+            if (item.Id == Guid.Empty)
+                item.Id = Guid.NewGuid();
+
+            item.Parent = this;
+
+            Items.Add(item);
+
+            IsExpanded = true;
+        }
+
+
         #region IValidatable
 
         public bool IsValid()
@@ -209,6 +256,12 @@ namespace AnyStatus.API
                 .Where(p => p.CanWrite && !CloneExcludes.Contains(p.Name))
                 .ToList()
                 .ForEach(p => p.SetValue(clone, p.GetValue(this, null), null));
+
+            if (clone is Item && Items == null || !Items.Any())
+                return clone;
+
+            foreach (var child in Items.Where(item => item != null))
+                ((Item)clone).Add((Item)child.Clone());
 
             return clone;
         }
