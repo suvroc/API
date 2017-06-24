@@ -43,7 +43,7 @@ namespace AnyStatus.API
         {
             try
             {
-                var serializer = new XmlSerializer(typeof(ObservableCollection<Item>), new XmlAttributeOverrides(), ExtraTypes, new XmlRootAttribute("Items"), null);
+                var serializer = new XmlSerializer(typeof(ObservableCollection<Plugin>), new XmlAttributeOverrides(), ExtraTypes, new XmlRootAttribute("Items"), null);
 
                 serializer.Serialize(writer, Items);
             }
@@ -59,7 +59,7 @@ namespace AnyStatus.API
 
     [XmlType(TypeName = "RootItem")]
     [XmlRoot(ElementName = "RootItem")]
-    public class SerializationHelper : Item
+    public class SerializationHelper : Plugin
     {
     }
 }

@@ -57,11 +57,11 @@
   <ItemGroup>
     <Compile Include="Items\Build.cs" />
     <Compile Include="Items\Folder.cs" />
-    <Compile Include="Items\Item.cs" />
+    <Compile Include="Items\Plugin.cs" />
     <Compile Include="Items\Metric.cs" />
     <Compile Include="Items\RootItem.cs" />
     <Compile Include="Utils\Enumeration.cs" />
-    <Compile Include="Items\ItemBase.cs" />
+    <Compile Include="Items\Item.cs" />
     <Compile Include="Utils\Editors\DataGridEditor.cs" />
     <Compile Include="Utils\Editors\FileEditor.cs" />
     <Compile Include="Utils\Editors\PasswordEditor.cs" />
@@ -79,7 +79,7 @@
     <Compile Include="Utils\IProcessStarter.cs" />
     <Compile Include="Items\IReportProgress.cs" />
     <Compile Include="Handlers\IRestartWindowsService.cs" />
-    <Compile Include="Items\ISchedulable.cs" />
+    <Compile Include="Items\IAmMonitored.cs" />
     <Compile Include="Handlers\IStartWindowsService.cs" />
     <Compile Include="Handlers\IStopWindowsService.cs" />
     <Compile Include="Tasks\ITask.cs" />

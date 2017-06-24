@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 namespace AnyStatus.API
 {
     [Browsable(false)]
-    public class Folder : Item
+    public class Folder : Plugin
     {
         private int _count;
 
@@ -80,7 +80,7 @@ namespace AnyStatus.API
             Count = (State == State.None || State == State.Disabled || State == State.Ok) ? 0 : CountItems(Items, State);
         }
 
-        private static int CountItems(IEnumerable<Item> items, State state)
+        private static int CountItems(IEnumerable<Plugin> items, State state)
         {
             int count = 0;
 
@@ -99,7 +99,7 @@ namespace AnyStatus.API
             return count;
         }
 
-        private static Item ByPriority(Item a, Item b)
+        private static Plugin ByPriority(Plugin a, Plugin b)
         {
             return a.State.Metadata.Priority > b.State.Metadata.Priority ? a : b;
         }

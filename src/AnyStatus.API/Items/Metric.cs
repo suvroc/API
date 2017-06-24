@@ -2,7 +2,7 @@
 
 namespace AnyStatus.API
 {
-    public abstract class Metric : Item
+    public abstract class Metric : Plugin
     {
         private object _value;
 

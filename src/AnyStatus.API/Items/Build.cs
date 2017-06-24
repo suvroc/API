@@ -1,6 +1,6 @@
 ﻿namespace AnyStatus.API
 {
-    public abstract class Build : Item
+    public abstract class Build : Plugin
     {
         public override Notification CreateNotification()
         {
