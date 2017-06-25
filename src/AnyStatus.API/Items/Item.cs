@@ -244,7 +244,7 @@ namespace AnyStatus.API
 
         #region ICloneable
 
-        private static string[] CloneExcludes = new[] { nameof(Id), "Parent", "Items" };
+        private static string[] CloneExcludes = new[] { /* nameof(Id), */ nameof(Parent), nameof(Items) };
 
         public virtual object Clone()
         {
