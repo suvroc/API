@@ -10,7 +10,7 @@ skip_commits:
     
 before_build:
 - cmd: nuget restore src
-- ps: >-
+- ps: |
     $file = 'src\AnyStatus.API\AnyStatus.API.nuspec'
     $xml = [xml](Get-Content $file)
     $xml.package.version = $Env:BUILD_BUILDNUMBER
