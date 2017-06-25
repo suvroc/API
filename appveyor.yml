@@ -10,11 +10,10 @@ skip_commits:
     
 before_build:
 - cmd: nuget restore src
-- ps: |
-    $file = '$env:appveyor_build_folder\src\AnyStatus.API\AnyStatus.API.nuspec'
-    $xml = [xml](Get-Content $file)
-    $xml.package.metadata.version = $env:APPVEYOR_BUILD_VERSION
-    $xml.Save($file)
+- ps: $file = "$env:appveyor_build_folder\src\AnyStatus.API\AnyStatus.API.nuspec"
+- ps: $xml = [xml](Get-Content $file)
+- ps: $xml.package.metadata.version = $env:APPVEYOR_BUILD_VERSION
+- ps: $xml.Save($file)
 
 build:
   publish_nuget: true
