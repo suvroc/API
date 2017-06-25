@@ -10,6 +10,11 @@ skip_commits:
     
 before_build:
 - cmd: nuget restore src
+- ps: >-
+    $file = 'src\AnyStatus.API\AnyStatus.API.nuspec'
+    $xml = [xml](Get-Content $file)
+    $xml.package.version = $Env:BUILD_BUILDNUMBER
+    $xml.Save($file)
 
 build:
   publish_nuget: true
