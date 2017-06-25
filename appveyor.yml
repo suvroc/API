@@ -13,7 +13,7 @@ before_build:
 - ps: |
     $file = 'src\AnyStatus.API\AnyStatus.API.nuspec'
     $xml = [xml](Get-Content $file)
-    $xml.package.version = $Env:BUILD_BUILDNUMBER
+    $xml.package.metadata.version = $env:APPVEYOR_BUILD_VERSION
     $xml.Save($file)
 
 build:
