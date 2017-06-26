@@ -31,7 +31,7 @@ public class Ping : Plugin, IMonitored
 }
 ```
 
-A class that handles monitor health checks.
+A class that handles a monitor health check.
 
 ```csharp
 public class Pong : IMonitor<Ping>
