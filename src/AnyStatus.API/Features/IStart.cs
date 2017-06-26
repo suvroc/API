@@ -2,7 +2,7 @@
 
 namespace AnyStatus.API
 {
-    public interface IStartWindowsService<in T> : IHandler
+    public interface IStart<in T> : IHandler
     {
         Task HandleAsync(T item);
     }
