@@ -16,8 +16,35 @@ Plugins can be decorated with attributes such as DisplayName, Category and Descr
 
 A class that defines the plugin.
 
-<script src="https://gist.github.com/AlonAm/d37e580788eaec8d62858f5bb0cbd246.js"></script>
+```csharp
+[DisplayName("Ping")]
+[DisplayColumn("Network")]
+[Description("Test the reachability of a host")]
+public class Ping : Plugin, IMonitored
+{
+    [Required]
+    [Category("Ping")]
+    [Description("Host Name or IP Address")]
+    public string Host { get; set; }
+}
+```
 
 A class that handles monitor health checks.
 
-<script src="https://gist.github.com/AlonAm/541ea7571b46f7404818f8c3a8eecf89.js"></script>
+```csharp
+public class Pong : IMonitor<Ping>
+{
+    public void Handle(Ping myPing)
+    {
+        using (var ping = new System.Net.NetworkInformation.Ping())
+        {
+            var pong = ping.Send(myPing.Host);
+                
+            if (pong.Status == IPStatus.Success)
+                ping.State = State.Ok;
+            else
+                ping.State = State.Failed;
+        }
+    }
+}
+```
