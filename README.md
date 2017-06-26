@@ -8,9 +8,7 @@ A library that contains the classes, interfaces and utilities needed for develop
 
 AnyStatus communicates with plugins using the API library. During startup, AnyStatus scans assemblies in the installation directory and registers all plugins.
 
-A plugin is a set of classes that instruct AnyStatus how to display it in the dashboard and how to handle custom actions such as monitoring and triggering builds.
-
-Plugins can be decorated with attributes such as DisplayName, Category and Description.
+A plugin is a set of classes that instruct AnyStatus how to display it in the dashboard and which features the plugin supports.
 
 ## Plugin Example
 
