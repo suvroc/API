@@ -10,6 +10,10 @@ AnyStatus communicates with plugins using the API library. During startup, AnySt
 
 A plugin is a set of classes that instruct AnyStatus how to display it in the dashboard and which features the plugin supports.
 
+## Plugins Library
+
+Check out the complete plugins library at https://github.com/AnyStatus/Plugins
+
 ## Plugin Example
 
 A class that defines the plugin.
