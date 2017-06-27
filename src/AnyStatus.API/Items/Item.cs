@@ -81,7 +81,7 @@ namespace AnyStatus.API
         [PropertyOrder(1)]
         [Category("General")]
         [Range(0, ushort.MaxValue, ErrorMessage = "Interval must be between 0 and 65535")]
-        [Description("The monitor interval in minutes. Specify 0 to bypass.")]
+        [Description("The monitor interval in minutes. Use 0 to bypass.")]
         public int Interval
         {
             get { return _interval; }
