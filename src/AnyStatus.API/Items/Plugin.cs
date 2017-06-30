@@ -1,6 +1,6 @@
 ﻿namespace AnyStatus.API
 {
-    public class Plugin : Item
+    public abstract class Plugin : Item
     {
     }
 }
