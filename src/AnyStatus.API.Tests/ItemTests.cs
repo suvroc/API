@@ -4,13 +4,18 @@ using System.Linq;
 
 namespace AnyStatus.API.Tests
 {
+    class TestItem : Item
+    {
+
+    }
+
     [TestClass]
     public class ItemTests
     {
         [TestMethod]
         public void Clone_Should_CreateNewObject()
         {
-            var item = new Item
+            var item = new TestItem
             {
                 Id = Guid.NewGuid(),
                 Name = Guid.NewGuid().ToString()
@@ -30,13 +35,13 @@ namespace AnyStatus.API.Tests
         [TestMethod]
         public void Clone_Should_CloneChildItems()
         {
-            var item = new Item
+            var item = new TestItem
             {
                 Id = Guid.NewGuid(),
                 Name = Guid.NewGuid().ToString()
             };
 
-            item.Items.Add(new Item());
+            item.Items.Add(new TestItem());
 
             var copy = (Item)item.Clone();
 

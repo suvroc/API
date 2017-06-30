@@ -8,12 +8,11 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace AnyStatus.API
 {
-    [Browsable(false)] //todo: make abstract
     [Serializable]
     [CategoryOrder("General", 1)]
     [XmlInclude(typeof(Folder))]
     [XmlInclude(typeof(RootItem))]
-    public class Item : NotifyPropertyChanged, IValidatable, ICloneable
+    public abstract class Item : NotifyPropertyChanged, IValidatable, ICloneable
     {
         #region Fields
 
