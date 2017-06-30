@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
@@ -57,6 +58,7 @@ namespace AnyStatus.API
         #endregion
     }
 
+    [Browsable(false)]
     [XmlType(TypeName = "RootItem")]
     [XmlRoot(ElementName = "RootItem")]
     public class SerializationHelper : Item
