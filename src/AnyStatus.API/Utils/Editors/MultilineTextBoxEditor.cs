@@ -8,25 +8,13 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 
 namespace AnyStatus.API
 {
-    public class DataGridEditor : ITypeEditor
+    public class MultilineBoxTextEditor : ITypeEditor
     {
         public FrameworkElement ResolveEditor(PropertyItem propertyItem)
         {
-            var grid = new DataGrid
-            {
-                MaxHeight = 400,
-                CanUserAddRows = true,
-                CanUserReorderColumns = false,
-                CanUserDeleteRows = true,
-                CanUserSortColumns = false,
-                RowHeaderWidth = 20
-            };
-
             var panel = new StackPanel();
 
-            panel.Children.Add(grid);
-
-            var button = new DropDownButton
+            var button = new DropDownButton()
             {
                 Content = "(Edit)",
                 DropDownContent = panel,
@@ -41,6 +29,17 @@ namespace AnyStatus.API
                 VerticalAlignment = VerticalAlignment.Center,
             };
 
+            var textBox = new TextBox
+            {
+                MinWidth = 350,
+                MinHeight = 200,
+                AcceptsReturn = true,
+                TextWrapping = TextWrapping.NoWrap,
+                VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
+            };
+
+            panel.Children.Add(textBox);
+
             var binding = new Binding("Value")
             {
                 Source = propertyItem,
@@ -49,10 +48,9 @@ namespace AnyStatus.API
                 Mode = propertyItem.IsReadOnly ? BindingMode.OneWay : BindingMode.TwoWay
             };
 
-            BindingOperations.SetBinding(grid, ItemsControl.ItemsSourceProperty, binding);
+            BindingOperations.SetBinding(textBox, TextBox.TextProperty, binding);
 
             return button;
         }
     }
-
 }

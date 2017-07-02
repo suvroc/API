@@ -60,6 +60,7 @@
     <Compile Include="Items\Plugin.cs" />
     <Compile Include="Items\Metric.cs" />
     <Compile Include="Items\RootItem.cs" />
+    <Compile Include="Utils\Editors\MultilineTextBoxEditor.cs" />
     <Compile Include="Utils\Enumeration.cs" />
     <Compile Include="Items\Item.cs" />
     <Compile Include="Utils\Editors\DataGridEditor.cs" />
