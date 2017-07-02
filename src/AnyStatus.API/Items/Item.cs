@@ -183,7 +183,7 @@ namespace AnyStatus.API
         public virtual Notification CreateNotification()
         {
             if (State == State.Ok)
-                return new Notification($"{Name} is now ok", NotificationIcon.Info);
+                return new Notification($"{Name} is OK", NotificationIcon.Info);
 
             if (State == State.Failed)
                 return new Notification($"{Name} has failed", NotificationIcon.Error);
@@ -198,7 +198,7 @@ namespace AnyStatus.API
                 return new Notification($"{Name} is running", NotificationIcon.Info);
 
             if (State == State.Queued)
-                return new Notification($"{Name} is queued", NotificationIcon.Info);
+                return new Notification($"{Name} has been queued", NotificationIcon.Info);
 
             if (State == State.Canceled)
                 return new Notification($"{Name} has been cancelled", NotificationIcon.Info);
