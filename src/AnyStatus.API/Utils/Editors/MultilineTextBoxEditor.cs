@@ -8,7 +8,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 
 namespace AnyStatus.API
 {
-    public class MultilineBoxTextEditor : ITypeEditor
+    public class MultilineTextBoxEditor : ITypeEditor
     {
         public FrameworkElement ResolveEditor(PropertyItem propertyItem)
         {
