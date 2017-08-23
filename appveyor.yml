@@ -7,6 +7,10 @@ platform: Any CPU
 skip_commits:
   files:
     - '**/*.md'
+
+branches:
+  only:
+    - master
     
 before_build:
 - cmd: nuget restore src
