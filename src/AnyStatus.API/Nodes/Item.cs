@@ -15,8 +15,6 @@ namespace AnyStatus.API
     /// </summary>
     [Serializable]
     [CategoryOrder("General", 1)]
-    [XmlInclude(typeof(Folder))]
-    [XmlInclude(typeof(RootItem))]
     public abstract class Item : NotifyPropertyChanged, IValidatable, ICloneable
     {
         #region Fields
@@ -227,14 +225,14 @@ namespace AnyStatus.API
             if (Items == null)
                 Items = new ObservableCollection<Item>();
 
+            Items.Add(item);
+
             if (item.Id == Guid.Empty)
             {
                 item.Id = Guid.NewGuid();
             }
 
             item.Parent = this;
-
-            Items.Add(item);
 
             IsExpanded = true;
         }
@@ -255,6 +253,7 @@ namespace AnyStatus.API
         #region ICloneable
 
 #warning Make sure Item.Id is not duplicated when cloning
+
         private static string[] CloneExcludes = new[] { /* nameof(Id), */ nameof(Parent), nameof(Items) };
 
         public virtual object Clone()
