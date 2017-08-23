@@ -8,6 +8,21 @@ namespace AnyStatus.API.Tests
     public class ItemTests
     {
         [TestMethod]
+        public void DefaultState_Is_None()
+        {
+            var folder = new Folder();
+            var subFolder = new Folder();
+            var plugin = new TestItem();
+
+            folder.Add(subFolder);
+            subFolder.Add(plugin);
+
+            Assert.AreEqual(State.None, plugin.State);
+            Assert.AreEqual(State.None, folder.State);
+            Assert.AreEqual(State.None, subFolder.State);
+        }
+
+        [TestMethod]
         public void Should_CreateNewObjects_When_Cloning()
         {
             var item = new TestItem
