@@ -231,7 +231,7 @@ namespace AnyStatus.API
 
             IsExpanded = true;
         }
-        
+
         #endregion
 
         #region IValidatable

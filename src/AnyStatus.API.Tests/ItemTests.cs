@@ -1,19 +1,14 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Linq;
 
 namespace AnyStatus.API.Tests
 {
-    class TestItem : Item
-    {
-
-    }
-
     [TestClass]
     public class ItemTests
     {
         [TestMethod]
-        public void Clone_Should_CreateNewObject()
+        public void Should_CreateNewObjects_When_Cloning()
         {
             var item = new TestItem
             {
@@ -33,7 +28,7 @@ namespace AnyStatus.API.Tests
         }
 
         [TestMethod]
-        public void Clone_Should_CloneChildItems()
+        public void Should_IncludeChildren_When_Cloning()
         {
             var item = new TestItem
             {
