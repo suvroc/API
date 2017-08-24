@@ -4,9 +4,6 @@ image: Visual Studio 2017
 configuration: Release
 platform: Any CPU
 
-build:
-    project: src\AnyStatus.API.sln
-        
 skip_commits:
   files:
     - '**/*.md'
@@ -21,6 +18,7 @@ before_build:
 build:
   publish_nuget: true
   verbosity: minimal
+  project: src\AnyStatus.API.sln
 
 deploy:
   provider: Environment
