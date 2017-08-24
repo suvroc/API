@@ -1,11 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.13
+VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnyStatus.API", "AnyStatus.API\AnyStatus.API.csproj", "{C2526D04-D1C7-4CEA-910B-C952C00B00D4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnyStatus.API.Tests", "AnyStatus.API.Tests\AnyStatus.API.Tests.csproj", "{C76591FD-0BAC-413C-BCE1-6FC6237CF105}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{593CEFEF-17FD-417A-B0AE-0DA60CEE05B5}"
+	ProjectSection(SolutionItems) = preProject
+		..\appveyor.yml = ..\appveyor.yml
+		..\OpenCover.cmd = ..\OpenCover.cmd
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

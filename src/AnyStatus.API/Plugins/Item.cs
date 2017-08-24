@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Xml.Serialization;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
@@ -146,6 +147,7 @@ namespace AnyStatus.API
         }
 
         [Browsable(false)]
+        [ExcludeFromCodeCoverage]
         public bool IsDisabled
         {
             get { return !_isEnabled; }
@@ -174,6 +176,7 @@ namespace AnyStatus.API
             get
             {
                 return ShowNotifications &&
+                       PreviousState != null &&
                        PreviousState != State &&
                        PreviousState != State.None;
             }

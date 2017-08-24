@@ -1,6 +1,6 @@
 ﻿namespace AnyStatus.API.Tests
 {
-    class TestItem : Item
+    public class TestItem : Item
     {
     }
 }

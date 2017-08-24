@@ -1,11 +1,47 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Specialized;
+using System.Linq;
 
 namespace AnyStatus.API.Tests
 {
     [TestClass]
     public class FolderTests
     {
+        [TestMethod]
+        public void ContainsItem()
+        {
+        }
+
+        [TestMethod]
+        public void Remove_Item()
+        {
+            var folder = new Folder();
+            var item = new TestItem();
+
+            folder.Add(item);
+
+            Assert.IsTrue(folder.Contains(item));
+
+            folder.Remove(item);
+
+            Assert.IsFalse(folder.Contains(item));
+        }
+
+        [TestMethod]
+        public void Clear_Items()
+        {
+            var folder = new Folder();
+            var item = new TestItem();
+
+            folder.Add(item);
+
+            Assert.IsTrue(folder.Items.Contains(item));
+
+            folder.Clear();
+
+            Assert.IsFalse(folder.Items.Any());
+        }
+
         [TestMethod]
         public void Should_InvokeCollectionChangedEvent_When_AddingItems()
         {

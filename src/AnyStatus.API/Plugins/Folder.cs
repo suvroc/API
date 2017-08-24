@@ -55,6 +55,11 @@ namespace AnyStatus.API
             Items?.Clear();
         }
 
+        public bool Contains(Item item)
+        {
+            return Items != null && Items.Contains(item);
+        }
+
         private void Items_CollectionChanged(object sender, NotifyCollectionChangedEventArgs args)
         {
             CollectionChanged?.Invoke(sender, args);
