@@ -4,6 +4,9 @@ image: Visual Studio 2017
 configuration: Release
 platform: Any CPU
 
+build:
+    project: src\AnyStatus.API.sln
+        
 skip_commits:
   files:
     - '**/*.md'
