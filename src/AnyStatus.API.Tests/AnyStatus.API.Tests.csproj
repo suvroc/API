@@ -54,7 +54,7 @@
     <Compile Include="FolderTests.cs" />
     <Compile Include="TestItem.cs" />
     <Compile Include="BuildTests.cs" />
-    <Compile Include="TreeTests.cs" />
+    <Compile Include="RootItemTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

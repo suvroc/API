@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Text;
 using System.Xml;
@@ -7,8 +8,50 @@ using System.Xml.Serialization;
 namespace AnyStatus.API.Tests
 {
     [TestClass]
-    public class TreeTests
+    public class RootItemTests
     {
+        [TestMethod]
+        public void CollectionChanged_Should_Fire_When_TreeChanged()
+        {
+            var counter = 0;
+
+            var tree = new RootItem();
+            var folder = new Folder();
+            var item = new TestItem();
+
+            tree.CollectionChanged += (s, e) => { counter++; };
+
+            tree.Add(folder);
+
+            Assert.AreEqual(1, counter);
+
+            folder.Add(item);
+
+            Assert.AreEqual(2, counter);
+        }
+
+        [TestMethod]
+        public void CollectionChanged_Should_Fire_When_TreeChanged2()
+        {
+            var counter = 0;
+
+            var tree = new RootItem();
+            var folder = new Folder();
+            var item = new TestItem();
+
+            tree.Items = new ObservableCollection<Item>(); //overwrite to simulate XML deserialization
+
+            tree.CollectionChanged += (s, e) => { counter++; };
+
+            tree.Add(folder);
+
+            Assert.AreEqual(1, counter);
+
+            folder.Add(item);
+
+            Assert.AreEqual(2, counter);
+        }
+
         [TestMethod]
         public void SerializeDeserializeTreeObject()
         {

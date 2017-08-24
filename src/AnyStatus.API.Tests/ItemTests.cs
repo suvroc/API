@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace AnyStatus.API.Tests
@@ -127,7 +128,8 @@ namespace AnyStatus.API.Tests
             var item = new TestItem
             {
                 Id = Guid.NewGuid(),
-                Name = Guid.NewGuid().ToString()
+                Name = Guid.NewGuid().ToString(),
+                Items = new ObservableCollection<Item>()
             };
 
             var copy = (Item)item.Clone();
@@ -147,7 +149,8 @@ namespace AnyStatus.API.Tests
             var item = new TestItem
             {
                 Id = Guid.NewGuid(),
-                Name = Guid.NewGuid().ToString()
+                Name = Guid.NewGuid().ToString(),
+                Items = new ObservableCollection<Item>()
             };
 
             item.Items.Add(new TestItem());

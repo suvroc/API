@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Xml.Serialization;
 
@@ -20,9 +20,26 @@ namespace AnyStatus.API
         {
         }
 
+        public new ObservableCollection<Item> Items
+        {
+            get { return base.Items; }
+            set
+            {
+                if (base.Items != null)
+                    base.Items.CollectionChanged -= Items_CollectionChanged;
+
+                base.Items = value;
+
+                if (base.Items != null)
+                    base.Items.CollectionChanged += Items_CollectionChanged;
+            }
+        }
+
         public Folder(bool aggregateState)
         {
             _aggregateState = aggregateState;
+
+            base.Items = new ObservableCollection<Item>();
 
             Items.CollectionChanged += Items_CollectionChanged;
         }

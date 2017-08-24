@@ -47,7 +47,6 @@ namespace AnyStatus.API
             IsExpanded = false;
             Interval = 5;
             State = State.None;
-            Items = new ObservableCollection<Item>(); //todo: set only if is folder
         }
 
         #endregion
