@@ -14,32 +14,15 @@ namespace AnyStatus.API
         private int _count;
         private readonly bool _aggregateState;
 
-        public event NotifyCollectionChangedEventHandler CollectionChanged;
-
         public Folder() : this(aggregateState: true)
         {
-        }
-
-        public new ObservableCollection<Item> Items
-        {
-            get { return base.Items; }
-            set
-            {
-                if (base.Items != null)
-                    base.Items.CollectionChanged -= OnCollectionChanged;
-
-                base.Items = value;
-
-                if (base.Items != null)
-                    base.Items.CollectionChanged += OnCollectionChanged;
-            }
         }
 
         public Folder(bool aggregateState)
         {
             _aggregateState = aggregateState;
 
-            base.Items = new ObservableCollection<Item>();
+            Items = new ObservableCollection<Item>();
 
             Items.CollectionChanged += OnCollectionChanged;
         }
@@ -62,11 +45,6 @@ namespace AnyStatus.API
         [Browsable(false)]
         public new int Interval { get; set; }
 
-        public void Remove(Item item)
-        {
-            Items?.Remove(item);
-        }
-
         public void Clear()
         {
             Items?.Clear();
@@ -79,7 +57,7 @@ namespace AnyStatus.API
 
         private void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs args)
         {
-            CollectionChanged?.Invoke(sender, args);
+            if (!_aggregateState) return;
 
             Unsubscribe(args.OldItems);
 
@@ -94,11 +72,7 @@ namespace AnyStatus.API
 
             foreach (Item item in items)
             {
-                if (_aggregateState)
-                    item.PropertyChanged += Item_PropertyChanged;
-
-                if (item is Folder folder)
-                    folder.CollectionChanged += CollectionChanged;
+                item.PropertyChanged += Item_PropertyChanged;
             }
         }
 
@@ -108,24 +82,18 @@ namespace AnyStatus.API
 
             foreach (Item item in items)
             {
-                if (_aggregateState)
-                    item.PropertyChanged -= Item_PropertyChanged;
-
-                if (item is Folder folder)
-                    folder.CollectionChanged -= CollectionChanged;
+                item.PropertyChanged -= Item_PropertyChanged;
             }
         }
 
         private void Item_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName.Equals(nameof(State)))
+            if (_aggregateState && e.PropertyName.Equals(nameof(State)))
                 AggregateState();
         }
 
         private void AggregateState()
         {
-            if (!_aggregateState) return;
-
             State = Items != null && Items.Any() ?
                          Items.Aggregate(ByPriority).State :
                              State.None;

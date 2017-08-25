@@ -10,47 +10,47 @@ namespace AnyStatus.API.Tests
     [TestClass]
     public class RootItemTests
     {
-        [TestMethod]
-        public void CollectionChanged_Should_Fire_When_TreeChanged()
-        {
-            var counter = 0;
+        //[TestMethod]
+        //public void CollectionChanged_Should_Fire_When_TreeChanged()
+        //{
+        //    var counter = 0;
 
-            var tree = new RootItem();
-            var folder = new Folder();
-            var item = new TestItem();
+        //    var tree = new RootItem();
+        //    var folder = new Folder();
+        //    var item = new TestItem();
 
-            tree.CollectionChanged += (s, e) => { counter++; };
+        //    tree.CollectionChanged += (s, e) => { counter++; };
 
-            tree.Add(folder);
+        //    tree.Add(folder);
 
-            Assert.AreEqual(1, counter);
+        //    Assert.AreEqual(1, counter);
 
-            folder.Add(item);
+        //    folder.Add(item);
 
-            Assert.AreEqual(2, counter);
-        }
+        //    Assert.AreEqual(2, counter);
+        //}
 
-        [TestMethod]
-        public void CollectionChanged_Should_Fire_When_TreeChanged2()
-        {
-            var counter = 0;
+        //[TestMethod]
+        //public void CollectionChanged_Should_Fire_When_TreeChanged2()
+        //{
+        //    var counter = 0;
 
-            var tree = new RootItem();
-            var folder = new Folder();
-            var item = new TestItem();
+        //    var tree = new RootItem();
+        //    var folder = new Folder();
+        //    var item = new TestItem();
 
-            tree.Items = new ObservableCollection<Item>(); //overwrite to simulate XML deserialization
+        //    tree.Items = new ObservableCollection<Item>(); //overwrite to simulate XML deserialization
 
-            tree.CollectionChanged += (s, e) => { counter++; };
+        //    tree.CollectionChanged += (s, e) => { counter++; };
 
-            tree.Add(folder);
+        //    tree.Add(folder);
 
-            Assert.AreEqual(1, counter);
+        //    Assert.AreEqual(1, counter);
 
-            folder.Add(item);
+        //    folder.Add(item);
 
-            Assert.AreEqual(2, counter);
-        }
+        //    Assert.AreEqual(2, counter);
+        //}
 
         [TestMethod]
         public void SerializeDeserializeTreeObject()
