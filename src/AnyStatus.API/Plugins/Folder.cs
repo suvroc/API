@@ -8,7 +8,6 @@ using System.Xml.Serialization;
 
 namespace AnyStatus.API
 {
-    [Browsable(false)]
     public class Folder : Item
     {
         private int _count;
@@ -44,6 +43,9 @@ namespace AnyStatus.API
 
         [Browsable(false)]
         public new int Interval { get; set; }
+
+        [Browsable(false)]
+        public new bool ShowNotifications { get; set; }
 
         public void Clear()
         {
