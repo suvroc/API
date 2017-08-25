@@ -9,11 +9,13 @@ namespace AnyStatus.API
 {
     public class RootItem : Folder, IXmlSerializable
     {
+        const string StaticName = "RootItem";
+
         public RootItem() : base(aggregateState: false) { }
 
-        public static Type[] ExtraTypes { get; set; }
-
         #region IXmlSerializable
+
+        public static Type[] ExtraTypes { get; set; }
 
         public XmlSchema GetSchema()
         {
@@ -22,8 +24,7 @@ namespace AnyStatus.API
 
         public void ReadXml(XmlReader reader)
         {
-            if (reader.Name != nameof(RootItem))
-                return;
+            if (reader.Name != StaticName) return;
 
             try
             {
@@ -56,12 +57,10 @@ namespace AnyStatus.API
         }
 
         #endregion
-    }
 
-    [Browsable(false)]
-    [XmlType(TypeName = "RootItem")]
-    [XmlRoot(ElementName = "RootItem")]
-    public class SerializationHelper : Item
-    {
+        [Browsable(false)]
+        [XmlType(TypeName = StaticName)]
+        [XmlRoot(ElementName = StaticName)]
+        public class SerializationHelper : Item { }
     }
 }

@@ -46,10 +46,15 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ItemTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="FolderTests.cs" />
+    <Compile Include="TestItem.cs" />
+    <Compile Include="BuildTests.cs" />
+    <Compile Include="RootItemTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

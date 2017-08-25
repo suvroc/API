@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 
 namespace AnyStatus.API
 {
@@ -7,6 +8,7 @@ namespace AnyStatus.API
         private object _value;
 
         [Browsable(false)]
+        [ExcludeFromCodeCoverage]
         public object Value
         {
             get { return _value; }

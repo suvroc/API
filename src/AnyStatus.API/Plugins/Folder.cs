@@ -1,20 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Xml.Serialization;
 
 namespace AnyStatus.API
 {
-    [Browsable(false)]
     public class Folder : Item
     {
         private int _count;
         private readonly bool _aggregateState;
-
-        public event NotifyCollectionChangedEventHandler CollectionChanged;
 
         public Folder() : this(aggregateState: true)
         {
@@ -24,7 +21,9 @@ namespace AnyStatus.API
         {
             _aggregateState = aggregateState;
 
-            Items.CollectionChanged += Items_CollectionChanged;
+            Items = new ObservableCollection<Item>();
+
+            Items.CollectionChanged += OnCollectionChanged;
         }
 
         /// <summary>
@@ -45,19 +44,22 @@ namespace AnyStatus.API
         [Browsable(false)]
         public new int Interval { get; set; }
 
-        public void Remove(Item item)
-        {
-            Items?.Remove(item);
-        }
+        [Browsable(false)]
+        public new bool ShowNotifications { get; set; }
 
         public void Clear()
         {
             Items?.Clear();
         }
 
-        private void Items_CollectionChanged(object sender, NotifyCollectionChangedEventArgs args)
+        public bool Contains(Item item)
         {
-            CollectionChanged?.Invoke(sender, args);
+            return Items != null && Items.Contains(item);
+        }
+
+        private void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs args)
+        {
+            if (!_aggregateState) return;
 
             Unsubscribe(args.OldItems);
 
@@ -72,11 +74,7 @@ namespace AnyStatus.API
 
             foreach (Item item in items)
             {
-                if (_aggregateState)
-                    item.PropertyChanged += Item_PropertyChanged;
-
-                if (item is Folder folder)
-                    folder.CollectionChanged += CollectionChanged;
+                item.PropertyChanged += Item_PropertyChanged;
             }
         }
 
@@ -86,24 +84,18 @@ namespace AnyStatus.API
 
             foreach (Item item in items)
             {
-                if (_aggregateState)
-                    item.PropertyChanged -= Item_PropertyChanged;
-
-                if (item is Folder folder)
-                    folder.CollectionChanged -= CollectionChanged;
+                item.PropertyChanged -= Item_PropertyChanged;
             }
         }
 
         private void Item_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName.Equals(nameof(State)))
+            if (_aggregateState && e.PropertyName.Equals(nameof(State)))
                 AggregateState();
         }
 
         private void AggregateState()
         {
-            if (!_aggregateState) return;
-
             State = Items != null && Items.Any() ?
                          Items.Aggregate(ByPriority).State :
                              State.None;

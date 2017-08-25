@@ -1,17 +1,22 @@
-﻿using System;
+﻿using PubSub;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Xml.Serialization;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace AnyStatus.API
 {
+    /// <summary>
+    /// Base tree-view node object.
+    /// Plugins should not directly inherit this class.
+    /// Please use the "Plugin" class instead.
+    /// </summary>
     [Serializable]
     [CategoryOrder("General", 1)]
-    [XmlInclude(typeof(Folder))]
-    [XmlInclude(typeof(RootItem))]
     public abstract class Item : NotifyPropertyChanged, IValidatable, ICloneable
     {
         #region Fields
@@ -43,7 +48,6 @@ namespace AnyStatus.API
             IsExpanded = false;
             Interval = 5;
             State = State.None;
-            Items = new ObservableCollection<Item>(); //todo: set only if is folder
         }
 
         #endregion
@@ -138,11 +142,12 @@ namespace AnyStatus.API
                 OnPropertyChanged();
 
                 if (_isEnabled == false)
-                    State = State.Disabled; //todo: this is an issue since Item does not control its own state.
+                    State = State.Disabled;
             }
         }
 
         [Browsable(false)]
+        [ExcludeFromCodeCoverage]
         public bool IsDisabled
         {
             get { return !_isEnabled; }
@@ -171,6 +176,7 @@ namespace AnyStatus.API
             get
             {
                 return ShowNotifications &&
+                       PreviousState != null &&
                        PreviousState != State &&
                        PreviousState != State.None;
             }
@@ -222,14 +228,30 @@ namespace AnyStatus.API
             if (Items == null)
                 Items = new ObservableCollection<Item>();
 
+            Items.Add(item);
+
             if (item.Id == Guid.Empty)
+            {
                 item.Id = Guid.NewGuid();
+            }
 
             item.Parent = this;
 
-            Items.Add(item);
-
             IsExpanded = true;
+
+            this.Publish(new ItemAdded(item));
+        }
+
+        public virtual void Remove(Item item)
+        {
+            if (item == null)
+                throw new ArgumentNullException(nameof(item));
+
+            if (Items == null) return;
+
+            Items.Remove(item);
+
+            this.Publish(new ItemRemoved(item));
         }
 
         #endregion
@@ -247,24 +269,25 @@ namespace AnyStatus.API
 
         #region ICloneable
 
+#warning Make sure Item.Id is not duplicated when cloning
+
         private static string[] CloneExcludes = new[] { /* nameof(Id), */ nameof(Parent), nameof(Items) };
 
         public virtual object Clone()
         {
             var type = GetType();
 
-            var clone = Activator.CreateInstance(type);
+            var clone = (Item)Activator.CreateInstance(type);
 
             type.GetProperties()
                 .Where(p => p.CanWrite && !CloneExcludes.Contains(p.Name))
                 .ToList()
                 .ForEach(p => p.SetValue(clone, p.GetValue(this, null), null));
 
-            if (clone is Item && Items == null || !Items.Any())
-                return clone;
-
-            foreach (var child in Items.Where(item => item != null))
-                ((Item)clone).Add((Item)child.Clone());
+            if (Items != null && Items.Any())
+                foreach (var item in Items)
+                    if (item != null)
+                        clone.Add((Item)item.Clone());
 
             return clone;
         }
