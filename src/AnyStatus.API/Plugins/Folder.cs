@@ -26,12 +26,12 @@ namespace AnyStatus.API
             set
             {
                 if (base.Items != null)
-                    base.Items.CollectionChanged -= Items_CollectionChanged;
+                    base.Items.CollectionChanged -= OnCollectionChanged;
 
                 base.Items = value;
 
                 if (base.Items != null)
-                    base.Items.CollectionChanged += Items_CollectionChanged;
+                    base.Items.CollectionChanged += OnCollectionChanged;
             }
         }
 
@@ -41,7 +41,7 @@ namespace AnyStatus.API
 
             base.Items = new ObservableCollection<Item>();
 
-            Items.CollectionChanged += Items_CollectionChanged;
+            Items.CollectionChanged += OnCollectionChanged;
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace AnyStatus.API
             return Items != null && Items.Contains(item);
         }
 
-        private void Items_CollectionChanged(object sender, NotifyCollectionChangedEventArgs args)
+        private void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs args)
         {
             CollectionChanged?.Invoke(sender, args);
 

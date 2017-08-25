@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PubSub;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -141,7 +142,7 @@ namespace AnyStatus.API
                 OnPropertyChanged();
 
                 if (_isEnabled == false)
-                    State = State.Disabled; //todo: this is an issue since Item does not control its own state.
+                    State = State.Disabled;
             }
         }
 
@@ -237,6 +238,20 @@ namespace AnyStatus.API
             item.Parent = this;
 
             IsExpanded = true;
+
+            this.Publish(new ItemAdded(item));
+        }
+
+        public virtual void Remove(Item item)
+        {
+            if (item == null)
+                throw new ArgumentNullException(nameof(item));
+
+            if (Items == null) return;
+
+            Items.Remove(item);
+
+            this.Publish(new ItemRemoved(item));
         }
 
         #endregion

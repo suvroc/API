@@ -2,6 +2,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using PubSub;
 
 namespace AnyStatus.API.Tests
 {
@@ -25,6 +26,9 @@ namespace AnyStatus.API.Tests
         [TestMethod]
         public void Add_Should()
         {
+            var itemAddedEventFired = false;
+            this.Subscribe<ItemAdded>(e => { itemAddedEventFired = true; });
+
             var folder = new Folder();
             var item = new TestItem();
 
@@ -33,6 +37,7 @@ namespace AnyStatus.API.Tests
             Assert.IsTrue(folder.Contains(item));
             Assert.AreSame(folder, item.Parent);
             Assert.AreNotEqual(Guid.Empty, item.Id);
+            Assert.IsTrue(itemAddedEventFired);
         }
 
         [TestMethod]

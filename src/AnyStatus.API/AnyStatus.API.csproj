@@ -55,8 +55,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Events\ItemRemoved.cs" />
     <Compile Include="Plugins\Build.cs" />
     <Compile Include="Plugins\Folder.cs" />
+    <Compile Include="Events\ItemAdded.cs" />
     <Compile Include="Plugins\Plugin.cs" />
     <Compile Include="Plugins\Metric.cs" />
     <Compile Include="Plugins\RootItem.cs" />
@@ -71,6 +73,8 @@
     <Compile Include="Plugins\Features\ICanStart.cs" />
     <Compile Include="Plugins\Features\ICanStop.cs" />
     <Compile Include="Plugins\Features\ICanTriggerBuild.cs" />
+    <Compile Include="Utils\Hub.cs" />
+    <Compile Include="Utils\HubExtensions.cs" />
     <Compile Include="Utils\ICompiler.cs" />
     <Compile Include="Utils\IDialogService.cs" />
     <Compile Include="Plugins\Features\IHandler.cs" />
