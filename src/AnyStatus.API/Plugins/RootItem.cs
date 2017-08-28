@@ -12,7 +12,7 @@ namespace AnyStatus.API
     {
         const string StaticName = "RootItem";
 
-        public RootItem() : base(aggregateState: false) { }
+        public RootItem() : base(aggregateState: true) { }
 
         #region IXmlSerializable
 
