@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 namespace AnyStatus.API
 {
     [Browsable(false)]
-    public class RootItem : Folder, IXmlSerializable
+    public class Root : Folder, IXmlSerializable
     {
         const string StaticName = "RootItem";
 

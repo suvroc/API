@@ -61,7 +61,7 @@
     <Compile Include="Events\ItemAdded.cs" />
     <Compile Include="Plugins\Plugin.cs" />
     <Compile Include="Plugins\Metric.cs" />
-    <Compile Include="Plugins\RootItem.cs" />
+    <Compile Include="Plugins\Root.cs" />
     <Compile Include="Editors\MultilineTextBoxEditor.cs" />
     <Compile Include="Common\Enumeration.cs" />
     <Compile Include="Plugins\Item.cs" />
