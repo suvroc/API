@@ -16,7 +16,7 @@ REM OpenCover
 -output:"%~dp0\OpenCover\Coverage.xml"
 
 REM Report Generator
-"%~dp0\src\packages\ReportGenerator.2.5.10\tools\ReportGenerator.exe" ^
+"%~dp0\src\packages\ReportGenerator.2.5.11\tools\ReportGenerator.exe" ^
 -reports:"%~dp0\OpenCover\Coverage.xml" ^
 -targetdir:"%~dp0\OpenCover\Report"
 
