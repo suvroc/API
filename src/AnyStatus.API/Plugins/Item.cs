@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Xml.Serialization;
@@ -24,7 +25,7 @@ namespace AnyStatus.API
     {
         #region Fields
 
-        private readonly bool _aggregateState;
+        private readonly bool _aggregate;
 
         private int _count;
         private string _name;
@@ -47,13 +48,13 @@ namespace AnyStatus.API
 
         #region Ctor
 
-        public Item(bool aggregateState)
+        public Item(bool aggregate)
         {
-            _aggregateState = aggregateState;
+            _aggregate = aggregate;
 
             Items = new ObservableCollection<Item>();
 
-            Items.CollectionChanged += OnCollectionChanged;
+            if (_aggregate) Items.CollectionChanged += OnCollectionChanged;
         }
 
         public Item() : this(false)
@@ -70,14 +71,14 @@ namespace AnyStatus.API
         #region Properties
 
         /// <summary>
-        /// The number of child items with same state
+        /// The number of child nodes with the same state
         /// </summary>
         [XmlIgnore]
         [Browsable(false)]
         public int Count
         {
             get { return _count; }
-            set
+            private set
             {
                 _count = value;
                 OnPropertyChanged();
@@ -284,6 +285,16 @@ namespace AnyStatus.API
             this.Publish(new ItemRemoved(item));
         }
 
+        public void Clear()
+        {
+            Items?.Clear();
+        }
+
+        public bool Contains(Item item)
+        {
+            return Items != null && Items.Contains(item);
+        }
+
         #endregion
 
         #region IValidatable
@@ -299,10 +310,6 @@ namespace AnyStatus.API
 
         #region ICloneable
 
-#warning Make sure Item.Id is not duplicated when cloning
-
-        private static string[] CloneExcludes = new[] { /* nameof(Id), */ nameof(Parent), nameof(Items) };
-
         public virtual object Clone()
         {
             var type = GetType();
@@ -310,101 +317,95 @@ namespace AnyStatus.API
             var clone = (Item)Activator.CreateInstance(type);
 
             type.GetProperties()
-                .Where(p => p.CanWrite && !CloneExcludes.Contains(p.Name))
+                .Where(p => p.CanWrite && p.Name != nameof(Parent) && p.Name != nameof(Items))
                 .ToList()
                 .ForEach(p => p.SetValue(clone, p.GetValue(this, null), null));
 
             if (Items != null && Items.Any())
-                foreach (var item in Items)
-                    if (item != null)
-                        clone.Add((Item)item.Clone());
+                foreach (var childNode in Items.Where(i => i != null))
+                    clone.Add(childNode.Clone() as Item);
 
             return clone;
         }
 
         #endregion
 
-        #region Folder
-
-
-        public void Clear()
-        {
-            Items?.Clear();
-        }
-
-        public bool Contains(Item item)
-        {
-            return Items != null && Items.Contains(item);
-        }
+        #region Aggregate
 
         private void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs args)
         {
-            if (!_aggregateState) return;
-
             Unsubscribe(args.OldItems);
 
             Subscribe(args.NewItems);
 
-            AggregateState();
+            Aggregate();
         }
 
-        private void Subscribe(IList items)
+        private void Subscribe(IList childNodes)
         {
-            if (items == null) return;
+            if (childNodes == null) return;
 
-            foreach (Item item in items)
+            foreach (Item childNode in childNodes)
             {
-                item.PropertyChanged += Item_PropertyChanged;
+                childNode.PropertyChanged += OnChildPropertyChanged;
             }
         }
 
-        private void Unsubscribe(IList items)
+        private void Unsubscribe(IList childNodes)
         {
-            if (items == null) return;
+            if (childNodes == null) return;
 
-            foreach (Item item in items)
+            foreach (Item childNode in childNodes)
             {
-                item.PropertyChanged -= Item_PropertyChanged;
+                childNode.PropertyChanged -= OnChildPropertyChanged;
             }
         }
 
-        private void Item_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void OnChildPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (_aggregateState && e.PropertyName.Equals(nameof(State)))
-                AggregateState();
+            if (e != null && e.PropertyName == nameof(State)) Aggregate();
         }
 
-        private void AggregateState()
+        private void Aggregate()
         {
-            State = Items != null && Items.Any() ?
-                         Items.Aggregate(ByPriority).State :
-                             State.None;
-
-            Count = (State == State.None || State == State.Disabled || State == State.Ok) ? 0 : CountItems(Items, State);
-        }
-
-        private static int CountItems(IEnumerable<Item> items, State state)
-        {
-            int count = 0;
-
-            foreach (var item in items)
+            try
             {
-                if (item.Items != null && item.Items.Any())
+                State = Items != null && Items.Any() ?
+                        Items.Aggregate(ByPriority).State :
+                        State.None;
+
+                Count = State == State.None || State == State.Disabled || State == State.Ok ?
+                        0 :
+                        CountChildrenByState(Items, State);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+
+            Item ByPriority(Item a, Item b)
+            {
+                return a.State.Metadata.Priority > b.State.Metadata.Priority ? a : b;
+            }
+
+            int CountChildrenByState(IEnumerable<Item> items, State state)
+            {
+                int count = 0;
+
+                foreach (var item in items)
                 {
-                    count += CountItems(item.Items, state);
+                    if (item.Items != null && item.Items.Any())
+                    {
+                        count += CountChildrenByState(item.Items, state);
+                    }
+                    else if (item.State == state)
+                    {
+                        count++;
+                    }
                 }
-                else if (item.State == state)
-                {
-                    count++;
-                }
+
+                return count;
             }
-
-            return count;
-        }
-
-        private static Item ByPriority(Item a, Item b)
-        {
-            return a.State.Metadata.Priority > b.State.Metadata.Priority ? a : b;
         }
 
         #endregion

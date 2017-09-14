@@ -2,11 +2,9 @@
 
 namespace AnyStatus.API
 {
-    public class Folder : Item
+    public class Folder : Plugin
     {
-        public Folder() : base(aggregateState: true) { }
-
-        protected Folder(bool aggregateState) : base(aggregateState: true) { }
+        public Folder() : base(aggregate: true) { }
 
         [Browsable(false)]
         public new int Interval { get; set; }
