@@ -7,9 +7,9 @@ namespace AnyStatus.API
         public Folder() : base(aggregate: true) { }
 
         [Browsable(false)]
-        public new int Interval { get; set; }
+        public new int Interval { get; set; } = 0;
 
         [Browsable(false)]
-        public new bool ShowNotifications { get; set; }
+        public new bool ShowNotifications { get; set; } = false;
     }
 }

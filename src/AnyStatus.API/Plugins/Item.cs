@@ -27,8 +27,8 @@ namespace AnyStatus.API
 
         private readonly bool _aggregate;
 
-        private int _count;
         private string _name;
+        private int _count;
         private int _interval;
         private bool _isExpanded;
         private bool _isEnabled;
@@ -48,7 +48,7 @@ namespace AnyStatus.API
 
         #region Ctor
 
-        public Item(bool aggregate)
+        protected Item(bool aggregate) : this()
         {
             _aggregate = aggregate;
 
@@ -57,13 +57,13 @@ namespace AnyStatus.API
             if (_aggregate) Items.CollectionChanged += OnCollectionChanged;
         }
 
-        public Item() : this(false)
+        public Item()
         {
-            ShowNotifications = true;
+            Interval = 5;
             IsEnabled = true;
             IsExpanded = false;
-            Interval = 5;
             State = State.None;
+            ShowNotifications = true;
         }
 
         #endregion
@@ -334,11 +334,18 @@ namespace AnyStatus.API
 
         private void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs args)
         {
-            Unsubscribe(args.OldItems);
+            try
+            {
+                Unsubscribe(args.OldItems);
 
-            Subscribe(args.NewItems);
+                Subscribe(args.NewItems);
 
-            Aggregate();
+                Aggregate();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
         }
 
         private void Subscribe(IList childNodes)
@@ -368,20 +375,13 @@ namespace AnyStatus.API
 
         private void Aggregate()
         {
-            try
-            {
-                State = Items != null && Items.Any() ?
-                        Items.Aggregate(ByPriority).State :
-                        State.None;
+            State = Items != null && Items.Any() ?
+                    Items.Aggregate(ByPriority).State :
+                    State.None;
 
-                Count = State == State.None || State == State.Disabled || State == State.Ok ?
-                        0 :
-                        CountChildrenByState(Items, State);
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-            }
+            Count = State == State.None || State == State.Disabled || State == State.Ok ?
+                    0 :
+                    CountChildrenByState(Items, State);
 
             Item ByPriority(Item a, Item b)
             {

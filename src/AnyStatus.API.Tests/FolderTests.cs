@@ -16,7 +16,7 @@ namespace AnyStatus.API.Tests
         public void Remove_Item()
         {
             var folder = new Folder();
-            var item = new TestItem();
+            var item = new PluginMock();
 
             folder.Add(item);
 
@@ -31,7 +31,7 @@ namespace AnyStatus.API.Tests
         public void Clear_Items()
         {
             var folder = new Folder();
-            var item = new TestItem();
+            var item = new PluginMock();
 
             folder.Add(item);
 
@@ -128,7 +128,7 @@ namespace AnyStatus.API.Tests
         {
             var folder = new Folder();
             var subFolder = new Folder();
-            var plugin = new TestItem();
+            var plugin = new PluginMock();
 
             folder.Add(subFolder);
             subFolder.Add(plugin);
@@ -145,8 +145,8 @@ namespace AnyStatus.API.Tests
         {
             var folder = new Folder();
             var subFolder = new Folder();
-            var plugin1 = new TestItem();
-            var plugin2 = new TestItem();
+            var plugin1 = new PluginMock();
+            var plugin2 = new PluginMock();
 
             folder.Add(subFolder);
             subFolder.Add(plugin1);

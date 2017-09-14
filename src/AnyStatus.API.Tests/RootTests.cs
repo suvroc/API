@@ -12,11 +12,11 @@ namespace AnyStatus.API.Tests
         [TestMethod]
         public void SerializeDeserializeTreeObject()
         {
-            Root.ExtraTypes = new[] { typeof(Folder), typeof(TestItem) };
+            Root.ExtraTypes = new[] { typeof(Folder), typeof(PluginMock) };
 
             var tree = new Root();
             var folder = new Folder();
-            var item = new TestItem();
+            var item = new PluginMock();
 
             tree.Add(folder);
             folder.Add(item);

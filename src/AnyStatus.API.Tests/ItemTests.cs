@@ -10,9 +10,39 @@ namespace AnyStatus.API.Tests
     public class ItemTests
     {
         [TestMethod]
+        public void Default_Plugin_State_Is_None()
+        {
+            var item = new PluginMock();
+
+            AssertStateIsNone(item);
+        }
+
+        [TestMethod]
+        public void Default_Folder_State_Is_None()
+        {
+            var item = new Folder();
+
+            AssertStateIsNone(item);
+        }
+
+        [TestMethod]
+        public void Default_Root_State_Is_None()
+        {
+            var item = new Root();
+
+            AssertStateIsNone(item);
+        }
+
+        public void AssertStateIsNone(Item item)
+        {
+            Assert.IsNotNull(item.State);
+            Assert.AreEqual(State.None, item.State);
+        }
+
+        [TestMethod]
         public void IsEnabled_Should_ChangeState()
         {
-            var item = new TestItem()
+            var item = new PluginMock()
             {
                 IsEnabled = true,
                 State = State.Ok
@@ -30,7 +60,7 @@ namespace AnyStatus.API.Tests
             this.Subscribe<ItemAdded>(e => { itemAddedEventFired = true; });
 
             var folder = new Folder();
-            var item = new TestItem();
+            var item = new PluginMock();
 
             folder.Add(item);
 
@@ -43,7 +73,7 @@ namespace AnyStatus.API.Tests
         [TestMethod]
         public void NotificationIsRequired_When_ShowNotifications_Is_True()
         {
-            var item = new TestItem
+            var item = new PluginMock
             {
                 ShowNotifications = false,
                 State = State.Ok
@@ -61,7 +91,7 @@ namespace AnyStatus.API.Tests
         [TestMethod]
         public void NotificationIsRequired_When_PreviousState_IsNotNullOrNone()
         {
-            var item = new TestItem
+            var item = new PluginMock
             {
                 ShowNotifications = true,
             };
@@ -80,7 +110,7 @@ namespace AnyStatus.API.Tests
         [TestMethod]
         public void NotificationIsRequired_When_PreviousState_Changed()
         {
-            var item = new TestItem
+            var item = new PluginMock
             {
                 ShowNotifications = true,
                 State = State.Ok
@@ -98,7 +128,7 @@ namespace AnyStatus.API.Tests
         [TestMethod]
         public void PreviousState()
         {
-            var item = new TestItem
+            var item = new PluginMock
             {
                 State = State.Ok
             };
@@ -113,11 +143,11 @@ namespace AnyStatus.API.Tests
         }
 
         [TestMethod]
-        public void DefaultState_Is_None()
+        public void Default_State_Is_None_When_Adding()
         {
             var folder = new Folder();
             var subFolder = new Folder();
-            var plugin = new TestItem();
+            var plugin = new PluginMock();
 
             folder.Add(subFolder);
             subFolder.Add(plugin);
@@ -130,7 +160,7 @@ namespace AnyStatus.API.Tests
         [TestMethod]
         public void Should_CreateNewObjects_When_Cloning()
         {
-            var item = new TestItem
+            var item = new PluginMock
             {
                 Id = Guid.NewGuid(),
                 Name = Guid.NewGuid().ToString(),
@@ -151,14 +181,14 @@ namespace AnyStatus.API.Tests
         [TestMethod]
         public void Should_IncludeChildren_When_Cloning()
         {
-            var item = new TestItem
+            var item = new PluginMock
             {
                 Id = Guid.NewGuid(),
                 Name = Guid.NewGuid().ToString(),
                 Items = new ObservableCollection<Item>()
             };
 
-            item.Items.Add(new TestItem());
+            item.Items.Add(new PluginMock());
 
             var copy = (Item)item.Clone();
 
@@ -174,7 +204,7 @@ namespace AnyStatus.API.Tests
         [TestMethod]
         public void CreateNotification_Should_ReturnNewNotification()
         {
-            var item = new TestItem();
+            var item = new PluginMock();
 
             var notification = item.CreateNotification();
 
