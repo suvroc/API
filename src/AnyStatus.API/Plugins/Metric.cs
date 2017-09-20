@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
+using System.Xml.Serialization;
 
 namespace AnyStatus.API
 {
@@ -7,6 +8,7 @@ namespace AnyStatus.API
     {
         private object _value;
 
+        [XmlIgnore]
         [Browsable(false)]
         [ExcludeFromCodeCoverage]
         public object Value
