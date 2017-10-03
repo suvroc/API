@@ -73,6 +73,7 @@
     <Compile Include="Plugins\Features\ICanStart.cs" />
     <Compile Include="Plugins\Features\ICanStop.cs" />
     <Compile Include="Plugins\Features\ICanTriggerBuild.cs" />
+    <Compile Include="Utils\Extensions.cs" />
     <Compile Include="Utils\Hub.cs" />
     <Compile Include="Utils\HubExtensions.cs" />
     <Compile Include="Utils\ICompiler.cs" />
