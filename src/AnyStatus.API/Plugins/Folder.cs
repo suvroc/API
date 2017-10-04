@@ -6,6 +6,8 @@ namespace AnyStatus.API
     {
         public Folder() : base(aggregate: true) { }
 
+        public Folder(bool aggregate) : base(aggregate) { }
+
         [Browsable(false)]
         public new int Interval { get; set; } = 0;
 
