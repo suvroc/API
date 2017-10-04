@@ -13,7 +13,7 @@ namespace AnyStatus.API
     {
         const string StaticName = "RootItem";
 
-        public Root()
+        public Root() : base()
         {
             PropertyChanged += Root_PropertyChanged;
         }
