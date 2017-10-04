@@ -61,7 +61,6 @@
     <Compile Include="Events\ItemAdded.cs" />
     <Compile Include="Core\Plugin.cs" />
     <Compile Include="Core\Metric.cs" />
-    <Compile Include="Core\Root.cs" />
     <Compile Include="Editors\MultilineTextBoxEditor.cs" />
     <Compile Include="Common\Enumeration.cs" />
     <Compile Include="Core\Item.cs" />
@@ -108,4 +107,10 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>if $(ConfigurationName) == Debug (
+    $(SolutionDir)nuget pack $(ProjectDir)$(ProjectName).nuspec
+    copy *.nupkg c:\nuget
+)</PostBuildEvent>
+  </PropertyGroup>
 </Project>

@@ -1,8 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using PubSub;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using PubSub;
 
 namespace AnyStatus.API.Tests
 {
@@ -24,15 +24,7 @@ namespace AnyStatus.API.Tests
 
             AssertStateIsNone(item);
         }
-
-        [TestMethod]
-        public void Default_Root_State_Is_None()
-        {
-            var item = new Root();
-
-            AssertStateIsNone(item);
-        }
-
+        
         public void AssertStateIsNone(Item item)
         {
             Assert.IsNotNull(item.State);
