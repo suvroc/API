@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace PubSub
 {
+    [ExcludeFromCodeCoverage]
     static public class PubSubExtensions
     {
         static private readonly Hub hub = new Hub();

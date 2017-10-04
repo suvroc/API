@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
 namespace AnyStatus.API
 {
     [Serializable]
-    public class NotifyPropertyChanged: INotifyPropertyChanged
+    [ExcludeFromCodeCoverage]
+    public class NotifyPropertyChanged : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

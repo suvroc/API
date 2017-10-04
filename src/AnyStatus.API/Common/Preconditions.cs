@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace AnyStatus.API
 {
     /// <summary>
     /// Preconditions for checking method arguments, state etc.
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public static class Preconditions
     {
         /// <summary>

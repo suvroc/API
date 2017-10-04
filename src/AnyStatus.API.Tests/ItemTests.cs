@@ -196,11 +196,15 @@ namespace AnyStatus.API.Tests
         [TestMethod]
         public void CreateNotification_Should_ReturnNewNotification()
         {
-            var item = new PluginMock();
+            var item = new PluginMock
+            {
+                State = State.Ok
+            };
 
             var notification = item.CreateNotification();
 
             Assert.IsNotNull(notification);
+            Assert.AreNotEqual(Notification.Empty, notification);
         }
     }
 }

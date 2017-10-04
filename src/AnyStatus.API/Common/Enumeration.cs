@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 
 namespace AnyStatus.API
 {
     [Serializable]
+    [ExcludeFromCodeCoverage]
     [DebuggerDisplay("{DisplayName} - {Value}")]
     public abstract class Enumeration<TEnumeration> : Enumeration<TEnumeration, int>
         where TEnumeration : Enumeration<TEnumeration>

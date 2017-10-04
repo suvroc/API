@@ -221,31 +221,7 @@ namespace AnyStatus.API
 
         public virtual Notification CreateNotification()
         {
-            if (State == State.Ok)
-                return new Notification($"{Name} is OK", NotificationIcon.Info);
-
-            if (State == State.Failed)
-                return new Notification($"{Name} has failed", NotificationIcon.Error);
-
-            if (State == State.Error)
-                return new Notification($"{Name} has one or more errors", NotificationIcon.Error);
-
-            if (State == State.PartiallySucceeded)
-                return new Notification($"{Name} partially succeeded", NotificationIcon.Warning);
-
-            if (State == State.Running)
-                return new Notification($"{Name} is running", NotificationIcon.Info);
-
-            if (State == State.Queued)
-                return new Notification($"{Name} has been queued", NotificationIcon.Info);
-
-            if (State == State.Canceled)
-                return new Notification($"{Name} has been cancelled", NotificationIcon.Info);
-
-            if (State == State.Unknown)
-                return new Notification($"{Name} status is unknown", NotificationIcon.Warning);
-
-            return Notification.Empty;
+            return NotificationFactory.Create(this);
         }
 
         public static bool IsNullOrError(object obj)
