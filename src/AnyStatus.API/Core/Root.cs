@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PubSub;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Xml;
@@ -11,6 +12,19 @@ namespace AnyStatus.API
     public class Root : Folder, IXmlSerializable
     {
         const string StaticName = "RootItem";
+
+        public Root()
+        {
+            PropertyChanged += Root_PropertyChanged;
+        }
+
+        private void Root_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(State))
+            {
+                this.Publish(new RootStateChanged(State));
+            }
+        }
 
         #region IXmlSerializable
 
