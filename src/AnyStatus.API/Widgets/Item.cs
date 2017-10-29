@@ -248,7 +248,7 @@ namespace AnyStatus.API
 
             IsExpanded = true;
 
-            this.Publish(new ItemAdded(item));
+            this.Publish(new WidgetAdded(item));
         }
 
         public virtual void Remove(Item item)
@@ -260,7 +260,7 @@ namespace AnyStatus.API
 
             Items.Remove(item);
 
-            this.Publish(new ItemRemoved(item));
+            this.Publish(new WidgetRemoved(item));
         }
 
         public void Clear()

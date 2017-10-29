@@ -49,7 +49,7 @@ namespace AnyStatus.API.Tests
         public void Add_Should()
         {
             var itemAddedEventFired = false;
-            this.Subscribe<ItemAdded>(e => { itemAddedEventFired = true; });
+            this.Subscribe<WidgetAdded>(e => { itemAddedEventFired = true; });
 
             var folder = new Folder();
             var item = new PluginMock();

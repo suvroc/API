@@ -2,16 +2,20 @@
 
 namespace AnyStatus.API
 {
+    /// <summary>
+    /// The default notification text for each state.
+    /// Widgets (plugins) can show different text by overriding CreateNotification().
+    /// </summary>
     [ExcludeFromCodeCoverage]
     public static class NotificationFactory
     {
         public static Notification Create(Item item)
         {
             if (item.State == State.Ok)
-                return new Notification($"{item.Name} is OK", NotificationIcon.Info);
+                return new Notification($"{item.Name} is Ok", NotificationIcon.Info);
 
             if (item.State == State.Failed)
-                return new Notification($"{item.Name} has failed", NotificationIcon.Error);
+                return new Notification($"{item.Name} failed", NotificationIcon.Error);
 
             if (item.State == State.Error)
                 return new Notification($"{item.Name} has one or more errors", NotificationIcon.Error);

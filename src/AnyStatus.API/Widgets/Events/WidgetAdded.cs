@@ -1,8 +1,8 @@
 ﻿namespace AnyStatus.API
 {
-    public class ItemRemoved
+    public class WidgetAdded
     {
-        public ItemRemoved(Item item)
+        public WidgetAdded(Item item)
         {
             Item = item;
         }
