@@ -54,3 +54,6 @@ public class Pong : IMonitor<Ping>
     }
 }
 ```
+
+In addition to the ```IMonitored``` and ```IMonitor<T>``` interfaces, you can also implement interfaces such as ICanStart, ICanStop, ICanRestart and others, to let AnyStatus know which features are supported by the plugin.
+
