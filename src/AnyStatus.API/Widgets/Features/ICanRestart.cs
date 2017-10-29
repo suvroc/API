@@ -2,5 +2,6 @@
 {
     public interface ICanRestart : ITask
     {
+        bool CanRestart();
     }
 }

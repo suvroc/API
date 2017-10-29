@@ -2,5 +2,6 @@
 {
     public interface ICanStop : ITask
     {
+        bool CanStop();
     }
 }

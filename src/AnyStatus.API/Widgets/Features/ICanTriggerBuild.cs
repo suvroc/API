@@ -2,5 +2,6 @@
 {
     public interface ICanTriggerBuild : ITask
     {
+        bool CanTriggerBuild();
     }
 }

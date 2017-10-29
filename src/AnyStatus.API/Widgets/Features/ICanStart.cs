@@ -2,5 +2,6 @@
 {
     public interface ICanStart : ITask
     {
+        bool CanStart();
     }
 }

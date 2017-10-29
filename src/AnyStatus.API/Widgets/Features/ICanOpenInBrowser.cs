@@ -2,5 +2,6 @@
 {
     public interface ICanOpenInBrowser : ITask
     {
+        bool CanOpenInBrowser();
     }
 }
