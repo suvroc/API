@@ -20,5 +20,19 @@ namespace AnyStatus.API.Utils
 
             field?.SetValue(attr, value);
         }
+
+        public static void MapTo<S, T>(this S source, T target)
+        {
+            var targetType = typeof(T);
+
+            foreach (var property in source.GetType().GetProperties())
+            {
+                var targetProp = targetType.GetProperty(property.Name);
+
+                if (targetProp == null) continue;
+
+                targetProp.SetValue(target, property.GetValue(source, null), null);
+            }
+        }
     }
 }
