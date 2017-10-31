@@ -1,7 +1,7 @@
 ﻿namespace AnyStatus.API
 {
     /// <summary>
-    /// Base class for all widgets.
+    /// Base class for all plugins (widgets).
     /// </summary>
     public abstract class Plugin : Item
     {

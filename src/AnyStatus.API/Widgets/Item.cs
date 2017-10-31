@@ -15,9 +15,9 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace AnyStatus.API
 {
     /// <summary>
-    /// Base tree-view node object.
-    /// Plugins should not directly inherit this class.
-    /// Please use the "Plugin" class instead.
+    /// Dashboard tree-view base item.
+    /// Plugins (widgets) should not directly inherit this class.
+    /// Please use "Plugin" class instead.
     /// </summary>
     [Serializable]
     [CategoryOrder("General", 1)]
