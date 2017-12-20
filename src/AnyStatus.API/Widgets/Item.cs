@@ -139,7 +139,7 @@ namespace AnyStatus.API
         [PropertyOrder(3)]
         [Category("General")]
         [DisplayName("Show Error Notifications")]
-        [Description("Show desktop notifications when errors occur. Set to True to reduce the number of notifications.")]
+        [Description("Show desktop notifications when errors occur. Set to False to reduce the number of notifications.")]
         public bool ShowErrorNotifications
         {
             get { return _showErrorNotifications; }
