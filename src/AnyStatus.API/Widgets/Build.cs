@@ -2,9 +2,12 @@
 {
     public abstract class Build : Widget
     {
-        protected Build() : base(aggregate: false) { }
+        protected Build() : this(aggregate: false) { }
 
-        protected Build(bool aggregate) : base(aggregate) { }
+        protected Build(bool aggregate) : base(aggregate)
+        {
+            ShowErrorNotifications = false;
+        }
 
         public override Notification CreateNotification()
         {

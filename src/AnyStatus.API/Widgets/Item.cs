@@ -118,8 +118,8 @@ namespace AnyStatus.API
         [Required]
         [PropertyOrder(1)]
         [Category("General")]
-        [Range(0, ushort.MaxValue, ErrorMessage = "Interval must be between 0 and 65535")]
-        [Description("The monitor interval in minutes. Use 0 to bypass.")]
+        [Range(0, ushort.MaxValue, ErrorMessage = "The time interval in minutes must be a number between 0 and 65535.")]
+        [Description("Required. The monitoring time interval in minutes. Use 0 to bypass. Must be a number between 0 and 65535.")]
         public int Interval
         {
             get { return _interval; }
@@ -129,7 +129,7 @@ namespace AnyStatus.API
         [PropertyOrder(2)]
         [Category("General")]
         [DisplayName("Show Notifications")]
-        [Description("Show desktop notifications when the status change.")]
+        [Description("Show desktop notifications when events occur.")]
         public bool ShowNotifications
         {
             get { return _showNotifications; }
@@ -139,7 +139,7 @@ namespace AnyStatus.API
         [PropertyOrder(3)]
         [Category("General")]
         [DisplayName("Show Error Notifications")]
-        [Description("Check to show notifications when the status is Error.")]
+        [Description("Show desktop notifications when errors occur. Set to True to reduce the number of notifications.")]
         public bool ShowErrorNotifications
         {
             get { return _showErrorNotifications; }
@@ -220,6 +220,7 @@ namespace AnyStatus.API
             get
             {
                 return ShowNotifications &&
+                      (State != State.Error || ShowErrorNotifications) &&
                        PreviousState != null &&
                        PreviousState != State &&
                        PreviousState != State.None;
