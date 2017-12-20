@@ -12,7 +12,7 @@ namespace AnyStatus.API.Tests
         [TestMethod]
         public void Default_Plugin_State_Is_None()
         {
-            var item = new PluginMock();
+            var item = new WidgetMock();
 
             AssertStateIsNone(item);
         }
@@ -34,7 +34,7 @@ namespace AnyStatus.API.Tests
         [TestMethod]
         public void IsEnabled_Should_ChangeState()
         {
-            var item = new PluginMock()
+            var item = new WidgetMock()
             {
                 IsEnabled = true,
                 State = State.Ok
@@ -52,7 +52,7 @@ namespace AnyStatus.API.Tests
             this.Subscribe<WidgetAdded>(e => { itemAddedEventFired = true; });
 
             var folder = new Folder();
-            var item = new PluginMock();
+            var item = new WidgetMock();
 
             folder.Add(item);
 
@@ -65,7 +65,7 @@ namespace AnyStatus.API.Tests
         [TestMethod]
         public void NotificationIsRequired_When_ShowNotifications_Is_True()
         {
-            var item = new PluginMock
+            var item = new WidgetMock
             {
                 ShowNotifications = false,
                 State = State.Ok
@@ -83,7 +83,7 @@ namespace AnyStatus.API.Tests
         [TestMethod]
         public void NotificationIsRequired_When_PreviousState_IsNotNullOrNone()
         {
-            var item = new PluginMock
+            var item = new WidgetMock
             {
                 ShowNotifications = true,
             };
@@ -102,7 +102,7 @@ namespace AnyStatus.API.Tests
         [TestMethod]
         public void NotificationIsRequired_When_PreviousState_Changed()
         {
-            var item = new PluginMock
+            var item = new WidgetMock
             {
                 ShowNotifications = true,
                 State = State.Ok
@@ -120,7 +120,7 @@ namespace AnyStatus.API.Tests
         [TestMethod]
         public void PreviousState()
         {
-            var item = new PluginMock
+            var item = new WidgetMock
             {
                 State = State.Ok
             };
@@ -139,7 +139,7 @@ namespace AnyStatus.API.Tests
         {
             var folder = new Folder();
             var subFolder = new Folder();
-            var plugin = new PluginMock();
+            var plugin = new WidgetMock();
 
             folder.Add(subFolder);
             subFolder.Add(plugin);
@@ -152,7 +152,7 @@ namespace AnyStatus.API.Tests
         [TestMethod]
         public void Should_CreateNewObjects_When_Cloning()
         {
-            var item = new PluginMock
+            var item = new WidgetMock
             {
                 Id = Guid.NewGuid(),
                 Name = Guid.NewGuid().ToString(),
@@ -173,14 +173,14 @@ namespace AnyStatus.API.Tests
         [TestMethod]
         public void Should_IncludeChildren_When_Cloning()
         {
-            var item = new PluginMock
+            var item = new WidgetMock
             {
                 Id = Guid.NewGuid(),
                 Name = Guid.NewGuid().ToString(),
                 Items = new ObservableCollection<Item>()
             };
 
-            item.Items.Add(new PluginMock());
+            item.Items.Add(new WidgetMock());
 
             var copy = (Item)item.Clone();
 
@@ -196,7 +196,7 @@ namespace AnyStatus.API.Tests
         [TestMethod]
         public void CreateNotification_Should_ReturnNewNotification()
         {
-            var item = new PluginMock
+            var item = new WidgetMock
             {
                 State = State.Ok
             };

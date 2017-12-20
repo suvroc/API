@@ -15,9 +15,8 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace AnyStatus.API
 {
     /// <summary>
-    /// Dashboard tree-view base item.
-    /// Plugins (widgets) should not directly inherit this class.
-    /// Please use "Plugin" class instead.
+    /// Base dashboard tree node.
+    /// Widgets should not directly inherit this class.
     /// </summary>
     [Serializable]
     [CategoryOrder("General", 1)]
@@ -37,6 +36,7 @@ namespace AnyStatus.API
         private bool _isEditing;
         private bool _isSelected;
         private bool _showNotifications;
+        private bool _showErrorNotifications;
         private Item _parent;
         private ObservableCollection<Item> _items;
 
@@ -61,11 +61,12 @@ namespace AnyStatus.API
 
         public Item()
         {
-            Interval = 5;
+            Interval = 1;
             IsEnabled = true;
             IsExpanded = false;
             State = State.None;
             ShowNotifications = true;
+            ShowErrorNotifications = true;
         }
 
         #endregion
@@ -128,11 +129,21 @@ namespace AnyStatus.API
         [PropertyOrder(2)]
         [Category("General")]
         [DisplayName("Show Notifications")]
-        [Description("Check to show notifications when the status change.")]
+        [Description("Show desktop notifications when the status change.")]
         public bool ShowNotifications
         {
             get { return _showNotifications; }
             set { _showNotifications = value; OnPropertyChanged(); }
+        }
+
+        [PropertyOrder(3)]
+        [Category("General")]
+        [DisplayName("Show Error Notifications")]
+        [Description("Check to show notifications when the status is Error.")]
+        public bool ShowErrorNotifications
+        {
+            get { return _showErrorNotifications; }
+            set { _showErrorNotifications = value; OnPropertyChanged(); }
         }
 
         [XmlIgnore]

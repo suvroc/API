@@ -60,7 +60,7 @@
     <Compile Include="Widgets\Build.cs" />
     <Compile Include="Widgets\Folder.cs" />
     <Compile Include="Widgets\Events\WidgetAdded.cs" />
-    <Compile Include="Widgets\Plugin.cs" />
+    <Compile Include="Widgets\Widget.cs" />
     <Compile Include="Widgets\Metric.cs" />
     <Compile Include="Editors\MultilineTextBoxEditor.cs" />
     <Compile Include="Common\Enumeration.cs" />

@@ -2,8 +2,8 @@
 {
     interface IScheduler
     {
-        void Schedule(Plugin plugin);
+        void Schedule(Widget widget);
 
-        void Unschedule(Plugin plugin);
+        void Unschedule(Widget widget);
     }
 }

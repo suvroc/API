@@ -1,6 +1,6 @@
 ﻿namespace AnyStatus.API
 {
-    public abstract class Build : Plugin
+    public abstract class Build : Widget
     {
         protected Build() : base(aggregate: false) { }
 

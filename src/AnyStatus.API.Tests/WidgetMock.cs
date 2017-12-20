@@ -1,6 +1,6 @@
 ﻿namespace AnyStatus.API.Tests
 {
-    public class PluginMock : Plugin
+    public class WidgetMock : Widget
     {
     }
 }

@@ -2,7 +2,7 @@
 
 namespace AnyStatus.API
 {
-    public class Folder : Plugin
+    public class Folder : Widget
     {
         public Folder() : base(aggregate: true) { }
 

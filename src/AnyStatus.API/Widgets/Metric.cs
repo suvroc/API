@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 
 namespace AnyStatus.API
 {
-    public abstract class Metric : Plugin
+    public abstract class Metric : Widget
     {
         private object _value;
 
