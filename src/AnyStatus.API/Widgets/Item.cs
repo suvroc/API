@@ -139,7 +139,7 @@ namespace AnyStatus.API
         [PropertyOrder(3)]
         [Category("General")]
         [DisplayName("Show Error Notifications")]
-        [Description("Show desktop notifications when errors occur. Set to False to reduce the number of notifications.")]
+        [Description("Show desktop notifications when errors occur or recover.")]
         public bool ShowErrorNotifications
         {
             get { return _showErrorNotifications; }
@@ -213,23 +213,23 @@ namespace AnyStatus.API
             set { _isSelected = value; OnPropertyChanged(); }
         }
 
-        [XmlIgnore]
-        [Browsable(false)]
-        public bool NotificationIsRequired
-        {
-            get
-            {
-                return ShowNotifications &&
-                      (State != State.Error || ShowErrorNotifications) &&
-                       PreviousState != null &&
-                       PreviousState != State &&
-                       PreviousState != State.None;
-            }
-        }
-
         #endregion
 
         #region Helpers
+
+        public virtual bool IsNotificationRequired()
+        {
+            if (!ShowNotifications)
+                return false;
+
+            if (PreviousState == null || PreviousState == State || PreviousState == State.None)
+                return false;
+
+            if (!ShowErrorNotifications && (State == State.Error || PreviousState == State.Error))
+                return false;
+
+            return true;
+        }
 
         public virtual Notification CreateNotification()
         {
@@ -291,7 +291,7 @@ namespace AnyStatus.API
 
         public bool IsValid()
         {
-            var context = new ValidationContext(this, serviceProvider: null, items: null);
+            var context = new ValidationContext(this, serviceProvider: null, items: null); //move to private field?
 
             return Validator.TryValidateObject(this, context, null/*, true*/);
         }
