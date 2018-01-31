@@ -55,6 +55,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dialogs\ConfirmationDialog.cs" />
     <Compile Include="Dialogs\Dialog.cs" />
     <Compile Include="Dialogs\ErrorDialog.cs" />
     <Compile Include="Dialogs\FileDialog.cs" />
