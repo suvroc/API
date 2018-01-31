@@ -2,12 +2,9 @@
 {
     public class OpenFileDialog : FileDialog
     {
-        public OpenFileDialog(string message, string title) : base(message, title)
+        public OpenFileDialog(string filter) : base(string.Empty, string.Empty, filter)
         {
-        }
-
-        public OpenFileDialog(string message, string title, string filter) : base(message, title, filter)
-        {
+            Filter = filter;
         }
     }
 }
