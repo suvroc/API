@@ -55,7 +55,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dialogs\Dialog.cs" />
+    <Compile Include="Dialogs\ErrorDialog.cs" />
+    <Compile Include="Dialogs\FileDialog.cs" />
+    <Compile Include="Dialogs\IDialog.cs" />
+    <Compile Include="Dialogs\InfoDialog.cs" />
+    <Compile Include="Dialogs\OpenFileDialog.cs" />
+    <Compile Include="Dialogs\SaveFileDialog.cs" />
+    <Compile Include="Dialogs\WarningDialog.cs" />
     <Compile Include="Notifications\DefaultNotificationFactory.cs" />
+    <Compile Include="Dialogs\DialogResult.cs" />
     <Compile Include="Widgets\Events\WidgetRemoved.cs" />
     <Compile Include="Widgets\Build.cs" />
     <Compile Include="Widgets\Folder.cs" />
@@ -77,7 +86,7 @@
     <Compile Include="Common\Hub\Hub.cs" />
     <Compile Include="Common\Hub\HubExtensions.cs" />
     <Compile Include="Services\ICompiler.cs" />
-    <Compile Include="Services\IDialogService.cs" />
+    <Compile Include="Dialogs\IDialogService.cs" />
     <Compile Include="Widgets\Features\Common\IHandler.cs" />
     <Compile Include="Services\ILogger.cs" />
     <Compile Include="Widgets\Features\IMonitor.cs" />

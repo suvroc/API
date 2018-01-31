@@ -12,7 +12,7 @@ namespace AnyStatus.API
         public static Notification Create(Item item)
         {
             if (item.State == State.Ok)
-                return new Notification($"{item.Name} is Ok", NotificationIcon.Info);
+                return new Notification($"{item.Name} is OK", NotificationIcon.Info);
 
             if (item.State == State.Failed)
                 return new Notification($"{item.Name} failed", NotificationIcon.Error);
