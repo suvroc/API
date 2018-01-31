@@ -1,22 +1,13 @@
-﻿using System;
-using System.Windows;
-
-namespace AnyStatus.API
+﻿namespace AnyStatus.API
 {
     public interface IDialogService
     {
         DialogResult ShowDialog(IDialog dialog);
-
-        [Obsolete]
-        MessageBoxResult Show(string text, string title, MessageBoxButton button, MessageBoxImage image);
-
-        [Obsolete]
-        void ShowWarning(string v1, string v2);
-
-        [Obsolete]
-        bool? ShowSaveFileDialog(string filter, out string fileName);
-
-        [Obsolete]
-        bool? ShowOpenFileDialog(string filter, out string fileName);
+        DialogResult ShowDialog(ConfirmationDialog dialog);
+        DialogResult ShowDialog(ErrorDialog dialog);
+        DialogResult ShowDialog(InfoDialog dialog);
+        DialogResult ShowDialog(OpenFileDialog dialog);
+        DialogResult ShowDialog(SaveFileDialog dialog);
+        DialogResult ShowDialog(WarningDialog dialog);
     }
 }
