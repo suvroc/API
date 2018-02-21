@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace AnyStatus.API
 {
     [Serializable]
+    [ExcludeFromCodeCoverage]
     public class StateMetadata : NotifyPropertyChanged
     {
         private string _color;
@@ -13,11 +15,11 @@ namespace AnyStatus.API
 
         public StateMetadata(int value, int priority, string displayName, string color, string icon)
         {
-            Value = value;
-            DisplayName = displayName;
-            Priority = priority;
-            Color = color;
             Icon = icon;
+            Color = color;
+            Value = value;
+            Priority = priority;
+            DisplayName = displayName;
         }
 
         public int Value { get; set; }

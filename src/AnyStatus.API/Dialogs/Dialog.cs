@@ -1,7 +1,10 @@
-﻿namespace AnyStatus.API
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace AnyStatus.API
 {
     public abstract class Dialog : IDialog
     {
+        [ExcludeFromCodeCoverage]
         public Dialog(string message, string title)
         {
             Title = title;

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
@@ -10,7 +11,15 @@ namespace AnyStatus.API
 {
     public class MultilineTextBoxEditor : ITypeEditor
     {
+        [ExcludeFromCodeCoverage]
         public FrameworkElement ResolveEditor(PropertyItem propertyItem)
+        {
+            var bindingMode = propertyItem.IsReadOnly ? BindingMode.OneWay : BindingMode.TwoWay;
+
+            return CreateElement(propertyItem, bindingMode);
+        }
+
+        public static FrameworkElement CreateElement(object bindingSource, BindingMode bindingMode)
         {
             var panel = new StackPanel();
 
@@ -42,10 +51,10 @@ namespace AnyStatus.API
 
             var binding = new Binding("Value")
             {
-                Source = propertyItem,
+                Mode = bindingMode,
+                Source = bindingSource,
                 ValidatesOnExceptions = true,
                 ValidatesOnDataErrors = true,
-                Mode = propertyItem.IsReadOnly ? BindingMode.OneWay : BindingMode.TwoWay
             };
 
             BindingOperations.SetBinding(textBox, TextBox.TextProperty, binding);

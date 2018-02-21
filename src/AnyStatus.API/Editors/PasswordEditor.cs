@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Windows;
 using System.Windows.Controls;
 using Xceed.Wpf.Toolkit.PropertyGrid;
 using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
@@ -7,29 +9,54 @@ namespace AnyStatus.API
 {
     public class PasswordEditor : ITypeEditor
     {
-        PasswordBox _passwordBox;
-        PropertyItem _propertyItem;
+        private Func<string> _getPassword;
+        private Action<string> _setPassword;
 
+        [ExcludeFromCodeCoverage]
+        public PasswordEditor()
+        {
+        }
+
+        public PasswordEditor(Func<string> getPassword, Action<string> setPassword)
+        {
+            _getPassword = getPassword;
+            _setPassword = setPassword;
+        }
+
+        [ExcludeFromCodeCoverage]
         public FrameworkElement ResolveEditor(PropertyItem propertyItem)
         {
-            _propertyItem = propertyItem;
+            //workaround. PropertyItem internal ctor can't be used by unit tests
 
-            _passwordBox = new PasswordBox
+            _setPassword = password => propertyItem.Value = password;
+            _getPassword = () => propertyItem.Value.ToString();
+
+            return CreateElement();
+        }
+
+        public FrameworkElement CreateElement()
+        {
+            if (_setPassword == null || _getPassword == null)
+                throw new InvalidOperationException();
+
+            var passwordBox = new PasswordBox
             {
+                Password = _getPassword(),
                 BorderThickness = new Thickness(0),
-                Password = (string)_propertyItem.Value
             };
 
-            _passwordBox.LostFocus += OnLostFocus;
+            passwordBox.LostFocus += OnLostFocus;
 
-            return _passwordBox;
+            return passwordBox;
         }
 
         private void OnLostFocus(object sender, RoutedEventArgs e)
         {
-            if (!_passwordBox.Password.Equals((string)_propertyItem.Value))
+            if (sender != null &&
+                sender is PasswordBox passwordBox &&
+                passwordBox.Password != _getPassword())
             {
-                _propertyItem.Value = _passwordBox.Password;
+                _setPassword(passwordBox.Password);
             }
 
             e.Handled = true;

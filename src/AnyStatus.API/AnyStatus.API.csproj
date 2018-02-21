@@ -83,7 +83,7 @@
     <Compile Include="Widgets\Features\ICanStart.cs" />
     <Compile Include="Widgets\Features\ICanStop.cs" />
     <Compile Include="Widgets\Features\ICanTriggerBuild.cs" />
-    <Compile Include="Common\Extensions.cs" />
+    <Compile Include="Common\Mapper.cs" />
     <Compile Include="Common\Hub\Hub.cs" />
     <Compile Include="Common\Hub\HubExtensions.cs" />
     <Compile Include="Services\ICompiler.cs" />

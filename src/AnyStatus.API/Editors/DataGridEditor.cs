@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
@@ -10,9 +11,40 @@ namespace AnyStatus.API
 {
     public class DataGridEditor : ITypeEditor
     {
+        [ExcludeFromCodeCoverage]
         public FrameworkElement ResolveEditor(PropertyItem propertyItem)
         {
-            var grid = new DataGrid
+            var bindingMode = propertyItem.IsReadOnly ? BindingMode.OneWay : BindingMode.TwoWay;
+
+            return CreateElement(propertyItem, bindingMode);
+        }
+
+        public static FrameworkElement CreateElement(object bindingSource, BindingMode bindingMode)
+        {
+            var grid = CreateDataGrid();
+
+            var panel = new StackPanel();
+
+            panel.Children.Add(grid);
+
+            var button = CreateDropDownButton(panel);
+
+            var binding = new Binding("Value")
+            {
+                Mode = bindingMode,
+                Source = bindingSource,
+                ValidatesOnExceptions = true,
+                ValidatesOnDataErrors = true,
+            };
+
+            BindingOperations.SetBinding(grid, ItemsControl.ItemsSourceProperty, binding);
+
+            return button;
+        }
+
+        private static DataGrid CreateDataGrid()
+        {
+            return new DataGrid
             {
                 MaxHeight = 400,
                 CanUserAddRows = true,
@@ -21,12 +53,11 @@ namespace AnyStatus.API
                 CanUserSortColumns = false,
                 RowHeaderWidth = 20
             };
+        }
 
-            var panel = new StackPanel();
-
-            panel.Children.Add(grid);
-
-            var button = new DropDownButton
+        private static DropDownButton CreateDropDownButton(StackPanel panel)
+        {
+            return new DropDownButton
             {
                 Content = "(Edit)",
                 DropDownContent = panel,
@@ -40,19 +71,6 @@ namespace AnyStatus.API
                 HorizontalAlignment = HorizontalAlignment.Stretch,
                 VerticalAlignment = VerticalAlignment.Center,
             };
-
-            var binding = new Binding("Value")
-            {
-                Source = propertyItem,
-                ValidatesOnExceptions = true,
-                ValidatesOnDataErrors = true,
-                Mode = propertyItem.IsReadOnly ? BindingMode.OneWay : BindingMode.TwoWay
-            };
-
-            BindingOperations.SetBinding(grid, ItemsControl.ItemsSourceProperty, binding);
-
-            return button;
         }
     }
-
 }

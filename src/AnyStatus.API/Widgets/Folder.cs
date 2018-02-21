@@ -1,13 +1,20 @@
 ﻿using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Xml.Serialization;
 
 namespace AnyStatus.API
 {
+
     public class Folder : Widget
     {
-        public Folder() : base(aggregate: true) { }
+        public Folder() : base(aggregate: true)
+        {
+        }
 
-        public Folder(bool aggregate) : base(aggregate) { }
+        [ExcludeFromCodeCoverage]
+        public Folder(bool aggregate) : base(aggregate)
+        {
+        }
 
         [XmlIgnore]
         [Browsable(false)]

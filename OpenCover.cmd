@@ -22,4 +22,4 @@ REM Report Generator
 
 start "" "%~dp0\OpenCover\Report\index.htm"
 
-pause
+::pause

@@ -28,13 +28,14 @@ namespace AnyStatus.API
         }
     }
 
+    [ExcludeFromCodeCoverage]
     public abstract class Enumeration<TEnumeration, TValue> : NotifyPropertyChanged, IComparable<TEnumeration>, IEquatable<TEnumeration>
         where TEnumeration : Enumeration<TEnumeration, TValue>
         where TValue : IComparable
     {
         private static readonly Lazy<TEnumeration[]> Enumerations = new Lazy<TEnumeration[]>(GetEnumerations);
 
-        readonly TValue _value;
+        private readonly TValue _value;
 
         protected Enumeration(TValue value)
         {
@@ -107,7 +108,7 @@ namespace AnyStatus.API
             return Parse(value, "value", item => item.Value.Equals(value));
         }
 
-        static bool TryParse(Func<TEnumeration, bool> predicate, out TEnumeration result)
+        private static bool TryParse(Func<TEnumeration, bool> predicate, out TEnumeration result)
         {
             result = GetAll().FirstOrDefault(predicate);
             return result != null;

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using Xceed.Wpf.Toolkit.PropertyGrid;
@@ -8,33 +9,39 @@ namespace AnyStatus.API
 {
     public class FileEditor : ITypeEditor
     {
+        [ExcludeFromCodeCoverage]
         public FrameworkElement ResolveEditor(PropertyItem propertyItem)
+        {
+            return CreateElement(propertyItem);
+        }
+
+        public FrameworkElement CreateElement(object bindingSource)
         {
             var grid = new Grid();
 
             grid.ColumnDefinitions.Add(new ColumnDefinition());
-            grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
 
-            var textBox = new TextBox()
+            var textBox = new TextBox
             {
                 HorizontalAlignment = HorizontalAlignment.Stretch
             };
 
             var binding = new Binding("Value")
             {
-                Source = propertyItem,
+                Source = bindingSource,
                 Mode = BindingMode.TwoWay
             };
 
             BindingOperations.SetBinding(textBox, TextBox.TextProperty, binding);
 
-            var button = new Button()
+            var button = new Button
             {
                 Content = "...",
-                Tag = propertyItem
+                Tag = bindingSource
             };
 
-            button.Click += Button_Click;
+            button.Click += OnButtonClick;
 
             Grid.SetColumn(button, 1);
 
@@ -44,7 +51,7 @@ namespace AnyStatus.API
             return grid;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void OnButtonClick(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
 
@@ -63,5 +70,4 @@ namespace AnyStatus.API
             item.Value = openFileDialog.FileName;
         }
     }
-
 }

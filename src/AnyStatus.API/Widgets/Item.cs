@@ -46,7 +46,7 @@ namespace AnyStatus.API
         [NonSerialized]
         private State _previousState;
 
-        #endregion
+        #endregion Fields
 
         #region Ctor
 
@@ -69,7 +69,7 @@ namespace AnyStatus.API
             ShowErrorNotifications = true;
         }
 
-        #endregion
+        #endregion Ctor
 
         #region Properties
 
@@ -213,7 +213,7 @@ namespace AnyStatus.API
             set { _isSelected = value; OnPropertyChanged(); }
         }
 
-        #endregion
+        #endregion Properties
 
         #region Helpers
 
@@ -285,7 +285,7 @@ namespace AnyStatus.API
             return Items != null && Items.Contains(item);
         }
 
-        #endregion
+        #endregion Helpers
 
         #region IValidatable
 
@@ -296,7 +296,7 @@ namespace AnyStatus.API
             return Validator.TryValidateObject(this, context, null/*, true*/);
         }
 
-        #endregion
+        #endregion IValidatable
 
         #region ICloneable
 
@@ -318,7 +318,7 @@ namespace AnyStatus.API
             return clone;
         }
 
-        #endregion
+        #endregion ICloneable
 
         #region Aggregate
 
@@ -398,7 +398,7 @@ namespace AnyStatus.API
             }
         }
 
-        #endregion
+        #endregion Aggregate
 
         #region IDisposable
 
@@ -416,6 +416,6 @@ namespace AnyStatus.API
             _disposed = true;
         }
 
-        #endregion
+        #endregion IDisposable
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace AnyStatus.API
 {
-    interface IScheduler
+    internal interface IScheduler
     {
         void Schedule(Widget widget);
 

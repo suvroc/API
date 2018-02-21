@@ -97,7 +97,6 @@ namespace AnyStatus.API
             }
         }
 
-
         /// <summary>
         /// Checks that given argument-based condition is met, throwing an <see cref="ArgumentException"/> otherwise.
         /// </summary>

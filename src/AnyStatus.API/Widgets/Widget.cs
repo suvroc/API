@@ -5,8 +5,12 @@
     /// </summary>
     public abstract class Widget : Item
     {
-        protected Widget() : base(aggregate: false) { }
+        protected Widget() : base(aggregate: false)
+        {
+        }
 
-        protected Widget(bool aggregate) : base(aggregate) { }
+        protected Widget(bool aggregate) : base(aggregate)
+        {
+        }
     }
 }

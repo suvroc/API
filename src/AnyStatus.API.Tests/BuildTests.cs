@@ -6,17 +6,72 @@ namespace AnyStatus.API.Tests
     public class BuildTests
     {
         [TestMethod]
-        public void CreateNotificationForBuilds()
+        public void Should_CreateInfoNotification_When_StateChangeFromNoneToOk()
         {
-            var build = new BuildTest();
+            var build = new BuildTest
+            {
+                State = State.Ok
+            };
+
+            var notification = build.CreateNotification();
+
+            AssertThatNotificationIsInfo(notification);
+        }
+
+        [TestMethod]
+        public void Should_CreateInfoNotification_When_StateChangeFromQueuedToOk()
+        {
+            var build = new BuildTest
+            {
+                State = State.Queued
+            };
+
+            build.State = State.Ok;
 
             var notification = build.CreateNotification();
 
             Assert.IsNotNull(notification);
+            Assert.AreEqual(NotificationIcon.Info, notification.Icon);
+        }
+
+        [TestMethod]
+        public void Should_CreateInfoNotification_When_StateChangeFromRunningToOk()
+        {
+            var build = new BuildTest
+            {
+                State = State.Running
+            };
+
+            build.State = State.Ok;
+
+            var notification = build.CreateNotification();
+
+            AssertThatNotificationIsInfo(notification);
+        }
+
+        [TestMethod]
+        public void Should_CreateInfoNotification_When_StateChangeFromQueuedToRunning()
+        {
+            var build = new BuildTest
+            {
+                State = State.Queued
+            };
+
+            build.State = State.Running;
+
+            var notification = build.CreateNotification();
+
+            AssertThatNotificationIsInfo(notification);
+        }
+
+        private static void AssertThatNotificationIsInfo(Notification notification)
+        {
+            Assert.IsNotNull(notification);
+            Assert.AreEqual(NotificationIcon.Info, notification.Icon);
         }
     }
 
-    class BuildTest : Build
+    internal class BuildTest : Build
     {
     }
 }

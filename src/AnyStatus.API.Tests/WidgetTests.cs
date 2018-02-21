@@ -352,6 +352,6 @@ namespace AnyStatus.API.Tests
             Assert.AreEqual(State.None, item.State);
         }
 
-        #endregion
+        #endregion Helpers
     }
 }
