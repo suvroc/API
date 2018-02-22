@@ -9,6 +9,7 @@ namespace AnyStatus.API
 {
     public class PasswordEditor : ITypeEditor
     {
+        private PropertyItem _propertyItem;
         private Func<string> _getPassword;
         private Action<string> _setPassword;
 
@@ -26,10 +27,16 @@ namespace AnyStatus.API
         [ExcludeFromCodeCoverage]
         public FrameworkElement ResolveEditor(PropertyItem propertyItem)
         {
-            //workaround. PropertyItem internal ctor can't be used by unit tests
+            //Workaround. PropertyItem internal ctor can't be used by unit tests
 
-            _setPassword = password => propertyItem.Value = password;
-            _getPassword = () => propertyItem.Value.ToString();
+            _propertyItem = propertyItem;
+
+            _getPassword = () => _propertyItem?.Value?.ToString();
+
+            _setPassword = pws =>
+            {
+                if (_propertyItem != null) _propertyItem.Value = pws;
+            };
 
             return CreateElement();
         }
