@@ -31,11 +31,11 @@ for:
     only:
       - 2.x
 
-version: 2.0.{build}
+  version: 2.0.{build}
 
-before_build:
-- cmd: nuget restore src
-- ps: $file = "$env:appveyor_build_folder\src\AnyStatus.API\AnyStatus.API.nuspec"
-- ps: $xml = [xml](Get-Content $file)
-- ps: $xml.package.metadata.version = $env:APPVEYOR_BUILD_VERSION + "-alpha"
+  before_build:
+  - cmd: nuget restore src
+  - ps: $file = "$env:appveyor_build_folder\src\AnyStatus.API\AnyStatus.API.nuspec"
+  - ps: $xml = [xml](Get-Content $file)
+  - ps: $xml.package.metadata.version = $env:APPVEYOR_BUILD_VERSION + "-alpha"
 - ps: $xml.Save($file)
