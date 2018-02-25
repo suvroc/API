@@ -82,17 +82,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Editors\DataGridEditorTests.cs" />
-    <Compile Include="Editors\FileEditorTests.cs" />
-    <Compile Include="Editors\MultilineTextBoxEditorTests.cs" />
-    <Compile Include="Editors\PasswordEditorTests.cs" />
-    <Compile Include="MapperTests.cs" />
-    <Compile Include="StateTests.cs" />
-    <Compile Include="NotificationTests.cs" />
-    <Compile Include="WidgetTests.cs" />
+    <Compile Include="Common\Editors\DataGridEditorTests.cs" />
+    <Compile Include="Common\Editors\FileEditorTests.cs" />
+    <Compile Include="Common\Editors\MultilineTextBoxEditorTests.cs" />
+    <Compile Include="Common\Editors\PasswordEditorTests.cs" />
+    <Compile Include="Widgets\Features\HealthCheckTests.cs" />
+    <Compile Include="Widgets\Features\MetricValueTests.cs" />
+    <Compile Include="_Legacy\MapperTests.cs" />
+    <Compile Include="_Legacy\StateTests.cs" />
+    <Compile Include="_Legacy\NotificationTests.cs" />
+    <Compile Include="_Legacy\WidgetTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WidgetMock.cs" />
-    <Compile Include="BuildTests.cs" />
+    <Compile Include="_Legacy\WidgetMock.cs" />
+    <Compile Include="_Legacy\BuildTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
