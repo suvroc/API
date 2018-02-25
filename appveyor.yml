@@ -26,3 +26,4 @@ before_build:
 - ps: $xml = [xml](Get-Content $file)
 - ps: $xml.package.metadata.version = $env:APPVEYOR_BUILD_VERSION
 - ps: $xml.Save($file)
+
