@@ -1,0 +1,28 @@
+branches:
+  only:
+    - 2.x
+
+version: 2.0.{build}
+image: Visual Studio 2017
+configuration: Release
+platform: Any CPU
+
+skip_commits:
+  files:
+    - '**/*.md'
+
+build:
+  publish_nuget: true
+  verbosity: minimal
+  project: src\AnyStatus.API.sln
+
+deploy:
+  provider: Environment
+  name: AnyStatus
+
+before_build:
+- cmd: nuget restore src
+- ps: $file = "$env:appveyor_build_folder\src\AnyStatus.API\AnyStatus.API.nuspec"
+- ps: $xml = [xml](Get-Content $file)
+- ps: $xml.package.metadata.version = $env:APPVEYOR_BUILD_VERSION + "-alpha"
+- ps: $xml.Save($file)
