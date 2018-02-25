@@ -1,9 +1,7 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 
 namespace AnyStatus.API
 {
-    [Obsolete("Make sure this is used")]
     [ExcludeFromCodeCoverage]
     public class NameValuePair
     {
