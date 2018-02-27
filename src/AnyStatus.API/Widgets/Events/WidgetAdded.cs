@@ -2,11 +2,11 @@
 {
     public class WidgetAdded
     {
-        public WidgetAdded(Item item)
+        public WidgetAdded(Widget widget)
         {
-            Item = item;
+            Widget = widget;
         }
 
-        public Item Item { get; private set; }
+        public Widget Widget { get; private set; }
     }
 }
