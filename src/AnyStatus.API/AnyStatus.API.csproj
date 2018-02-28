@@ -74,7 +74,7 @@
     <Compile Include="Widgets\Entities\Build.cs" />
     <Compile Include="Widgets\Features\HealthCheck.cs" />
     <Compile Include="Widgets\Entities\IMetric.cs" />
-    <Compile Include="Widgets\Entities\ISchedulable.cs" />
+    <Compile Include="Widgets\Features\ISchedulable.cs" />
     <Compile Include="Widgets\Entities\IHealthCheck.cs" />
     <Compile Include="Widgets\Features\MetricQuery.cs" />
     <Compile Include="Widgets\Features\OpenWebPage.cs" />
@@ -108,7 +108,7 @@
     <Compile Include="Legacy\1.0\IMonitor.cs" />
     <Compile Include="Legacy\1.0\IOpenInBrowser.cs" />
     <Compile Include="Common\Services\IProcessStarter.cs" />
-    <Compile Include="Widgets\Entities\IReportProgress.cs" />
+    <Compile Include="Widgets\Features\IReportProgress.cs" />
     <Compile Include="Legacy\1.0\IRestart.cs" />
     <Compile Include="Legacy\1.0\IMonitored.cs" />
     <Compile Include="Legacy\1.0\IStart.cs" />
