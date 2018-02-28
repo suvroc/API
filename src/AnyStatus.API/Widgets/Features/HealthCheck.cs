@@ -1,8 +1,5 @@
 ﻿namespace AnyStatus.API
 {
-    public interface IHealthCheck
-    {
-    }
 
     public interface ICheckHealth<T> : IRequestHandler<HealthCheckRequest<T>, HealthCheckResponse> where T : IHealthCheck
     {

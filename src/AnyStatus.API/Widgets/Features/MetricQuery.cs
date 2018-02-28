@@ -1,10 +1,5 @@
 ﻿namespace AnyStatus.API
 {
-    public interface IMetric
-    {
-        object Value { get; set; }
-    }
-
     public interface IMetricQuery<T> : IRequestHandler<MetricQueryRequest<T>, MetricQueryResponse> where T : IMetric
     {
     }
