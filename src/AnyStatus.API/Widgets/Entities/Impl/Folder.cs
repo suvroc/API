@@ -4,16 +4,12 @@ using System.Xml.Serialization;
 
 namespace AnyStatus.API
 {
-    public class Folder : Widget
+    public class Folder : Widget, IFolder
     {
-        public Folder() : base(aggregate: true)
-        {
-        }
+        public Folder() : base(aggregate: true) { }
 
         [ExcludeFromCodeCoverage]
-        public Folder(bool aggregate) : base(aggregate)
-        {
-        }
+        public Folder(bool aggregate) : base(aggregate) { }
 
         [XmlIgnore]
         [Browsable(false)]
