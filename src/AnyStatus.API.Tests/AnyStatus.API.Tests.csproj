@@ -100,7 +100,7 @@
     <Compile Include="Widgets\Features\TestWidget.cs" />
     <Compile Include="Widgets\WidgetTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WidgetMock.cs" />
+    <Compile Include="Widgets\WidgetMock.cs" />
     <Compile Include="Widgets\BuildTests.cs" />
   </ItemGroup>
   <ItemGroup>
