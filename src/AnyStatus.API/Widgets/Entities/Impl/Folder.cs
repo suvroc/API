@@ -4,11 +4,11 @@ using System.Xml.Serialization;
 
 namespace AnyStatus.API
 {
+    [ExcludeFromCodeCoverage]
     public class Folder : Widget, IFolder
     {
         public Folder() : base(aggregate: true) { }
 
-        [ExcludeFromCodeCoverage]
         public Folder(bool aggregate) : base(aggregate) { }
 
         [XmlIgnore]

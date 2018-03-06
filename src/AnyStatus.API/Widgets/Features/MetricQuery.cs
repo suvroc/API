@@ -1,7 +1,12 @@
 ﻿namespace AnyStatus.API
 {
-    public interface IMetricQuery<T> : IRequestHandler<MetricQueryRequest<T>, MetricQueryResponse> where T : IMetric
+    public interface IMetricQuery<T> : IRequestHandler<MetricQueryRequest<T>> where T : IMetric
     {
+    }
+
+    public class MetricQueryRequest<T> : Request<T> where T : IMetric
+    {
+        public MetricQueryRequest(T context) : base(context) { }
     }
 
     public class MetricQueryRequest
@@ -10,15 +15,5 @@
         {
             return new MetricQueryRequest<T>(context);
         }
-    }
-
-    public class MetricQueryRequest<T> : Request<T, MetricQueryResponse> where T : IMetric
-    {
-        public MetricQueryRequest(T context) : base(context) { }
-    }
-
-    public class MetricQueryResponse
-    {
-        public object Value { get; set; }
     }
 }

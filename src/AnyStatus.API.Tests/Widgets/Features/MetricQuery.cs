@@ -14,22 +14,18 @@ namespace AnyStatus.API.Tests.Widgets.Features
             var handler = new MetricQuery();
             var request = MetricQueryRequest.Create(widget);
 
-            var response = await handler.Handle(request, CancellationToken.None);
+            await handler.Handle(request, CancellationToken.None);
 
-            Assert.IsNotNull(response);
-            Assert.AreEqual(1, response.Value);
+            Assert.AreEqual(1, widget.Value);
         }
 
         class MetricQuery : IMetricQuery<TestWidget>
         {
-            public Task<MetricQueryResponse> Handle(MetricQueryRequest<TestWidget> request, CancellationToken cancellationToken)
+            public Task Handle(MetricQueryRequest<TestWidget> request, CancellationToken cancellationToken)
             {
-                var response = new MetricQueryResponse
-                {
-                    Value = 1
-                };
+                request.DataContext.Value = 1;
 
-                return Task.FromResult(response);
+                return Task.CompletedTask;
             }
         }
     }

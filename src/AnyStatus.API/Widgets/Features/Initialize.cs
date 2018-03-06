@@ -4,8 +4,13 @@
     {
     }
 
-    public interface IInitialize<T> : IRequestHandler<InitializeRequest<T>, InitializeResponse> where T : IInitializable
+    public interface IInitialize<T> : IRequestHandler<InitializeRequest<T>> where T : IInitializable
     {
+    }
+
+    public class InitializeRequest<T> : Request<T> where T : IInitializable
+    {
+        public InitializeRequest(T context) : base(context) { }
     }
 
     public class InitializeRequest
@@ -14,14 +19,5 @@
         {
             return new InitializeRequest<T>(context);
         }
-    }
-
-    public class InitializeRequest<T> : Request<T, InitializeResponse> where T : IInitializable
-    {
-        public InitializeRequest(T context) : base(context) { }
-    }
-
-    public class InitializeResponse
-    {
     }
 }

@@ -5,8 +5,13 @@
         string URL { get; set; }
     }
 
-    public interface IOpenWebPage<T> : IRequestHandler<OpenWebPageRequest<T>, OpenWebPageResponse> where T : IWebPage
+    public interface IOpenWebPage<T> : IRequestHandler<OpenWebPageRequest<T>> where T : IWebPage
     {
+    }
+
+    public class OpenWebPageRequest<T> : Request<T> where T : IWebPage
+    {
+        public OpenWebPageRequest(T context) : base(context) { }
     }
 
     public class OpenWebPageRequest
@@ -15,14 +20,5 @@
         {
             return new OpenWebPageRequest<T>(context);
         }
-    }
-
-    public class OpenWebPageRequest<T> : Request<T, OpenWebPageResponse> where T : IWebPage
-    {
-        public OpenWebPageRequest(T context) : base(context) { }
-    }
-
-    public class OpenWebPageResponse
-    {
     }
 }

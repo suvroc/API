@@ -14,24 +14,14 @@ namespace AnyStatus.API.Tests.Widgets.Features
             var handler = new CheckHealth();
             var request = HealthCheckRequest.Create(widget);
 
-            var response = await handler.Handle(request, CancellationToken.None);
-
-            Assert.IsNotNull(response);
-            Assert.AreEqual("OK", response.Message);
-            Assert.AreEqual(State.Ok, response.State);
+            await handler.Handle(request, CancellationToken.None);
         }
 
         class CheckHealth : ICheckHealth<TestWidget>
         {
-            public Task<HealthCheckResponse> Handle(HealthCheckRequest<TestWidget> request, CancellationToken cancellationToken)
+            public Task Handle(HealthCheckRequest<TestWidget> request, CancellationToken cancellationToken)
             {
-                var response = new HealthCheckResponse
-                {
-                    State = State.Ok,
-                    Message = "OK"
-                };
-
-                return Task.FromResult(response);
+                return Task.CompletedTask;
             }
         }
     }

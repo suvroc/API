@@ -14,16 +14,14 @@ namespace AnyStatus.API.Tests.Widgets.Features
             var handler = new OpenWebPage();
             var request = OpenWebPageRequest.Create(widget);
 
-            var response = await handler.Handle(request, CancellationToken.None);
-
-            Assert.IsNotNull(response);
+            await handler.Handle(request, CancellationToken.None);
         }
 
         class OpenWebPage : IOpenWebPage<TestWidget>
         {
-            public Task<OpenWebPageResponse> Handle(OpenWebPageRequest<TestWidget> request, CancellationToken cancellationToken)
+            public Task Handle(OpenWebPageRequest<TestWidget> request, CancellationToken cancellationToken)
             {
-                return Task.FromResult(new OpenWebPageResponse());
+                return Task.CompletedTask;
             }
         }
     }

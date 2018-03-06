@@ -4,8 +4,13 @@
     {
     }
 
-    public interface IStart<T> : IRequestHandler<StartRequest<T>, StartResponse> where T : IStartable
+    public interface IStart<T> : IRequestHandler<StartRequest<T>> where T : IStartable
     {
+    }
+
+    public class StartRequest<T> : Request<T> where T : IStartable
+    {
+        public StartRequest(T context) : base(context) { }
     }
 
     public class StartRequest
@@ -14,14 +19,5 @@
         {
             return new StartRequest<T>(context);
         }
-    }
-
-    public class StartRequest<T> : Request<T, StartResponse> where T : IStartable
-    {
-        public StartRequest(T context) : base(context) { }
-    }
-
-    public class StartResponse
-    {
     }
 }

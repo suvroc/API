@@ -14,16 +14,14 @@ namespace AnyStatus.API.Tests.Widgets.Features
             var handler = new Stop();
             var request = StopRequest.Create(widget);
 
-            var response = await handler.Handle(request, CancellationToken.None);
-
-            Assert.IsNotNull(response);
+            await handler.Handle(request, CancellationToken.None);
         }
 
         internal class Stop : IStop<TestWidget>
         {
-            public Task<StopResponse> Handle(StopRequest<TestWidget> request, CancellationToken cancellationToken)
+            public Task Handle(StopRequest<TestWidget> request, CancellationToken cancellationToken)
             {
-                return Task.FromResult(new StopResponse());
+                return Task.CompletedTask;
             }
         }
     }
