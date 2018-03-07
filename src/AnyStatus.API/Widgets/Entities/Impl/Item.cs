@@ -88,7 +88,6 @@ namespace AnyStatus.API
         [Browsable(false)]
         public Guid Id { get; set; }
 
-        [Obsolete]
         [Browsable(false)]
         public ObservableCollection<Item> Items
         {
