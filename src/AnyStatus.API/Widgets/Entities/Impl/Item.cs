@@ -20,7 +20,7 @@ namespace AnyStatus.API
     /// </summary>
     [Serializable]
     [CategoryOrder("General", 1)]
-    public abstract class Item : NotifyPropertyChanged, IValidatable, ICloneable, IDisposable
+    public abstract class Item : NotifyPropertyChanged, IValidatable, ICloneable//, IDisposable
     {
         #region Fields
 
@@ -397,22 +397,22 @@ namespace AnyStatus.API
 
         #endregion Aggregate
 
-        #region IDisposable
+        //#region IDisposable
 
-        public void Dispose()
-        {
-            Dispose(true);
-        }
+        //public void Dispose()
+        //{
+        //    Dispose(true);
+        //}
 
-        protected virtual void Dispose(bool disposing)
-        {
-            if (_disposed) return;
+        //protected virtual void Dispose(bool disposing)
+        //{
+        //    if (_disposed) return;
 
-            if (_aggregate) Items.CollectionChanged -= OnCollectionChanged;
+        //    if (_aggregate) Items.CollectionChanged -= OnCollectionChanged;
 
-            _disposed = true;
-        }
+        //    _disposed = true;
+        //}
 
-        #endregion IDisposable
+        //#endregion IDisposable
     }
 }
