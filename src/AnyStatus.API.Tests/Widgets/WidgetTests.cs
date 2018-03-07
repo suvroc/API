@@ -292,7 +292,6 @@ namespace AnyStatus.API.Tests
             {
                 Id = Guid.NewGuid(),
                 Name = Guid.NewGuid().ToString(),
-                Items = new ObservableCollection<Item>()
             };
 
             var copy = (Item)item.Clone();
@@ -313,7 +312,6 @@ namespace AnyStatus.API.Tests
             {
                 Id = Guid.NewGuid(),
                 Name = Guid.NewGuid().ToString(),
-                Items = new ObservableCollection<Item>()
             };
 
             item.Items.Add(new WidgetMock());

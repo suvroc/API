@@ -26,10 +26,9 @@ namespace AnyStatus.API
 
         private readonly bool _aggregate;
 
-        private bool _disposed = false;
-
-        private string _name;
         private int _count;
+        private Item _parent;
+        private string _name;
         private int _interval;
         private bool _isExpanded;
         private bool _isEnabled;
@@ -37,8 +36,8 @@ namespace AnyStatus.API
         private bool _isSelected;
         private bool _showNotifications;
         private bool _showErrorNotifications;
-        private Item _parent;
-        private ObservableCollection<Item> _items;
+
+        private readonly ObservableCollection<Item> _items = new ObservableCollection<Item>();
 
         [NonSerialized]
         private State _state;
@@ -54,9 +53,8 @@ namespace AnyStatus.API
         {
             _aggregate = aggregate;
 
-            Items = new ObservableCollection<Item>();
-
-            if (_aggregate) Items.CollectionChanged += OnCollectionChanged;
+            if (_aggregate)
+                Items.CollectionChanged += OnCollectionChanged;
         }
 
         public Item()
@@ -95,7 +93,7 @@ namespace AnyStatus.API
         public ObservableCollection<Item> Items
         {
             get { return _items; }
-            set { _items = value; OnPropertyChanged(); }
+            //set { _items = value; OnPropertyChanged(); }
         }
 
         [XmlIgnore]
@@ -240,9 +238,6 @@ namespace AnyStatus.API
         {
             if (item == null)
                 throw new ArgumentNullException(nameof(item));
-
-            if (Items == null)
-                Items = new ObservableCollection<Item>();
 
             Items.Add(item);
 
@@ -396,23 +391,5 @@ namespace AnyStatus.API
         }
 
         #endregion Aggregate
-
-        //#region IDisposable
-
-        //public void Dispose()
-        //{
-        //    Dispose(true);
-        //}
-
-        //protected virtual void Dispose(bool disposing)
-        //{
-        //    if (_disposed) return;
-
-        //    if (_aggregate) Items.CollectionChanged -= OnCollectionChanged;
-
-        //    _disposed = true;
-        //}
-
-        //#endregion IDisposable
     }
 }
