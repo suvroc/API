@@ -7,7 +7,7 @@ namespace AnyStatus.API
     /// </summary>
     public abstract class Widget : Item
     {
-        protected Widget() : base(aggregate: false)
+        protected Widget() : base(aggregator: false)
         {
         }
 

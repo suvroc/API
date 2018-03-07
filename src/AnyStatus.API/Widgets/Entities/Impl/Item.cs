@@ -19,11 +19,11 @@ namespace AnyStatus.API
     /// </summary>
     [Serializable]
     [CategoryOrder("General", 1)]
-    public abstract class Item : NotifyPropertyChanged, IValidatable, ICloneable//, IDisposable
+    public abstract class Item : NotifyPropertyChanged, IValidatable, ICloneable
     {
         #region Fields
 
-        private readonly bool _aggregate;
+        private readonly bool _aggregator;
 
         private int _count;
         private Item _parent;
@@ -48,11 +48,11 @@ namespace AnyStatus.API
 
         #region Ctor
 
-        protected Item(bool aggregate) : this()
+        protected Item(bool aggregator) : this()
         {
-            _aggregate = aggregate;
+            _aggregator = aggregator;
 
-            if (_aggregate)
+            if (_aggregator)
                 _items.CollectionChanged += OnCollectionChanged;
         }
 
