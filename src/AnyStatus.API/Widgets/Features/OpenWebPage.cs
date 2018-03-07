@@ -2,7 +2,7 @@
 {
     public interface IWebPage
     {
-        string URL { get; set; }
+        string URL { get; }
     }
 
     public interface IOpenWebPage<T> : IRequestHandler<OpenWebPageRequest<T>> where T : IWebPage
