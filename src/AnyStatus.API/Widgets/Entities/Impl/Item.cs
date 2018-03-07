@@ -1,5 +1,4 @@
-﻿using PubSub;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -54,7 +53,7 @@ namespace AnyStatus.API
             _aggregate = aggregate;
 
             if (_aggregate)
-                Items.CollectionChanged += OnCollectionChanged;
+                _items.CollectionChanged += OnCollectionChanged;
         }
 
         public Item()
@@ -89,11 +88,11 @@ namespace AnyStatus.API
         [Browsable(false)]
         public Guid Id { get; set; }
 
+        [Obsolete]
         [Browsable(false)]
         public ObservableCollection<Item> Items
         {
             get { return _items; }
-            //set { _items = value; OnPropertyChanged(); }
         }
 
         [XmlIgnore]
@@ -239,7 +238,7 @@ namespace AnyStatus.API
             if (item == null)
                 throw new ArgumentNullException(nameof(item));
 
-            Items.Add(item);
+            _items.Add(item);
 
             if (item.Id == Guid.Empty)
             {
@@ -249,9 +248,6 @@ namespace AnyStatus.API
             item.Parent = this;
 
             IsExpanded = true;
-
-            if (item is Widget widget)
-                this.Publish(new WidgetAdded(widget));
         }
 
         public virtual void Remove(Item item)
@@ -259,22 +255,17 @@ namespace AnyStatus.API
             if (item == null)
                 throw new ArgumentNullException(nameof(item));
 
-            if (Items == null) return;
-
-            Items.Remove(item);
-
-            if (item is Widget widget)
-                this.Publish(new WidgetRemoved(widget));
+            _items.Remove(item);
         }
 
         public void Clear()
         {
-            Items?.Clear();
+            _items.Clear();
         }
 
         public bool Contains(Item item)
         {
-            return Items != null && Items.Contains(item);
+            return _items.Contains(item);
         }
 
         #endregion Helpers
@@ -303,8 +294,8 @@ namespace AnyStatus.API
                 .ToList()
                 .ForEach(p => p.SetValue(clone, p.GetValue(this, null), null));
 
-            if (Items != null && Items.Any())
-                foreach (var childNode in Items.Where(i => i != null))
+            if (_items != null && _items.Any())
+                foreach (var childNode in _items.Where(i => i != null))
                     clone.Add(childNode.Clone() as Item);
 
             return clone;
@@ -357,13 +348,10 @@ namespace AnyStatus.API
 
         private void Aggregate()
         {
-            State = Items != null && Items.Any() ?
-                    Items.Aggregate(ByPriority).State :
-                    State.None;
+            State = _items.Any() ? _items.Aggregate(ByPriority).State : State.None;
 
-            Count = State == State.None || State == State.Disabled || State == State.Ok ?
-                    0 :
-                    CountChildrenByState(Items, State);
+            Count = State == State.None || State == State.Disabled || State == State.Ok ? 0 :
+                CountChildrenByState(_items, State);
 
             Item ByPriority(Item a, Item b)
             {
@@ -376,7 +364,7 @@ namespace AnyStatus.API
 
                 foreach (var item in items)
                 {
-                    if (item.Items != null && item.Items.Any())
+                    if (item.Items.Any())
                     {
                         count += CountChildrenByState(item.Items, state);
                     }
