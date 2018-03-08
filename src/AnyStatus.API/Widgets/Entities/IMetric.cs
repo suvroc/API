@@ -1,6 +1,6 @@
 ﻿namespace AnyStatus.API
 {
-    public interface IMetric : ISchedulable
+    public interface IMetric
     {
         object Value { get; set; }
     }
