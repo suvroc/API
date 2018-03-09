@@ -1,6 +1,6 @@
 ﻿namespace AnyStatus.API
 {
-    public interface IStartable
+    public interface IStartable : IContextAction
     {
     }
 

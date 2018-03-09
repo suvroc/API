@@ -1,6 +1,6 @@
 ﻿namespace AnyStatus.API
 {
-    public interface IStoppable
+    public interface IStoppable : IContextAction
     {
     }
 

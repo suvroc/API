@@ -2,7 +2,7 @@
 
 namespace AnyStatus.API
 {
-    public interface IWebPage
+    public interface IWebPage : IContextAction
     {
         string URL { get; }
     }

@@ -1,6 +1,6 @@
 ﻿namespace AnyStatus.API
 {
-    public interface IHealthCheck
+    public interface IContextAction
     {
     }
 }

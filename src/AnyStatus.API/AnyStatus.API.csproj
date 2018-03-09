@@ -76,6 +76,7 @@
     <Compile Include="Widgets\Entities\Impl\Build.cs" />
     <Compile Include="Widgets\Features\HealthCheck.cs" />
     <Compile Include="Widgets\Entities\IMetric.cs" />
+    <Compile Include="Widgets\Features\IContextAction.cs" />
     <Compile Include="Widgets\Features\ISchedulable.cs" />
     <Compile Include="Widgets\Entities\IHealthCheck.cs" />
     <Compile Include="Widgets\Features\MetricQuery.cs" />

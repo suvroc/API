@@ -1,6 +1,6 @@
 ﻿namespace AnyStatus.API
 {
-    public interface IRestartable
+    public interface IRestartable : IContextAction
     {
     }
 
