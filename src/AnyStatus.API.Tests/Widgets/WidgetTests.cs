@@ -299,10 +299,23 @@ namespace AnyStatus.API.Tests
             Assert.AreNotSame(copy, item);
             Assert.AreNotSame(copy.Items, item.Items);
 
-            Assert.AreEqual(item.Id, copy.Id);
             Assert.AreEqual(item.Name, copy.Name);
 
             Assert.IsNull(copy.Parent);
+        }
+
+        [TestMethod]
+        public void Should_GenerateNewId_When_Cloning()
+        {
+            var item = new WidgetMock
+            {
+                Id = Guid.NewGuid(),
+                Name = Guid.NewGuid().ToString(),
+            };
+
+            var copy = (Item)item.Clone();
+
+            Assert.AreNotEqual(item.Id, copy.Id);
         }
 
         [TestMethod]
