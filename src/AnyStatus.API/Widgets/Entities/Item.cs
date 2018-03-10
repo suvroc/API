@@ -295,7 +295,9 @@ namespace AnyStatus.API
 
             if (_items != null && _items.Any())
                 foreach (var childNode in _items.Where(i => i != null))
-                    clone.Add(childNode.Clone() as Item);
+                    clone.Add((Item)childNode.Clone());
+
+            clone.Id = Guid.NewGuid();
 
             return clone;
         }
