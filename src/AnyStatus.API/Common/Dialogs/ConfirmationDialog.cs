@@ -2,11 +2,11 @@
 
 namespace AnyStatus.API
 {
+    [ExcludeFromCodeCoverage]
     public class ConfirmationDialog : Dialog
     {
-        [ExcludeFromCodeCoverage]
-        public ConfirmationDialog(string message, string title) : base(message, title)
-        {
-        }
+        public ConfirmationDialog(string message) : base(message) { }
+
+        public ConfirmationDialog(string message, string title) : base(message, title) { }
     }
 }

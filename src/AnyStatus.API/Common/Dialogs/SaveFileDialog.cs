@@ -2,12 +2,9 @@
 
 namespace AnyStatus.API
 {
+    [ExcludeFromCodeCoverage]
     public class SaveFileDialog : FileDialog
     {
-        [ExcludeFromCodeCoverage]
-        public SaveFileDialog(string filter) : base(string.Empty, string.Empty, filter)
-        {
-            Filter = filter;
-        }
+        public SaveFileDialog(string filter) : base(filter) { }
     }
 }

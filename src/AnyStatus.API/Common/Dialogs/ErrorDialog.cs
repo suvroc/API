@@ -2,11 +2,11 @@
 
 namespace AnyStatus.API
 {
+    [ExcludeFromCodeCoverage]
     public class ErrorDialog : Dialog
     {
-        [ExcludeFromCodeCoverage]
-        public ErrorDialog(string message, string title) : base(message, title)
-        {
-        }
+        public ErrorDialog(string message) : base(message) { }
+
+        public ErrorDialog(string message, string title) : base(message, title) { }
     }
 }

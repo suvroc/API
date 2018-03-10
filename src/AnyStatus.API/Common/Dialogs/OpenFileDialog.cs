@@ -2,12 +2,9 @@
 
 namespace AnyStatus.API
 {
+    [ExcludeFromCodeCoverage]
     public class OpenFileDialog : FileDialog
     {
-        [ExcludeFromCodeCoverage]
-        public OpenFileDialog(string filter) : base(string.Empty, string.Empty, filter)
-        {
-            Filter = filter;
-        }
+        public OpenFileDialog(string filter) : base(filter) { }
     }
 }

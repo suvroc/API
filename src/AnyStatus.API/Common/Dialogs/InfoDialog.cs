@@ -2,11 +2,11 @@
 
 namespace AnyStatus.API
 {
+    [ExcludeFromCodeCoverage]
     public class InfoDialog : Dialog
     {
-        [ExcludeFromCodeCoverage]
-        public InfoDialog(string message, string title) : base(message, title)
-        {
-        }
+        public InfoDialog(string message) : base(message) { }
+
+        public InfoDialog(string message, string title) : base(message, title) { }
     }
 }

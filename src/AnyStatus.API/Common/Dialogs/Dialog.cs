@@ -2,10 +2,10 @@
 
 namespace AnyStatus.API
 {
+    [ExcludeFromCodeCoverage]
     public abstract class Dialog : IDialog
     {
-        [ExcludeFromCodeCoverage]
-        public Dialog(string message, string title)
+        public Dialog(string message, string title = "AnyStatus")
         {
             Title = title;
             Message = message;

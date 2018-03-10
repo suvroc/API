@@ -2,15 +2,10 @@
 
 namespace AnyStatus.API
 {
+    [ExcludeFromCodeCoverage]
     public abstract class FileDialog : Dialog
     {
-        [ExcludeFromCodeCoverage]
-        public FileDialog(string message, string title) : base(message, title)
-        {
-        }
-
-        [ExcludeFromCodeCoverage]
-        public FileDialog(string message, string title, string filter) : base(message, title)
+        public FileDialog(string filter) : base(string.Empty, string.Empty)
         {
             Filter = filter;
         }

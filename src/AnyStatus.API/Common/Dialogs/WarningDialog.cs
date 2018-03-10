@@ -2,11 +2,11 @@
 
 namespace AnyStatus.API
 {
+    [ExcludeFromCodeCoverage]
     public class WarningDialog : Dialog
     {
-        [ExcludeFromCodeCoverage]
-        public WarningDialog(string message, string title) : base(message, title)
-        {
-        }
+        public WarningDialog(string message) : base(message) { }
+
+        public WarningDialog(string message, string title) : base(message, title) { }
     }
 }
