@@ -1,9 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace AnyStatus.API
 {
-    public interface IValidator<in T>
+    public interface IValidator<in TRequest>
     {
-        ValidationResult Validate(T instance);
+        IEnumerable<ValidationResult> Validate(TRequest request);
     }
 }
