@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 
-namespace PubSub
+namespace AnyStatus.API.Utils
 {
     [ExcludeFromCodeCoverage]
     static public class PubSubExtensions
@@ -12,8 +12,7 @@ namespace PubSub
         {
             foreach (var h in hub.handlers)
             {
-                if (Equals(h.Sender.Target, obj) &&
-                    typeof(T) == h.Type)
+                if (Equals(h.Sender.Target, obj) && typeof(T) == h.Type)
                 {
                     return true;
                 }

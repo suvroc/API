@@ -5,11 +5,9 @@ using System.Xml.Serialization;
 namespace AnyStatus.API
 {
     [ExcludeFromCodeCoverage]
-    public class Folder : Widget, IFolder
+    public sealed class Folder : Widget
     {
-        public Folder() : base(aggregate: true) { }
-
-        public Folder(bool aggregate) : base(aggregate) { }
+        public Folder(bool aggregate = true) : base(aggregate) { }
 
         [XmlIgnore]
         [Browsable(false)]

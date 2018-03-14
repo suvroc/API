@@ -82,11 +82,11 @@
     <Compile Include="Common\Dialogs\WarningDialog.cs" />
     <Compile Include="Common\Mediator\IRequest.cs" />
     <Compile Include="Common\Mediator\IRequestHandler.cs" />
+    <Compile Include="Common\Mediator\IValidator.cs" />
     <Compile Include="Common\Mediator\Request.cs" />
     <Compile Include="Common\Mediator\Unit.cs" />
     <Compile Include="Common\Notifications\DefaultNotificationFactory.cs" />
     <Compile Include="Common\Dialogs\DialogResult.cs" />
-    <Compile Include="Widgets\Entities\IFolder.cs" />
     <Compile Include="Widgets\Events\WidgetRemoved.cs" />
     <Compile Include="Widgets\Entities\Build.cs" />
     <Compile Include="Widgets\Features\HealthCheck.cs" />

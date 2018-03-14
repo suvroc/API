@@ -1,7 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PubSub;
+﻿using AnyStatus.API.Utils;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace AnyStatus.API.Tests

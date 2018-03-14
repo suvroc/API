@@ -1,4 +1,4 @@
-﻿using PubSub;
+﻿using AnyStatus.API.Utils;
 
 namespace AnyStatus.API
 {
@@ -7,13 +7,7 @@ namespace AnyStatus.API
     /// </summary>
     public abstract class Widget : Item
     {
-        protected Widget() : base(aggregator: false)
-        {
-        }
-
-        protected Widget(bool aggregate) : base(aggregate)
-        {
-        }
+        protected Widget(bool aggregate = false) : base(aggregate) { }
 
         public virtual Notification CreateNotification()
         {
