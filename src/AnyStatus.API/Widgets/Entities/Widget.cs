@@ -7,7 +7,9 @@ namespace AnyStatus.API
     /// </summary>
     public abstract class Widget : Item
     {
-        protected Widget(bool aggregate = false) : base(aggregate) { }
+        protected Widget() : this(false) { }
+
+        protected Widget(bool aggregate) : base(aggregate) { }
 
         public virtual Notification CreateNotification()
         {

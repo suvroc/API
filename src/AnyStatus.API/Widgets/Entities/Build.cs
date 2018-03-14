@@ -2,9 +2,7 @@
 {
     public abstract class Build : Widget
     {
-        protected Build() : this(aggregate: false)
-        {
-        }
+        protected Build() : this(false) { }
 
         protected Build(bool aggregate) : base(aggregate)
         {
