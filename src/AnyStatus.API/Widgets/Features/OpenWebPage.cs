@@ -1,13 +1,16 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace AnyStatus.API
 {
     public interface IWebPage : IContextAction
     {
+        [Required]
         string URL { get; }
     }
 
-    public interface IOpenWebPage<T> : IRequestHandler<OpenWebPageRequest<T>> where T : IWebPage
+    public interface IOpenWebPage<T> : IRequestHandler<OpenWebPageRequest<T>>
+        where T : IWebPage
     {
     }
 

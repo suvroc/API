@@ -19,7 +19,7 @@ namespace AnyStatus.API
     /// </summary>
     [Serializable]
     [CategoryOrder("General", 1)]
-    public abstract class Item : NotifyPropertyChanged, IValidatable, ICloneable
+    public abstract class Item : NotifyPropertyChanged, ICloneable
     {
         #region Fields
 
@@ -268,17 +268,6 @@ namespace AnyStatus.API
         }
 
         #endregion Helpers
-
-        #region IValidatable
-
-        public bool IsValid()
-        {
-            var context = new ValidationContext(this, serviceProvider: null, items: null); //move to private field?
-
-            return Validator.TryValidateObject(this, context, null/*, true*/);
-        }
-
-        #endregion IValidatable
 
         #region ICloneable
 
