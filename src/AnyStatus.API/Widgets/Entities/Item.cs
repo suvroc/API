@@ -14,8 +14,8 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace AnyStatus.API
 {
     /// <summary>
-    /// Base dashboard tree node.
-    /// Widgets should not directly inherit this class.
+    /// Tree Node Item
+    /// Widgets should not directly inherit this class. Use Widget class instead.
     /// </summary>
     [Serializable]
     [CategoryOrder("General", 1)]

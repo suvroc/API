@@ -1,7 +1,7 @@
 ﻿namespace AnyStatus.API.Tests.Widgets.Features
 {
     public class TestWidget : Widget,
-        IMetric, IHealthCheck, IInitializable, IStartable, IStoppable, IRestartable, IWebPage
+        IMetricValue, IHealthCheck, IInitializable, IStartable, IStoppable, IRestartable, IWebPage
     {
         public object Value { get; set; }
 

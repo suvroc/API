@@ -3,8 +3,7 @@
 namespace AnyStatus.API
 {
     /// <summary>
-    /// The default notification text for each state.
-    /// Widgets (plugins) can show different text by overriding CreateNotification().
+    /// Default notification factory.
     /// </summary>
     [ExcludeFromCodeCoverage]
     public static class NotificationFactory

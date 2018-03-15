@@ -90,7 +90,7 @@
     <Compile Include="Widgets\Events\WidgetRemoved.cs" />
     <Compile Include="Widgets\Entities\Build.cs" />
     <Compile Include="Widgets\Features\HealthCheck.cs" />
-    <Compile Include="Widgets\Entities\IMetric.cs" />
+    <Compile Include="Widgets\Entities\IMetricValue.cs" />
     <Compile Include="Widgets\Features\IContextAction.cs" />
     <Compile Include="Widgets\Features\ISchedulable.cs" />
     <Compile Include="Widgets\Entities\IHealthCheck.cs" />
@@ -104,7 +104,7 @@
     <Compile Include="Widgets\Events\WidgetAdded.cs" />
     <Compile Include="Widgets\Entities\HealthCheck.cs" />
     <Compile Include="Widgets\Entities\Widget.cs" />
-    <Compile Include="Widgets\Entities\Metric.cs" />
+    <Compile Include="Widgets\Entities\MetricValue.cs" />
     <Compile Include="Common\Editors\MultilineTextBoxEditor.cs" />
     <Compile Include="Common\Utils\Enumeration.cs" />
     <Compile Include="Widgets\Entities\Item.cs" />
