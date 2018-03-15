@@ -1,10 +1,11 @@
 ﻿namespace AnyStatus.API
 {
-    public interface IMetricQuery<T> : IRequestHandler<MetricQueryRequest<T>> where T : IMetricValue
+    public interface IMetricQuery<T> : IRequestHandler<MetricQueryRequest<T>> 
+        where T : IMetricValue
     {
     }
 
-    public class MetricQueryRequest<T> : Request<T> where T : IMetricValue
+    public class MetricQueryRequest<T> : HealthCheckRequest<T> where T : IMetricValue
     {
         public MetricQueryRequest(T context) : base(context) { }
     }
