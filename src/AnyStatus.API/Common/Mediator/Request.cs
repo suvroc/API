@@ -19,7 +19,7 @@ namespace AnyStatus.API
         public TContext DataContext { get; protected set; }
     }
 
-    public abstract class Request<TContext> : IRequest
+    public abstract class Request<TContext> : Request<TContext, Unit>
     {
         /// <summary>
         /// A general-purpose object for representing a request. 
