@@ -1,4 +1,6 @@
-﻿namespace AnyStatus.API
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace AnyStatus.API
 {
     public abstract class Request<TContext, TResponse> : IRequest<TResponse>
     {
@@ -31,6 +33,7 @@
             DataContext = context;
         }
 
+        [Required]
         public TContext DataContext { get; protected set; }
     }
 }
