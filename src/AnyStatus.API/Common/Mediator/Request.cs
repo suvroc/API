@@ -1,15 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace AnyStatus.API
+﻿namespace AnyStatus.API
 {
     public abstract class Request<TContext, TResponse> : IRequest<TResponse>
     {
         /// <summary>
         /// A general-purpose object for representing a request. 
         /// </summary>
-        public Request()
-        {
-        }
+        public Request() { }
 
         public Request(TContext context)
         {
@@ -24,16 +20,8 @@ namespace AnyStatus.API
         /// <summary>
         /// A general-purpose object for representing a request. 
         /// </summary>
-        public Request()
-        {
-        }
+        public Request() : base() { }
 
-        public Request(TContext context)
-        {
-            DataContext = context;
-        }
-
-        [Required]
-        public TContext DataContext { get; protected set; }
+        public Request(TContext context) : base(context) { }
     }
 }
