@@ -15,7 +15,7 @@
         public TContext DataContext { get; protected set; }
     }
 
-    public abstract class Request<TContext> : Request<TContext, Unit>
+    public abstract class Request<TContext> : Request<TContext, Unit>, IRequest
     {
         /// <summary>
         /// A general-purpose object for representing a request. 
