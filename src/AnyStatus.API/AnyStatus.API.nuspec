@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes></releaseNotes>
     <description>A .NET class library that provides the API needed for developing plug-ins for AnyStatus. For more information visit https://www.anystat.us</description>
-    <copyright>Copyright © 2017 AnyStatus and Alon Amsalem.</copyright>
+    <copyright>Copyright © 2016-2018 AnyStatus, Alon Amsalem.</copyright>
     <tags>AnyStatus VisualStudio API SDK</tags>
     <dependencies>
       <dependency id="Extended.Wpf.Toolkit" version="3.0" />

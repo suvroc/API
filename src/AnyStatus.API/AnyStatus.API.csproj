@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AnyStatus.API</RootNamespace>
     <AssemblyName>AnyStatus.API</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -50,65 +51,95 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
-    <Reference Include="Xceed.Wpf.Toolkit, Version=3.1.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <HintPath>..\packages\Extended.Wpf.Toolkit.3.1\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=3.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.3.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=3.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.3.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=3.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.3.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=3.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.3.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid, Version=3.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.3.0\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=3.3.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.3.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dialogs\ConfirmationDialog.cs" />
-    <Compile Include="Dialogs\Dialog.cs" />
-    <Compile Include="Dialogs\ErrorDialog.cs" />
-    <Compile Include="Dialogs\FileDialog.cs" />
-    <Compile Include="Dialogs\IDialog.cs" />
-    <Compile Include="Dialogs\InfoDialog.cs" />
-    <Compile Include="Dialogs\OpenFileDialog.cs" />
-    <Compile Include="Dialogs\SaveFileDialog.cs" />
-    <Compile Include="Dialogs\WarningDialog.cs" />
-    <Compile Include="Notifications\DefaultNotificationFactory.cs" />
-    <Compile Include="Dialogs\DialogResult.cs" />
+    <Compile Include="Common\Dialogs\ConfirmationDialog.cs" />
+    <Compile Include="Common\Dialogs\Dialog.cs" />
+    <Compile Include="Common\Dialogs\ErrorDialog.cs" />
+    <Compile Include="Common\Dialogs\FileDialog.cs" />
+    <Compile Include="Common\Dialogs\IDialog.cs" />
+    <Compile Include="Common\Dialogs\InfoDialog.cs" />
+    <Compile Include="Common\Dialogs\OpenFileDialog.cs" />
+    <Compile Include="Common\Dialogs\SaveFileDialog.cs" />
+    <Compile Include="Common\Dialogs\WarningDialog.cs" />
+    <Compile Include="Common\Mediator\IRequest.cs" />
+    <Compile Include="Common\Mediator\IRequestHandler.cs" />
+    <Compile Include="Common\Mediator\IValidator.cs" />
+    <Compile Include="Common\Mediator\Request.cs" />
+    <Compile Include="Common\Mediator\Unit.cs" />
+    <Compile Include="Common\Notifications\DefaultNotificationFactory.cs" />
+    <Compile Include="Common\Dialogs\DialogResult.cs" />
     <Compile Include="Widgets\Events\WidgetRemoved.cs" />
-    <Compile Include="Widgets\Build.cs" />
-    <Compile Include="Widgets\Folder.cs" />
+    <Compile Include="Widgets\Entities\Build.cs" />
+    <Compile Include="Widgets\Features\HealthCheck.cs" />
+    <Compile Include="Widgets\Entities\IMetricValue.cs" />
+    <Compile Include="Widgets\Features\IContextAction.cs" />
+    <Compile Include="Widgets\Features\ISchedulable.cs" />
+    <Compile Include="Widgets\Entities\IHealthCheck.cs" />
+    <Compile Include="Widgets\Features\MetricQuery.cs" />
+    <Compile Include="Widgets\Features\OpenWebPage.cs" />
+    <Compile Include="Widgets\Features\Initialize.cs" />
+    <Compile Include="Widgets\Features\Restart.cs" />
+    <Compile Include="Widgets\Features\Stop.cs" />
+    <Compile Include="Widgets\Features\Start.cs" />
+    <Compile Include="Widgets\Entities\Folder.cs" />
     <Compile Include="Widgets\Events\WidgetAdded.cs" />
-    <Compile Include="Widgets\Widget.cs" />
-    <Compile Include="Widgets\Metric.cs" />
-    <Compile Include="Editors\MultilineTextBoxEditor.cs" />
-    <Compile Include="Common\Enumeration.cs" />
-    <Compile Include="Widgets\Item.cs" />
-    <Compile Include="Editors\DataGridEditor.cs" />
-    <Compile Include="Editors\FileEditor.cs" />
-    <Compile Include="Editors\PasswordEditor.cs" />
-    <Compile Include="Widgets\Features\ICanOpenInBrowser.cs" />
-    <Compile Include="Widgets\Features\ICanRestart.cs" />
-    <Compile Include="Widgets\Features\ICanStart.cs" />
-    <Compile Include="Widgets\Features\ICanStop.cs" />
-    <Compile Include="Widgets\Features\ICanTriggerBuild.cs" />
-    <Compile Include="Common\Mapper.cs" />
-    <Compile Include="Common\Hub\Hub.cs" />
-    <Compile Include="Common\Hub\HubExtensions.cs" />
-    <Compile Include="Services\ICompiler.cs" />
-    <Compile Include="Dialogs\IDialogService.cs" />
-    <Compile Include="Widgets\Features\Common\IHandler.cs" />
-    <Compile Include="Services\ILogger.cs" />
-    <Compile Include="Widgets\Features\IMonitor.cs" />
-    <Compile Include="Widgets\Features\IOpenInBrowser.cs" />
-    <Compile Include="Services\IProcessStarter.cs" />
+    <Compile Include="Widgets\Entities\HealthCheck.cs" />
+    <Compile Include="Widgets\Entities\Widget.cs" />
+    <Compile Include="Widgets\Entities\MetricValue.cs" />
+    <Compile Include="Common\Editors\MultilineTextBoxEditor.cs" />
+    <Compile Include="Common\Utils\Enumeration.cs" />
+    <Compile Include="Widgets\Entities\Item.cs" />
+    <Compile Include="Common\Editors\DataGridEditor.cs" />
+    <Compile Include="Common\Editors\FileEditor.cs" />
+    <Compile Include="Common\Editors\PasswordEditor.cs" />
+    <Compile Include="Legacy\1.0\ICanOpenInBrowser.cs" />
+    <Compile Include="Legacy\1.0\ICanRestart.cs" />
+    <Compile Include="Legacy\1.0\ICanStart.cs" />
+    <Compile Include="Legacy\1.0\ICanStop.cs" />
+    <Compile Include="Legacy\1.0\ICanTriggerBuild.cs" />
+    <Compile Include="Common\Utils\Mapper.cs" />
+    <Compile Include="Common\Utils\Hub\Hub.cs" />
+    <Compile Include="Common\Utils\Hub\HubExtensions.cs" />
+    <Compile Include="Common\Services\ICompiler.cs" />
+    <Compile Include="Common\Dialogs\IDialogService.cs" />
+    <Compile Include="Legacy\1.0\IHandler.cs" />
+    <Compile Include="Common\Services\ILogger.cs" />
+    <Compile Include="Legacy\1.0\IMonitor.cs" />
+    <Compile Include="Legacy\1.0\IOpenInBrowser.cs" />
+    <Compile Include="Common\Services\IProcessStarter.cs" />
     <Compile Include="Widgets\Features\IReportProgress.cs" />
-    <Compile Include="Widgets\Features\IRestart.cs" />
-    <Compile Include="Widgets\Features\IMonitored.cs" />
-    <Compile Include="Widgets\Features\IStart.cs" />
-    <Compile Include="Widgets\Features\IStop.cs" />
-    <Compile Include="Widgets\Features\Common\ITask.cs" />
-    <Compile Include="Widgets\Features\ITriggerBuild.cs" />
-    <Compile Include="Widgets\Features\Common\IValidatable.cs" />
+    <Compile Include="Legacy\1.0\IRestart.cs" />
+    <Compile Include="Legacy\1.0\IMonitored.cs" />
+    <Compile Include="Legacy\1.0\IStart.cs" />
+    <Compile Include="Legacy\1.0\IStop.cs" />
+    <Compile Include="Legacy\1.0\ITask.cs" />
+    <Compile Include="Legacy\1.0\ITriggerBuild.cs" />
     <Compile Include="Common\NameValuePair.cs" />
-    <Compile Include="Common\NotifyPropertyChanged.cs" />
-    <Compile Include="Notifications\Notification.cs" />
+    <Compile Include="Common\Utils\NotifyPropertyChanged.cs" />
+    <Compile Include="Common\Notifications\Notification.cs" />
     <Compile Include="Widgets\State\State.cs" />
     <Compile Include="Widgets\State\StateMetadata.cs" />
-    <Compile Include="Common\Preconditions.cs" />
+    <Compile Include="Common\Utils\Preconditions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\IScheduler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AnyStatus.API.nuspec" />
