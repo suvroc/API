@@ -3,7 +3,7 @@
   <metadata>
     <id>AnyStatus.API</id>
     <version>1.0.0</version>
-    <authors>Alon Amsalem</authors>
+    <authors>AnyStatus</authors>
     <owners>anystatus</owners>
     <licenseUrl>https://github.com/AnyStatus/API/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/AnyStatus/API</projectUrl>
@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes></releaseNotes>
     <description>A .NET class library that provides the API needed for developing plug-ins for AnyStatus. For more information visit https://www.anystat.us</description>
-    <copyright>Copyright © 2017 Alon Amsalem, AnyStatus.</copyright>
+    <copyright>Copyright © 2017 AnyStatus and Alon Amsalem.</copyright>
     <tags>AnyStatus VisualStudio API SDK</tags>
     <dependencies>
       <dependency id="Extended.Wpf.Toolkit" version="3.0" />
