@@ -114,8 +114,8 @@ namespace AnyStatus.API
         [Required]
         [PropertyOrder(1)]
         [Category("General")]
-        [Range(0, ushort.MaxValue, ErrorMessage = "The time interval in minutes must be a number between 0 and 65535.")]
-        [Description("Required. The monitoring time interval in minutes. Use 0 to bypass. Must be a number between 0 and 65535.")]
+        [Range(0, ushort.MaxValue, ErrorMessage = "The interval must be a number between 0 and 65535.")]
+        [Description("Required. The approximate interval, in minutes, between health checks of an individual instance. Use 0 to bypass.")]
         public int Interval
         {
             get { return _interval; }
