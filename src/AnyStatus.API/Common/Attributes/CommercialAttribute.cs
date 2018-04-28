@@ -3,5 +3,5 @@
 namespace AnyStatus.API
 {
     [AttributeUsage(AttributeTargets.Class)]
-    public class Commercial : Attribute { }
+    public class CommercialAttribute : Attribute { }
 }
