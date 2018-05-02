@@ -19,6 +19,7 @@ namespace AnyStatus.API
         public static readonly State Error = new State(10);
         public static readonly State Running = new State(11);
         public static readonly State Queued = new State(12);
+        public static readonly State Rejected = new State(13); //Added 02/05/2018
 
         private State(int value) : base(value)
         {
