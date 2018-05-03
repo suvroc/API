@@ -2,7 +2,7 @@
 {
     public interface IInitializable
     {
-        bool Initialized { get; }
+        bool Initialized { get; set; }
     }
 
     public interface IInitialize<T> : IRequestHandler<InitializeRequest<T>> where T : IInitializable
