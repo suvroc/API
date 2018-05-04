@@ -94,6 +94,8 @@
     <Compile Include="Widgets\Features\HealthCheck.cs" />
     <Compile Include="Widgets\Entities\IMetricValue.cs" />
     <Compile Include="Widgets\Features\IContextAction.cs" />
+    <Compile Include="Widgets\Features\IJobHistory.cs" />
+    <Compile Include="Widgets\Features\IJobRun.cs" />
     <Compile Include="Widgets\Features\ISchedulable.cs" />
     <Compile Include="Widgets\Entities\IHealthCheck.cs" />
     <Compile Include="Widgets\Features\MetricQuery.cs" />
