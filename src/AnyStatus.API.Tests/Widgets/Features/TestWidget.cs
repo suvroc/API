@@ -7,6 +7,6 @@
 
         public string URL { get; set; } = "https://www.anystat.us";
 
-        public bool Initialized { get; set; }
+        public bool IsInitialized { get; set; }
     }
 }
