@@ -1,19 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 
 namespace AnyStatus.API
 {
     public interface IJobHistory
     {
-        IEnumerable<JobRun> JobHistory { get; set; }
+        [XmlIgnore]
+        IEnumerable<IJobRun> JobHistory { get; set; }
     }
 
-    public class JobRun
+    public interface IJobRun
     {
-        public string Description { get; set; }
-        public TimeSpan Duration { get; set; }
-        public State State { get; set; }
-        public double Percentage { get; set; }
-        public string URL { get; set; }
+        string Description { get; set; }
+        TimeSpan Duration { get; set; }
+        State State { get; set; }
+        double Percentage { get; set; }
+        string URL { get; set; }
     }
 }
