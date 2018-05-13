@@ -13,7 +13,7 @@
         public StopRequest(T context) : base(context) { }
     }
 
-    public class StopRequest
+    public static class StopRequest
     {
         public static StopRequest<T> Create<T>(T context) where T : IStoppable
         {

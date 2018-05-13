@@ -13,7 +13,7 @@
         public StartRequest(T context) : base(context) { }
     }
 
-    public class StartRequest
+    public static class StartRequest
     {
         public static StartRequest<T> Create<T>(T context) where T : IStartable
         {

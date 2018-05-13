@@ -13,7 +13,7 @@
         public RestartRequest(T context) : base(context) { }
     }
 
-    public class RestartRequest
+    public static class RestartRequest
     {
         public static RestartRequest<T> Create<T>(T context) where T : IRestartable
         {

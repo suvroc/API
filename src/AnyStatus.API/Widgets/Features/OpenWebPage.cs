@@ -5,6 +5,7 @@ namespace AnyStatus.API
 {
     public interface IWebPage : IContextAction
     {
+        [Url]
         [Required]
         string URL { get; }
     }
@@ -19,7 +20,7 @@ namespace AnyStatus.API
         public OpenWebPageRequest(T context) : base(context) { }
     }
 
-    public class OpenWebPageRequest
+    public static class OpenWebPageRequest
     {
         public static OpenWebPageRequest<T> Create<T>(T context) where T : IWebPage
         {

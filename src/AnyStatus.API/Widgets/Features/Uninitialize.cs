@@ -13,7 +13,7 @@
         public UninitializeRequest(T context) : base(context) { }
     }
 
-    public class UninitializeRequest
+    public static class UninitializeRequest
     {
         public static UninitializeRequest<T> Create<T>(T context) where T : IUninitializable
         {

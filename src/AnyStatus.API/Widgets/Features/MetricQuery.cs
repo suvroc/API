@@ -10,7 +10,7 @@
         public MetricQueryRequest(T context) : base(context) { }
     }
 
-    public class MetricQueryRequest
+    public static class MetricQueryRequest
     {
         public static MetricQueryRequest<T> Create<T>(T context) where T : IMetricValue
         {

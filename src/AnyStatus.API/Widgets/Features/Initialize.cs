@@ -1,7 +1,12 @@
-﻿namespace AnyStatus.API
+﻿using System.ComponentModel;
+using System.Xml.Serialization;
+
+namespace AnyStatus.API
 {
     public interface IInitializable
     {
+        [XmlIgnore]
+        [Browsable(false)]
         bool IsInitialized { get; }
     }
 
@@ -14,7 +19,7 @@
         public InitializeRequest(T context) : base(context) { }
     }
 
-    public class InitializeRequest
+    public static class InitializeRequest
     {
         public static InitializeRequest<T> Create<T>(T context) where T : IInitializable
         {

@@ -9,5 +9,14 @@ namespace AnyStatus.API
         string Name { get; }
 
         int Interval { get; }
+
+        //IntervalUnit IntervalUnit { get; }
+    }
+
+    public enum IntervalUnit
+    {
+        None,
+        Seconds,
+        Minutes
     }
 }

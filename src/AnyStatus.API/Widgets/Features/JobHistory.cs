@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Xml.Serialization;
 
 namespace AnyStatus.API
@@ -7,6 +8,7 @@ namespace AnyStatus.API
     public interface IJobHistory
     {
         [XmlIgnore]
+        [Browsable(false)]
         IEnumerable<IJobRun> JobHistory { get; set; }
     }
 
