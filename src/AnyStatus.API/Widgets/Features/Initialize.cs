@@ -7,7 +7,7 @@ namespace AnyStatus.API
     {
         [XmlIgnore]
         [Browsable(false)]
-        bool IsInitialized { get; }
+        bool IsInitialized { get; set; }
     }
 
     public interface IInitialize<T> : IRequestHandler<InitializeRequest<T>> where T : IInitializable
