@@ -4,6 +4,7 @@ using System.Xml.Serialization;
 
 namespace AnyStatus.API
 {
+    [Browsable(false)]
     [ExcludeFromCodeCoverage]
     public class Folder : Widget
     {
@@ -18,5 +19,9 @@ namespace AnyStatus.API
         [XmlIgnore]
         [Browsable(false)]
         public new bool ShowNotifications { get; set; } = false;
+
+        [XmlIgnore]
+        [Browsable(false)]
+        public new bool ShowErrorNotifications { get; set; } = false;
     }
 }
