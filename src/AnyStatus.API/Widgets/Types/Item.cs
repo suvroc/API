@@ -43,6 +43,7 @@ namespace AnyStatus.API
 
         [NonSerialized]
         private State _previousState;
+        private string _stateText;
 
         #endregion Fields
 
@@ -159,6 +160,18 @@ namespace AnyStatus.API
             {
                 _previousState = _state;
                 _state = value;
+                OnPropertyChanged();
+            }
+        }
+
+        [XmlIgnore]
+        [Browsable(false)]
+        public string StateText
+        {
+            get => _stateText;
+            set
+            {
+                _stateText = value;
                 OnPropertyChanged();
             }
         }
