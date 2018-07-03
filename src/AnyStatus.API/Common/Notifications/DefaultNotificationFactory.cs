@@ -5,7 +5,6 @@ namespace AnyStatus.API
     /// <summary>
     /// Default notification factory.
     /// </summary>
-    [ExcludeFromCodeCoverage]
     public static class NotificationFactory
     {
         public static Notification Create(Widget widget)
