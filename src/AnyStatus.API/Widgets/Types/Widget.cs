@@ -1,4 +1,8 @@
-﻿using AnyStatus.API.Utils;
+﻿using AnyStatus.API.Triggers;
+using AnyStatus.API.Utils;
+using System;
+using System.Collections.Generic;
+using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace AnyStatus.API
 {
@@ -11,6 +15,10 @@ namespace AnyStatus.API
 
         protected Widget(bool aggregate) : base(aggregate) { }
 
+        [NewItemTypes(typeof(CmdTrigger), typeof(NotificationTrigger))]
+        public List<Trigger> Triggers { get; set; }
+
+        [Obsolete("Replace with visitor.")]
         public virtual Notification CreateNotification()
         {
             return NotificationFactory.Create(this);

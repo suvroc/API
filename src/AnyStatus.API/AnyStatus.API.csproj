@@ -82,6 +82,7 @@
     <Compile Include="Common\Dialogs\OpenFileDialog.cs" />
     <Compile Include="Common\Dialogs\SaveFileDialog.cs" />
     <Compile Include="Common\Dialogs\WarningDialog.cs" />
+    <Compile Include="Common\Editors\StateEditor.cs" />
     <Compile Include="Common\Mediator\IRequest.cs" />
     <Compile Include="Common\Mediator\IRequestHandler.cs" />
     <Compile Include="Common\Mediator\IValidator.cs" />
@@ -89,6 +90,10 @@
     <Compile Include="Common\Mediator\Unit.cs" />
     <Compile Include="Common\Notifications\DefaultNotificationFactory.cs" />
     <Compile Include="Common\Dialogs\DialogResult.cs" />
+    <Compile Include="Common\Triggers\CmdTrigger.cs" />
+    <Compile Include="Common\Triggers\NotificationTrigger.cs" />
+    <Compile Include="Common\Triggers\StateTrigger.cs" />
+    <Compile Include="Common\Triggers\Trigger.cs" />
     <Compile Include="Widgets\Events\WidgetRemoved.cs" />
     <Compile Include="Widgets\Types\Build.cs" />
     <Compile Include="Widgets\Features\HealthCheck.cs" />
