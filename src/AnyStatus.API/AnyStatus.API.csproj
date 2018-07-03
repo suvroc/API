@@ -72,7 +72,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\Attributes\CommercialAttribute.cs" />
     <Compile Include="Common\Dialogs\ConfirmationDialog.cs" />
     <Compile Include="Common\Dialogs\Dialog.cs" />
     <Compile Include="Common\Dialogs\ErrorDialog.cs" />

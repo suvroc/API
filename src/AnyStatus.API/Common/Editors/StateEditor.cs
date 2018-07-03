@@ -16,10 +16,10 @@ namespace AnyStatus.API
             {
                 ItemsSource = State.GetAll().ToList(),
                 DisplayMemberPath = "Metadata.DisplayName",
-                SelectedValuePath = "Value"
+                SelectedValuePath = nameof(State.Value)
             };
 
-            var _binding = new Binding("Value")
+            var binding = new Binding("Value")
             {
                 Source = propertyItem,
                 ValidatesOnExceptions = true,
@@ -27,7 +27,7 @@ namespace AnyStatus.API
                 Mode = propertyItem.IsReadOnly ? BindingMode.OneWay : BindingMode.TwoWay
             };
 
-            BindingOperations.SetBinding(comboBox, Selector.SelectedValueProperty, _binding);
+            BindingOperations.SetBinding(comboBox, Selector.SelectedValueProperty, binding);
 
             return comboBox;
         }
