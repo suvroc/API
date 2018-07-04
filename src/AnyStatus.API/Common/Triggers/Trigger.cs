@@ -8,7 +8,7 @@ namespace AnyStatus.API.Triggers
     [XmlInclude(typeof(NotificationTrigger))]
     public abstract class Trigger
     {
-        [PropertyOrder(1)]
+        [PropertyOrder(0)]
         [Category("Trigger")]
         public string Name { get; set; }
     }

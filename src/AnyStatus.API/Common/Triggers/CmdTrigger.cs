@@ -1,22 +1,24 @@
 ﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace AnyStatus.API.Triggers
 {
     [DisplayName("Run")]
-    public class CmdTrigger : StateTrigger, IRequest
+    public class CmdTrigger : StateTrigger, IRequest<TriggerResult>
     {
-        [PropertyOrder(1)]
+        [Required]
         [Category("Run")]
+        [PropertyOrder(0)]
         [DisplayName("File Name")]
         public string FileName { get; set; }
 
-        [PropertyOrder(2)]
         [Category("Run")]
+        [PropertyOrder(1)]
         public string Arguments { get; set; }
 
-        [PropertyOrder(3)]
         [Category("Run")]
+        [PropertyOrder(2)]
         [DisplayName("Working Directory")]
         public string WorkingDirectory { get; set; }
     }
