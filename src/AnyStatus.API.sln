@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\OpenCover.cmd = ..\OpenCover.cmd
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnyStatus.API.Demo", "AnyStatus.API.Demo\AnyStatus.API.Demo.csproj", "{EF345A4F-DA6F-4875-9851-4B9E7A35C31D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,8 +29,15 @@ Global
 		{C76591FD-0BAC-413C-BCE1-6FC6237CF105}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C76591FD-0BAC-413C-BCE1-6FC6237CF105}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C76591FD-0BAC-413C-BCE1-6FC6237CF105}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF345A4F-DA6F-4875-9851-4B9E7A35C31D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF345A4F-DA6F-4875-9851-4B9E7A35C31D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF345A4F-DA6F-4875-9851-4B9E7A35C31D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF345A4F-DA6F-4875-9851-4B9E7A35C31D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {12FAD063-6E2D-4AAE-B4AA-2B3CA6A05690}
 	EndGlobalSection
 EndGlobal

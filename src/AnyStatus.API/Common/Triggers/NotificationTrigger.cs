@@ -2,6 +2,7 @@
 
 namespace AnyStatus.API.Triggers
 {
+    [DisplayName("Notification")]
     public class NotificationTrigger : StateTrigger, IRequest
     {
         [Category("Notification")]
