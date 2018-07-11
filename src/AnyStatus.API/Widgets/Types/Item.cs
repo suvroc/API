@@ -23,6 +23,8 @@ namespace AnyStatus.API
     {
         #region Fields
 
+        private const string StatePropertyName = nameof(State);
+
         private readonly bool _aggregator;
 
         private int _count;
@@ -158,12 +160,13 @@ namespace AnyStatus.API
             get { return _state; }
             set
             {
-                if (_state == value)
-                    return;
+                if (_state != value)
+                {
+                    _previousState = _state;
+                    _state = value;
+                }
 
-                _previousState = _state;
-                _state = value;
-                OnPropertyChanged();
+                OnPropertyChanged(); //note, this must always be called to enable aggregation.
             }
         }
 
@@ -349,7 +352,10 @@ namespace AnyStatus.API
 
         private void OnChildPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e != null && e.PropertyName == nameof(State)) Aggregate();
+            if (e.PropertyName == StatePropertyName)
+            {
+                Aggregate();
+            }
         }
 
         private void Aggregate()

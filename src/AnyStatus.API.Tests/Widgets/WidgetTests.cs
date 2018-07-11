@@ -22,11 +22,11 @@ namespace AnyStatus.API.Tests
                 counter++;
             });
 
-            widget.State = State.Ok;    //first change, affects the widget and folder state.
-            widget.State = State.Ok;    //ignored
-            widget.State = State.Error; //second change, affects the widget and folder state.
+            widget.State = State.Ok;    //first change, affects the widget parent folder.
+            widget.State = State.Ok;    //second change (even if the state is similar), affects the widget and parent folder.
+            widget.State = State.Error; //third change, affects the widget and parent folder.
 
-            Assert.AreEqual(4, counter);
+            Assert.AreEqual(6, counter);
         }
 
         [TestMethod]
@@ -133,6 +133,9 @@ namespace AnyStatus.API.Tests
             grandParent.Add(parent);
             parent.Add(widget1);
             parent.Add(widget2);
+
+            Assert.AreEqual(State.None, parent.State);
+            Assert.AreEqual(State.None, grandParent.State);
 
             widget1.State = State.Ok;
             widget2.State = State.None;
