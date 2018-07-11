@@ -9,6 +9,27 @@ namespace AnyStatus.API.Tests
     public class WidgetTests
     {
         [TestMethod]
+        public void Assert_That_WidgetStateChanged_Published_When_State_Change()
+        {
+            var counter = 0;
+            var folder = new Folder();
+            var widget = new WidgetMock();
+
+            folder.Add(widget);
+
+            this.Subscribe<WidgetStateChanged>(e =>
+            {
+                counter++;
+            });
+
+            widget.State = State.Ok;    //first change, affects the widget and folder state.
+            widget.State = State.Ok;    //ignored
+            widget.State = State.Error; //second change, affects the widget and folder state.
+
+            Assert.AreEqual(4, counter);
+        }
+
+        [TestMethod]
         public void Assert_That_DefaultStateIsNone()
         {
             var widget = new WidgetMock();

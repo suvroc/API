@@ -150,6 +150,7 @@
     <Compile Include="Widgets\State\StateMetadata.cs" />
     <Compile Include="Common\Utils\Preconditions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Widgets\Types\WidgetStateChanged.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AnyStatus.API.nuspec" />

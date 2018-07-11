@@ -158,6 +158,9 @@ namespace AnyStatus.API
             get { return _state; }
             set
             {
+                if (_state == value)
+                    return;
+
                 _previousState = _state;
                 _state = value;
                 OnPropertyChanged();

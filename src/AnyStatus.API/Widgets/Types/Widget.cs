@@ -11,9 +11,20 @@ namespace AnyStatus.API
     /// </summary>
     public abstract class Widget : Item
     {
-        protected Widget() : this(false) { }
+        private const string StatePropertyName = nameof(State);
 
-        protected Widget(bool aggregate) : base(aggregate) { }
+        protected Widget() : this(aggregate: false) { }
+
+        protected Widget(bool aggregate) : base(aggregate)
+        {
+            PropertyChanged += OnPropertyChanged;
+        }
+
+        protected virtual void OnPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == StatePropertyName)
+                this.Publish(new WidgetStateChanged(widget: this));
+        }
 
         [NewItemTypes(typeof(CmdTrigger), typeof(NotificationTrigger))]
         public List<Trigger> Triggers { get; set; }
