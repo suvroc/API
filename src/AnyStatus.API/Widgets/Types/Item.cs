@@ -160,13 +160,9 @@ namespace AnyStatus.API
             get { return _state; }
             set
             {
-                if (_state != value)
-                {
-                    _previousState = _state;
-                    _state = value;
-                }
-
-                OnPropertyChanged(); //note, this must always be called to enable aggregation.
+                _previousState = _state;
+                _state = value;
+                OnPropertyChanged();
             }
         }
 
