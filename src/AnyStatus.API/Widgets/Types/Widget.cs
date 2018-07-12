@@ -3,6 +3,7 @@ using AnyStatus.API.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace AnyStatus.API
@@ -23,7 +24,7 @@ namespace AnyStatus.API
 
         protected virtual void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == StatePropertyName && PreviousState != State)
+            if (e.PropertyName == StatePropertyName && State != PreviousState && Triggers?.Any() == true)
                 this.Publish(new WidgetStateChanged(this, PreviousState, State));
         }
 
