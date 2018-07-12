@@ -5,7 +5,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace AnyStatus.API.Triggers
 {
     [DisplayName("Run")]
-    public class CmdTrigger : StateTrigger, IRequest<TriggerResult>
+    public class CmdTrigger : StateTrigger
     {
         [Required]
         [Category("Run")]

@@ -4,7 +4,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace AnyStatus.API.Triggers
 {
     [DisplayName("Notification")]
-    public class NotificationTrigger : StateTrigger, IRequest<TriggerResult>
+    public class NotificationTrigger : StateTrigger
     {
         [PropertyOrder(0)]
         [Category("Notification")]
