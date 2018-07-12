@@ -8,6 +8,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Reflection;
 using System.Xml.Serialization;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
@@ -106,7 +107,6 @@ namespace AnyStatus.API
         }
 
         [Required]
-        [Category("General")]
         [PropertyOrder(0)]
         public string Name
         {
@@ -116,29 +116,38 @@ namespace AnyStatus.API
 
         [Required]
         [PropertyOrder(1)]
-        [Category("General")]
-        [Range(0, ushort.MaxValue, ErrorMessage = "The interval must be a number between 0 and 65535.")]
-        [Description("Required. The approximate interval, in minutes, between health checks of an individual instance. Use 0 to bypass.")]
+        [DisplayName("Interval (minutes)")]
+        [Range(0, ushort.MaxValue, ErrorMessage = "Interval must be a number between 0 and 65535.")]
+        [Description("Required. The approximate interval, in minutes, between health checks of an individual widget. Use 0 to bypass.")]
         public int Interval
         {
             get { return _interval; }
             set { _interval = value; OnPropertyChanged(); }
         }
 
+        [RefreshProperties(RefreshProperties.All)]
         [PropertyOrder(2)]
-        [Category("General")]
-        [DisplayName("Show Notifications")]
+        [Category("Notifications")]
+        [DisplayName("Enabled")]
         [Description("Show desktop notifications when events occur.")]
         public bool ShowNotifications
         {
             get { return _showNotifications; }
-            set { _showNotifications = value; OnPropertyChanged(); }
+            set
+            {
+                _showNotifications = value;
+
+                OnPropertyChanged();
+
+                SetPropertyVisibility(nameof(ShowErrorNotifications), _showNotifications);
+            }
         }
 
+        [Browsable(false)]
         [PropertyOrder(3)]
-        [Category("General")]
-        [DisplayName("Show Error Notifications")]
-        [Description("Show desktop notifications when errors occur or recover.")]
+        [Category("Notifications")]
+        [DisplayName("Show internal error notifications")]
+        [Description("Show error and recovery notifications when internal errors occur. Uncheck to skip notifications in cases such as network outage.")]
         public bool ShowErrorNotifications
         {
             get { return _showErrorNotifications; }
@@ -283,6 +292,26 @@ namespace AnyStatus.API
         }
 
         #endregion Helpers
+
+        /// <summary>
+        /// Show or hide property in property grid.
+        /// </summary>
+        /// <param name="propertyName"></param>
+        /// <param name="show"></param>
+        protected void SetPropertyVisibility(string propertyName, bool show)
+        {
+            SetAttributeProperty<BrowsableAttribute>(propertyName, "browsable", show);
+        }
+
+        private void SetAttributeProperty<TAttribute>(string propertyName, string fieldName, object value)
+            where TAttribute : Attribute
+        {
+            var descriptor = TypeDescriptor.GetProperties(GetType())[propertyName];
+            var attribute = (TAttribute)descriptor.Attributes[typeof(TAttribute)];
+            var field = attribute.GetType().GetField(fieldName, BindingFlags.NonPublic | BindingFlags.Instance);
+
+            field.SetValue(attribute, value);
+        }
 
         #region ICloneable
 

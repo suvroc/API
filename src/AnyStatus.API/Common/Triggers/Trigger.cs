@@ -9,7 +9,6 @@ namespace AnyStatus.API.Triggers
     public abstract class Trigger
     {
         [PropertyOrder(0)]
-        [Category("Trigger")]
         public string Name { get; set; }
     }
 }

@@ -4,7 +4,7 @@
     {
         public MainViewModel()
         {
-            Widget = new Folder();
+            Widget = new WidgetDemo();
         }
 
         public Widget Widget { get; set; }

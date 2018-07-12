@@ -9,24 +9,21 @@ namespace AnyStatus.API.Tests
     public class WidgetTests
     {
         [TestMethod]
-        public void Assert_That_WidgetStateChanged_Published_When_State_Change()
+        public void Assert_That_StateChangedEventPublished()
         {
-            var counter = 0;
+            var numberOfEventOccurrences = 0;
             var folder = new Folder();
             var widget = new WidgetMock();
 
             folder.Add(widget);
 
-            this.Subscribe<WidgetStateChanged>(e =>
-            {
-                counter++;
-            });
+            this.Subscribe<WidgetStateChanged>(e => numberOfEventOccurrences++);
 
-            widget.State = State.Ok;    //first change, affects the widget parent folder.
-            widget.State = State.Ok;    //second change (even if the state is similar), affects the widget and parent folder.
-            widget.State = State.Error; //third change, affects the widget and parent folder.
+            widget.State = State.Ok;    //affects widget and parent folders state.
+            widget.State = State.Ok;    //same staet ignored
+            widget.State = State.Error; //affects widget and parent folders state.
 
-            Assert.AreEqual(6, counter);
+            Assert.AreEqual(4, numberOfEventOccurrences);
         }
 
         [TestMethod]
