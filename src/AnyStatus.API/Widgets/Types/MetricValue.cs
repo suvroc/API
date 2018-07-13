@@ -13,7 +13,7 @@ namespace AnyStatus.API
         [ExcludeFromCodeCoverage]
         public object Value
         {
-            get { return _value; }
+            get => _value;
             set
             {
                 _value = value;

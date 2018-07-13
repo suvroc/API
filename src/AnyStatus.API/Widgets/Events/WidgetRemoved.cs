@@ -7,6 +7,6 @@
             Widget = widget;
         }
 
-        public Widget Widget { get; private set; }
+        public Widget Widget { get; }
     }
 }

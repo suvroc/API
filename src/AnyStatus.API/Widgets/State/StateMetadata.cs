@@ -30,8 +30,12 @@ namespace AnyStatus.API
 
         public string Color
         {
-            get { return _color; }
-            set { _color = value; OnPropertyChanged(); }
+            get => _color;
+            set
+            {
+                _color = value;
+                OnPropertyChanged();
+            }
         }
 
         public string Icon { get; set; }
