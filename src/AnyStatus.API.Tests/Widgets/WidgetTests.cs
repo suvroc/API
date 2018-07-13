@@ -1,6 +1,8 @@
-﻿using AnyStatus.API.Utils;
+﻿using AnyStatus.API.Triggers;
+using AnyStatus.API.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace AnyStatus.API.Tests
@@ -12,18 +14,38 @@ namespace AnyStatus.API.Tests
         public void Assert_That_StateChangedEventPublished()
         {
             var numberOfEventOccurrences = 0;
-            var folder = new Folder();
-            var widget = new WidgetMock();
+
+            var triggers = new List<Trigger>
+            {
+                new NotificationTrigger()
+            };
+
+            var folder = new Folder
+            {
+                Triggers = triggers
+            };
+
+            var widget = new WidgetMock
+            {
+                Triggers = triggers
+            };
 
             folder.Add(widget);
 
-            this.Subscribe<WidgetStateChanged>(e => numberOfEventOccurrences++);
+            this.Subscribe<WidgetStateChanged>(IncreaseCounter);
 
             widget.State = State.Ok;    //affects widget and parent folders state.
             widget.State = State.Ok;    //same staet ignored
             widget.State = State.Error; //affects widget and parent folders state.
 
+            this.Unsubscribe<WidgetStateChanged>(IncreaseCounter);
+
             Assert.AreEqual(4, numberOfEventOccurrences);
+
+            void IncreaseCounter(WidgetStateChanged e)
+            {
+                numberOfEventOccurrences++;
+            }
         }
 
         [TestMethod]
@@ -53,7 +75,7 @@ namespace AnyStatus.API.Tests
         {
             var eventFired = false;
 
-            this.Subscribe<WidgetAdded>(e => { eventFired = true; });
+            this.Subscribe<WidgetAdded>(e => eventFired = true);
 
             var parent = new WidgetMock();
             var child = new WidgetMock();

@@ -9,7 +9,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 namespace AnyStatus.API
 {
     /// <summary>
-    /// Base widget class.
+    /// Widget base class.
     /// </summary>
     public abstract class Widget : Item
     {

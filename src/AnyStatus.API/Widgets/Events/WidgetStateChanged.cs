@@ -1,6 +1,6 @@
 ﻿namespace AnyStatus.API
 {
-    public class WidgetStateChanged
+    public class WidgetStateChanged : IRequest
     {
         public WidgetStateChanged(Widget widget, State oldState, State newState)
         {
