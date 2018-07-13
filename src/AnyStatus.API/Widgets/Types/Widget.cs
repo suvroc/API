@@ -28,7 +28,7 @@ namespace AnyStatus.API
                 this.Publish(new WidgetStateChanged(this, PreviousState, State));
         }
 
-        [NewItemTypes(typeof(CmdTrigger), typeof(NotificationTrigger))]
+        [NewItemTypes(typeof(CommandTrigger), typeof(NotificationTrigger))]
         public List<Trigger> Triggers { get; set; }
 
         [Obsolete("Replace with visitor.")]

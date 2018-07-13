@@ -3,7 +3,7 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace AnyStatus.API.Triggers
 {
-    [XmlInclude(typeof(CmdTrigger))]
+    [XmlInclude(typeof(CommandTrigger))]
     [XmlInclude(typeof(NotificationTrigger))]
     public abstract class Trigger : IRequest<TriggerResult>
     {
