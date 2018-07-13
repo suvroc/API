@@ -5,12 +5,12 @@ namespace AnyStatus.API.Triggers
 {
     public abstract class StateTrigger : Trigger
     {
-        [PropertyOrder(1)]
+        [PropertyOrder(0)]
         [DisplayName("Transition From")]
         [Editor(typeof(StateEditor), typeof(StateEditor))]
         public int TransitionFromState { get; set; }
 
-        [PropertyOrder(2)]
+        [PropertyOrder(1)]
         [DisplayName("Transition To")]
         [Editor(typeof(StateEditor), typeof(StateEditor))]
         public int TransitionToState { get; set; }

@@ -8,17 +8,14 @@ namespace AnyStatus.API.Triggers
     public class CmdTrigger : StateTrigger
     {
         [Required]
-        [Category("Run")]
-        [PropertyOrder(0)]
+        [PropertyOrder(10)]
         [DisplayName("File Name")]
         public string FileName { get; set; }
 
-        [Category("Run")]
-        [PropertyOrder(1)]
+        [PropertyOrder(11)]
         public string Arguments { get; set; }
 
-        [Category("Run")]
-        [PropertyOrder(2)]
+        [PropertyOrder(12)]
         [DisplayName("Working Directory")]
         public string WorkingDirectory { get; set; }
     }
