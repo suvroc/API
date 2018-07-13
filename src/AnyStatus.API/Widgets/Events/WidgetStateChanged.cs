@@ -1,4 +1,6 @@
-﻿namespace AnyStatus.API
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace AnyStatus.API
 {
     public class WidgetStateChanged : IRequest
     {
@@ -9,10 +11,13 @@
             NewState = newState;
         }
 
+        [Required]
         public Widget Widget { get; }
 
+        [Required]
         public State OldState { get; }
 
+        [Required]
         public State NewState { get; }
     }
 }
