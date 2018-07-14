@@ -132,12 +132,15 @@ namespace AnyStatus.API
         [Description("Show desktop notifications when events occur.")]
         public bool ShowNotifications
         {
-            get { return _showNotifications; }
+            get => _showNotifications;
             set
             {
                 _showNotifications = value;
 
                 OnPropertyChanged();
+
+                if (this is Folder)
+                    return;
 
                 SetPropertyVisibility(nameof(ShowErrorNotifications), _showNotifications);
             }
