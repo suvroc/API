@@ -33,7 +33,6 @@ namespace AnyStatus.API
         public StateMetadata Metadata
         {
             get => _stateMetadata;
-
             private set
             {
                 _stateMetadata = value;

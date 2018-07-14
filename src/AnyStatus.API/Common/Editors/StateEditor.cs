@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -8,15 +10,22 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 
 namespace AnyStatus.API
 {
-    class StateEditor : ITypeEditor
+    public class StateEditor : ITypeEditor
     {
+        private static readonly Lazy<List<KeyValuePair<string, int>>> States = new Lazy<List<KeyValuePair<string, int>>>(() =>
+        {
+            var states = new List<KeyValuePair<string, int>> { new KeyValuePair<string, int>("Any", -1) };
+            states.AddRange(State.GetAll().Select(state => new KeyValuePair<string, int>(state.Metadata.DisplayName, state.Value)));
+            return states;
+        });
+
         public FrameworkElement ResolveEditor(PropertyItem propertyItem)
         {
             var comboBox = new ComboBox
             {
-                ItemsSource = State.GetAll().ToList(),
-                DisplayMemberPath = "Metadata.DisplayName",
-                SelectedValuePath = nameof(State.Value)
+                ItemsSource = States.Value,
+                DisplayMemberPath = "Key",
+                SelectedValuePath = "Value",
             };
 
             var binding = new Binding("Value")
