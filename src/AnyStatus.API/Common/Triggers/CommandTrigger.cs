@@ -10,6 +10,8 @@ namespace AnyStatus.API.Triggers
         [Required]
         [PropertyOrder(10)]
         [DisplayName("File Name")]
+        [Description("")]
+        [Editor(typeof(FileEditor), typeof(FileEditor))]
         public string FileName { get; set; }
 
         [PropertyOrder(11)]
@@ -17,6 +19,7 @@ namespace AnyStatus.API.Triggers
 
         [PropertyOrder(12)]
         [DisplayName("Working Directory")]
+        [Editor(typeof(FolderEditor), typeof(FolderEditor))]
         public string WorkingDirectory { get; set; }
     }
 }

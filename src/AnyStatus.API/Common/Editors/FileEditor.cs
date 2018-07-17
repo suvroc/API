@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Media;
 using Xceed.Wpf.Toolkit.PropertyGrid;
 using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
 
@@ -12,11 +13,6 @@ namespace AnyStatus.API
         [ExcludeFromCodeCoverage]
         public FrameworkElement ResolveEditor(PropertyItem propertyItem)
         {
-            return CreateElement(propertyItem);
-        }
-
-        public FrameworkElement CreateElement(object bindingSource)
-        {
             var grid = new Grid();
 
             grid.ColumnDefinitions.Add(new ColumnDefinition());
@@ -24,12 +20,20 @@ namespace AnyStatus.API
 
             var textBox = new TextBox
             {
-                HorizontalAlignment = HorizontalAlignment.Stretch
+                HorizontalAlignment = HorizontalAlignment.Stretch,
+                VerticalContentAlignment = VerticalAlignment.Center,
+                Padding = new Thickness(3),
             };
+
+            var defaultBorderBrush = textBox.BorderBrush;
+
+            textBox.BorderBrush = Brushes.Transparent;
+            textBox.MouseEnter += (s, e) => ((TextBox) s).BorderBrush = defaultBorderBrush;
+            textBox.MouseLeave += (s, e) => ((TextBox) s).BorderBrush = Brushes.Transparent;
 
             var binding = new Binding("Value")
             {
-                Source = bindingSource,
+                Source = propertyItem,
                 Mode = BindingMode.TwoWay
             };
 
@@ -37,8 +41,8 @@ namespace AnyStatus.API
 
             var button = new Button
             {
-                Content = "...",
-                Tag = bindingSource
+                Content = " ... ",
+                Tag = propertyItem,
             };
 
             button.Click += OnButtonClick;
@@ -53,21 +57,19 @@ namespace AnyStatus.API
 
         private void OnButtonClick(object sender, RoutedEventArgs e)
         {
-            var button = sender as Button;
+            var button = (Button)sender;
+            var pi = (PropertyItem)button.Tag;
 
-            if (button == null)
-                return;
+            pi.Value = GetPath();
+        }
 
-            var item = button.Tag as PropertyItem;
-
-            if (item == null)
-                return;
-
+        protected virtual string GetPath()
+        {
             var openFileDialog = new Microsoft.Win32.OpenFileDialog();
 
             openFileDialog.ShowDialog();
 
-            item.Value = openFileDialog.FileName;
+            return openFileDialog.FileName;
         }
     }
 }
