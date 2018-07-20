@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace AnyStatus.API.Triggers
@@ -21,5 +22,9 @@ namespace AnyStatus.API.Triggers
         [DisplayName("Working Directory")]
         [Editor(typeof(FolderEditor), typeof(FolderEditor))]
         public string WorkingDirectory { get; set; }
+
+        [PropertyOrder(13)]
+        [DisplayName("Window Style")]
+        public ProcessWindowStyle WindowStyle { get; set; } = ProcessWindowStyle.Hidden;
     }
 }
