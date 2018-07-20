@@ -9,7 +9,6 @@ namespace AnyStatus.API.Triggers
     public abstract class Trigger : IRequest
     {
         [PropertyOrder(0)]
-        [DisplayName("Enable")]
         public bool Enabled { get; set; } = true;
     }
 }
