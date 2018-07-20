@@ -22,9 +22,5 @@ namespace AnyStatus.API.Triggers
         [DisplayName("Working Directory")]
         [Editor(typeof(FolderEditor), typeof(FolderEditor))]
         public string WorkingDirectory { get; set; }
-
-        [PropertyOrder(13)]
-        [DisplayName("Window Style")]
-        public ProcessWindowStyle WindowStyle { get; set; } = ProcessWindowStyle.Hidden;
     }
 }
