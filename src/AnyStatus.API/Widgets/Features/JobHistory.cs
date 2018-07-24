@@ -9,10 +9,10 @@ namespace AnyStatus.API
     {
         [XmlIgnore]
         [Browsable(false)]
-        IEnumerable<IJobRun> JobHistory { get; set; }
+        IEnumerable<JobRun> JobHistory { get; set; }
     }
 
-    public interface IJobRun
+    public class JobRun
     {
         string Description { get; set; }
         TimeSpan Duration { get; set; }
