@@ -19,14 +19,13 @@ namespace AnyStatus.API
     /// Widgets should not directly inherit this class. Use Widget class instead.
     /// </summary>
     [Serializable]
-    [CategoryOrder("General", 1)]
+    [CategoryOrder("Misc", 0)]
+    [CategoryOrder("Notifications", 1)]
     public abstract class Item : NotifyPropertyChanged, ICloneable
     {
         #region Fields
 
         private const string StatePropertyName = nameof(State);
-
-        private readonly bool _aggregator;
 
         private int _count;
         private Item _parent;
@@ -46,6 +45,7 @@ namespace AnyStatus.API
 
         [NonSerialized]
         private State _previousState;
+
         private string _stateText;
 
         #endregion Fields
@@ -54,9 +54,7 @@ namespace AnyStatus.API
 
         protected Item(bool aggregator) : this()
         {
-            _aggregator = aggregator;
-
-            if (_aggregator)
+            if (aggregator)
                 _items.CollectionChanged += OnCollectionChanged;
         }
 
@@ -107,6 +105,7 @@ namespace AnyStatus.API
         }
 
         [Required]
+        
         [PropertyOrder(0)]
         public string Name
         {

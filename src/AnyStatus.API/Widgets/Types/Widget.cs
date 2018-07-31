@@ -29,6 +29,7 @@ namespace AnyStatus.API
         }
 
         [NewItemTypes(typeof(CommandTrigger), typeof(NotificationTrigger))]
+        [Description("Triggers are used for automating the execution of custom commands in response to certain events.\nTriggers execution is not synchronized across AnyStatus instances.")]
         public List<Trigger> Triggers { get; set; }
 
         [Obsolete("Replace with visitor.")]
