@@ -77,6 +77,7 @@
     <Compile Include="Common\Mediator\Unit.cs" />
     <Compile Include="Common\Notifications\DefaultNotificationFactory.cs" />
     <Compile Include="Common\Dialogs\DialogResult.cs" />
+    <Compile Include="Common\Notifications\INotificationService.cs" />
     <Compile Include="Common\Triggers\CommandTrigger.cs" />
     <Compile Include="Common\Triggers\NotificationTrigger.cs" />
     <Compile Include="Common\Triggers\StateTrigger.cs" />
