@@ -28,7 +28,10 @@ namespace AnyStatus.API
                 this.Publish(new WidgetStateChanged(this, PreviousState, State));
         }
 
-        [NewItemTypes(typeof(CommandTrigger), typeof(NotificationTrigger))]
+        [NewItemTypes(
+            typeof(CommandTrigger),
+            typeof(BatchScriptTrigger),
+            typeof(NotificationTrigger))]
         [Description("Use triggers to run custom commands in response to status changes.")]
         public List<Trigger> Triggers { get; set; }
 
