@@ -79,7 +79,7 @@ namespace AnyStatus.API
         [Browsable(false)]
         public int Count
         {
-            get { return _count; }
+            get => _count;
             private set
             {
                 _count = value;
@@ -91,16 +91,13 @@ namespace AnyStatus.API
         public Guid Id { get; set; }
 
         [Browsable(false)]
-        public ObservableCollection<Item> Items
-        {
-            get { return _items; }
-        }
+        public ObservableCollection<Item> Items => _items;
 
         [XmlIgnore]
         [Browsable(false)]
         public Item Parent
         {
-            get { return _parent; }
+            get => _parent;
             set { _parent = value; OnPropertyChanged(); }
         }
 
@@ -109,7 +106,7 @@ namespace AnyStatus.API
         [PropertyOrder(0)]
         public string Name
         {
-            get { return _name; }
+            get => _name;
             set { _name = value; OnPropertyChanged(); }
         }
 
@@ -120,7 +117,7 @@ namespace AnyStatus.API
         [Description("Required. The approximate interval, in minutes, between health checks of an individual widget. Use 0 to bypass.")]
         public int Interval
         {
-            get { return _interval; }
+            get => _interval;
             set { _interval = value; OnPropertyChanged(); }
         }
 
@@ -152,7 +149,7 @@ namespace AnyStatus.API
         [Description("Show error and recovery notifications when internal errors occur. Uncheck to skip notifications in cases such as network outage.")]
         public bool ShowErrorNotifications
         {
-            get { return _showErrorNotifications; }
+            get => _showErrorNotifications;
             set { _showErrorNotifications = value; OnPropertyChanged(); }
         }
 
@@ -160,7 +157,7 @@ namespace AnyStatus.API
         [Browsable(false)]
         public bool IsExpanded
         {
-            get { return _isExpanded; }
+            get => _isExpanded;
             set { _isExpanded = value; OnPropertyChanged(); }
         }
 
@@ -168,7 +165,7 @@ namespace AnyStatus.API
         [Browsable(false)]
         public State State
         {
-            get { return _state; }
+            get => _state;
             set
             {
                 _previousState = _state;
@@ -191,16 +188,13 @@ namespace AnyStatus.API
 
         [XmlIgnore]
         [Browsable(false)]
-        public State PreviousState
-        {
-            get { return _previousState; }
-        }
+        public State PreviousState => _previousState;
 
         [Browsable(false)]
         [DisplayName("Enabled")]
         public bool IsEnabled
         {
-            get { return _isEnabled; }
+            get => _isEnabled;
             set
             {
                 _isEnabled = value;
@@ -214,16 +208,13 @@ namespace AnyStatus.API
 
         [Browsable(false)]
         [ExcludeFromCodeCoverage]
-        public bool IsDisabled
-        {
-            get { return !_isEnabled; }
-        }
+        public bool IsDisabled => !_isEnabled;
 
         [XmlIgnore]
         [Browsable(false)]
         public bool IsEditing
         {
-            get { return _isEditing; }
+            get => _isEditing;
             set { _isEditing = value; OnPropertyChanged(); }
         }
 
@@ -231,7 +222,7 @@ namespace AnyStatus.API
         [Browsable(false)]
         public bool IsSelected
         {
-            get { return _isSelected; }
+            get => _isSelected;
             set { _isSelected = value; OnPropertyChanged(); }
         }
 
