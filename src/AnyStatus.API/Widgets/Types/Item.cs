@@ -18,6 +18,7 @@ namespace AnyStatus.API
     /// Tree Node Item
     /// Widgets should not directly inherit this class. Use Widget class instead.
     /// </summary>
+    [Obsolete("Deprecated. Use Widget instead.")]
     [Serializable]
     [CategoryOrder("Misc", 0)]
     [CategoryOrder("Notifications", 1)]
@@ -102,7 +103,7 @@ namespace AnyStatus.API
         }
 
         [Required]
-        
+
         [PropertyOrder(0)]
         public string Name
         {
