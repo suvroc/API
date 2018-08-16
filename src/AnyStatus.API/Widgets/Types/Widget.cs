@@ -35,8 +35,6 @@ namespace AnyStatus.API
         [Description("Use triggers to run custom commands in response to status changes.")]
         public List<Trigger> Triggers { get; set; }
 
-        public string DefaultName { get; protected set; }
-
         [Obsolete("Replace with visitor.")]
         public virtual Notification CreateNotification()
         {
