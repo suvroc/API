@@ -21,7 +21,6 @@ namespace AnyStatus.API
         public Color Color { get; set; } = Colors.LimeGreen;
 
         [Category(Category)]
-        [DisplayName("Max. Points")]
         public int Size { get; set; } = 20;
 
         [XmlIgnore]
