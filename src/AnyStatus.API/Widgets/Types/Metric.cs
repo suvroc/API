@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
 using System.Xml.Serialization;
 
 namespace AnyStatus.API
@@ -10,7 +9,6 @@ namespace AnyStatus.API
 
         [XmlIgnore]
         [Browsable(false)]
-        [ExcludeFromCodeCoverage]
         public object Value
         {
             get => _value;
@@ -20,5 +18,7 @@ namespace AnyStatus.API
                 OnPropertyChanged();
             }
         }
+
+        public string Symbol { get; set; }
     }
 }
