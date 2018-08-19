@@ -6,6 +6,7 @@ namespace AnyStatus.API
     public abstract class Metric : Widget, IMetricValue
     {
         private object _value;
+        private string _symbol;
 
         [XmlIgnore]
         [Browsable(false)]
@@ -19,6 +20,16 @@ namespace AnyStatus.API
             }
         }
 
-        public string Symbol { get; set; }
+        [XmlIgnore]
+        [Browsable(false)]
+        public string Symbol
+        {
+            get => _symbol;
+            set
+            {
+                _symbol = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }
