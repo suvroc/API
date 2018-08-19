@@ -10,7 +10,7 @@ namespace AnyStatus.API
 
         int Interval { get; }
 
-        IntervalUnits IntervalUnits { get; }
+        IntervalUnits Units { get; }
     }
 
     public enum IntervalUnits
