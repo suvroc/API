@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Windows.Media;
 using System.Xml.Serialization;
+using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace AnyStatus.API
 {
@@ -10,11 +11,18 @@ namespace AnyStatus.API
         private double _value;
         private const string Category = "Sparkline";
 
+        [PropertyOrder(0)]
         [Category(Category)]
-        public Color Color { get; set; } = Colors.LimeGreen;
+        [DisplayName("Enabled")]
+        public bool IsSparklineEnabled { get; set; }
 
+        [PropertyOrder(1)]
         [Category(Category)]
         public int Size { get; set; } = 20;
+
+        [PropertyOrder(2)]
+        [Category(Category)]
+        public Color Color { get; set; } = Colors.LimeGreen;
 
         [XmlIgnore]
         [Browsable(false)]
