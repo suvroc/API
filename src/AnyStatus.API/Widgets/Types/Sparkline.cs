@@ -22,6 +22,10 @@ namespace AnyStatus.API
 
         [XmlIgnore]
         [Browsable(false)]
+        public double MaxValue { get; set; } = 0;
+
+        [XmlIgnore]
+        [Browsable(false)]
         public new double Value
         {
             get => _value;
