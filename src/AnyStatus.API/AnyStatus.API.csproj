@@ -86,6 +86,7 @@
     <Compile Include="Widgets\Events\WidgetRemoved.cs" />
     <Compile Include="Widgets\Types\Build.cs" />
     <Compile Include="Widgets\Features\HealthCheck.cs" />
+    <Compile Include="Widgets\Types\DataPoint.cs" />
     <Compile Include="Widgets\Types\IMetricValue.cs" />
     <Compile Include="Widgets\Features\IContextAction.cs" />
     <Compile Include="Widgets\Features\Uninitialize.cs" />
@@ -101,8 +102,9 @@
     <Compile Include="Widgets\Types\Folder.cs" />
     <Compile Include="Widgets\Events\WidgetAdded.cs" />
     <Compile Include="Widgets\Types\HealthCheck.cs" />
+    <Compile Include="Widgets\Types\Sparkline.cs" />
     <Compile Include="Widgets\Types\Widget.cs" />
-    <Compile Include="Widgets\Types\MetricValue.cs" />
+    <Compile Include="Widgets\Types\Metric.cs" />
     <Compile Include="Common\Editors\MultilineTextBoxEditor.cs" />
     <Compile Include="Common\Utils\Enumeration.cs" />
     <Compile Include="Widgets\Types\Item.cs" />
