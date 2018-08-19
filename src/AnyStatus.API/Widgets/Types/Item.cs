@@ -112,18 +112,24 @@ namespace AnyStatus.API
         }
 
         [Required]
-        [PropertyOrder(1)]
-        [DisplayName("Interval (minutes)")]
+        [PropertyOrder(2)]
+        [DisplayName("Interval")]
         [Range(0, ushort.MaxValue, ErrorMessage = "Interval must be a number between 0 and 65535.")]
-        [Description("Required. The approximate interval, in minutes, between health checks of an individual widget. Use 0 to bypass.")]
+        [Description("Required. The approximate interval between health checks of an individual widget. Use 0 to bypass.")]
         public int Interval
         {
             get => _interval;
             set { _interval = value; OnPropertyChanged(); }
         }
 
+        [Required]
+        [PropertyOrder(3)]
+        [DisplayName("Units")]
+        [Description("Required. The interval time units.")]
+        public IntervalUnits Units { get; set; }
+
         [RefreshProperties(RefreshProperties.All)]
-        [PropertyOrder(2)]
+        [PropertyOrder(0)]
         [Category("Notifications")]
         [DisplayName("Enabled")]
         [Description("Show desktop notifications when events occur.")]
@@ -144,7 +150,7 @@ namespace AnyStatus.API
         }
 
         [Browsable(false)]
-        [PropertyOrder(3)]
+        [PropertyOrder(1)]
         [Category("Notifications")]
         [DisplayName("Show internal error notifications")]
         [Description("Show error and recovery notifications when internal errors occur. Uncheck to skip notifications in cases such as network outage.")]

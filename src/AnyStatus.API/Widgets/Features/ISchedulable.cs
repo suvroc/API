@@ -10,13 +10,12 @@ namespace AnyStatus.API
 
         int Interval { get; }
 
-        //IntervalUnit IntervalUnit { get; }
+        IntervalUnits IntervalUnits { get; }
     }
 
-    public enum IntervalUnit
+    public enum IntervalUnits
     {
-        None,
+        Minutes,
         Seconds,
-        Minutes
     }
 }

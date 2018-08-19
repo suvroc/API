@@ -28,6 +28,8 @@ namespace AnyStatus.API
                 this.Publish(new WidgetStateChanged(this, PreviousState, State));
         }
 
+
+        [PropertyOrder(1)]
         [NewItemTypes(
             typeof(CommandTrigger),
             typeof(BatchScriptTrigger),
