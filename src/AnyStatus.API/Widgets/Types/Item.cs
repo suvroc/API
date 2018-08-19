@@ -48,6 +48,7 @@ namespace AnyStatus.API
         private State _previousState;
 
         private string _stateText;
+        private IntervalUnits _units;
 
         #endregion Fields
 
@@ -126,7 +127,15 @@ namespace AnyStatus.API
         [PropertyOrder(3)]
         [DisplayName("Units")]
         [Description("Required. The interval time units.")]
-        public IntervalUnits Units { get; set; }
+        public IntervalUnits Units
+        {
+            get => _units;
+            set
+            {
+                _units = value; 
+                OnPropertyChanged();
+            }
+        }
 
         [RefreshProperties(RefreshProperties.All)]
         [PropertyOrder(0)]
