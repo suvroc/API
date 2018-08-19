@@ -22,7 +22,7 @@ namespace AnyStatus.API
 
         [PropertyOrder(2)]
         [Category(Category)]
-        public Color Color { get; set; } = Colors.LimeGreen;
+        public Color Color { get; set; } = Colors.Gray;
 
         [XmlIgnore]
         [Browsable(false)]
