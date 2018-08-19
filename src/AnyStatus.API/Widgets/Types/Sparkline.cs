@@ -14,7 +14,7 @@ namespace AnyStatus.API
         [PropertyOrder(0)]
         [Category(Category)]
         [DisplayName("Enabled")]
-        public bool IsSparklineEnabled { get; set; }
+        public bool IsSparklineEnabled { get; set; } = true;
 
         [PropertyOrder(1)]
         [Category(Category)]
