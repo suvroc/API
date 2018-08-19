@@ -10,13 +10,6 @@ namespace AnyStatus.API
         private double _value;
         private const string Category = "Sparkline";
 
-        protected Sparkline()
-        {
-            var zero = new DataPoint { XValue = 0 };
-
-            for (var i = 0; i < Size; i++) Points.Add(zero);
-        }
-
         [Category(Category)]
         public Color Color { get; set; } = Colors.LimeGreen;
 
