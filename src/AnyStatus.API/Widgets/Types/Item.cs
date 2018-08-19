@@ -32,6 +32,7 @@ namespace AnyStatus.API
         private Item _parent;
         private string _name;
         private int _interval;
+        private IntervalUnits _units;
         private bool _isExpanded;
         private bool _isEnabled;
         private bool _isEditing;
@@ -48,7 +49,6 @@ namespace AnyStatus.API
         private State _previousState;
 
         private string _stateText;
-        private IntervalUnits _units;
 
         #endregion Fields
 
@@ -132,7 +132,7 @@ namespace AnyStatus.API
             get => _units;
             set
             {
-                _units = value; 
+                _units = value;
                 OnPropertyChanged();
             }
         }
