@@ -3,7 +3,7 @@ using System.Xml.Serialization;
 
 namespace AnyStatus.API
 {
-    public abstract class Metric : Widget, IMetricValue
+    public abstract class Metric : Widget, IMetric
     {
         private object _value;
         private string _symbol;

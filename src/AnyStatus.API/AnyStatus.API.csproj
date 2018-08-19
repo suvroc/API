@@ -87,7 +87,7 @@
     <Compile Include="Widgets\Types\Build.cs" />
     <Compile Include="Widgets\Features\HealthCheck.cs" />
     <Compile Include="Widgets\Types\DataPoint.cs" />
-    <Compile Include="Widgets\Types\IMetricValue.cs" />
+    <Compile Include="Widgets\Types\IMetric.cs" />
     <Compile Include="Widgets\Features\IContextAction.cs" />
     <Compile Include="Widgets\Features\Uninitialize.cs" />
     <Compile Include="Widgets\Features\JobHistory.cs" />

@@ -1,6 +1,6 @@
 ﻿namespace AnyStatus.API
 {
-    public interface IMetricValue : IHealthCheck
+    public interface IMetric : IHealthCheck
     {
         object Value { get; set; }
     }
