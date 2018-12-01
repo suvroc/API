@@ -4,7 +4,7 @@
     {
         public MainViewModel()
         {
-            Widget = new WidgetDemo();
+            Widget = new MyWidget();
         }
 
         public Widget Widget { get; set; }
