@@ -5,8 +5,8 @@ namespace AnyStatus.API
 {
     public abstract class Metric : Widget, IMetric
     {
-        private object _value;
         private string _symbol;
+        private volatile object _value;
 
         [XmlIgnore]
         [Browsable(false)]
