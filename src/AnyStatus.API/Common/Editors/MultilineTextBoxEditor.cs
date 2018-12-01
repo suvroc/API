@@ -23,7 +23,7 @@ namespace AnyStatus.API
         {
             var panel = new StackPanel();
 
-            var button = new DropDownButton()
+            var button = new DropDownButton
             {
                 Content = "(Edit)",
                 DropDownContent = panel,

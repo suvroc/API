@@ -1,8 +1,10 @@
-﻿using System.Xml.Serialization;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Xml.Serialization;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace AnyStatus.API.Triggers
 {
+    [ExcludeFromCodeCoverage]
     [XmlInclude(typeof(CommandTrigger))]
     [XmlInclude(typeof(BatchScriptTrigger))]
     [XmlInclude(typeof(NotificationTrigger))]

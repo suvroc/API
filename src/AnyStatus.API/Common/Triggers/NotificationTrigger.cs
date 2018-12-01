@@ -1,8 +1,10 @@
 ﻿using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace AnyStatus.API.Triggers
 {
+    [ExcludeFromCodeCoverage]
     [DisplayName("Notification")]
     public class NotificationTrigger : StateTrigger
     {

@@ -5,7 +5,7 @@ namespace AnyStatus.API.Utils
     public static class Mapper
     {
         /// <summary>
-        /// Copies all properties with similar type and name from source to target.
+        /// Copies all properties with similar type and name to target object instance.
         /// </summary>
         /// <typeparam name="TSource">The source type.</typeparam>
         /// <typeparam name="TTarget">The target type.</typeparam>

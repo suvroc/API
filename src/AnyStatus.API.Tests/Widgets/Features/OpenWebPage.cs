@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NSubstitute;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -10,19 +12,40 @@ namespace AnyStatus.API.Tests.Widgets.Features
         [TestMethod]
         public async Task API_OpenWebPageTest()
         {
-            var widget = new TestWidget();
-            var handler = new OpenWebPage();
-            var request = OpenWebPageRequest.Create(widget);
+            var processStarter = Substitute.For<IProcessStarter>();
 
+            const string URL = "https://test-url.com";
+
+            var widget = new TestWidget
+            {
+                URL = URL
+            };
+
+            var handler = new OpenWebPage<TestWidget>(processStarter);
+            var request = OpenWebPageRequest.Create(widget);
+            
             await handler.Handle(request, CancellationToken.None);
+
+            processStarter.Received().Start(URL);
         }
 
-        class OpenWebPage : IOpenWebPage<TestWidget>
+        [TestMethod]
+        [ExpectedException(typeof(UriFormatException))]
+        public async Task API_OpenWebPageTest2()
         {
-            public Task Handle(OpenWebPageRequest<TestWidget> request, CancellationToken cancellationToken)
+            var processStarter = Substitute.For<IProcessStarter>();
+
+            const string url = "invalid-uri";
+
+            var widget = new TestWidget
             {
-                return Task.CompletedTask;
-            }
+                URL = url
+            };
+
+            var handler = new OpenWebPage<TestWidget>(processStarter);
+            var request = OpenWebPageRequest.Create(widget);
+            
+            await handler.Handle(request, CancellationToken.None);
         }
     }
 }

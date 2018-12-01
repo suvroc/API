@@ -1,11 +1,13 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Windows.Media;
 using System.Xml.Serialization;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace AnyStatus.API
 {
+    [ExcludeFromCodeCoverage]
     public abstract class Sparkline : Metric
     {
         private double _value;

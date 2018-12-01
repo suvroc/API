@@ -1,9 +1,11 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace AnyStatus.API.Triggers
 {
+    [ExcludeFromCodeCoverage]
     [DisplayName("Run")]
     public class CommandTrigger : StateTrigger
     {

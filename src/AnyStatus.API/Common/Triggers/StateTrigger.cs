@@ -1,9 +1,11 @@
 ﻿using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Xml.Serialization;
 using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace AnyStatus.API.Triggers
 {
+    [ExcludeFromCodeCoverage]
     public abstract class StateTrigger : Trigger
     {
         [PropertyOrder(0)]
