@@ -5,12 +5,16 @@ namespace AnyStatus.API.Utils
     public static class Mapper
     {
         /// <summary>
-        /// Copy object properties by name.
+        /// Copies all properties with similar type and name from source to target.
         /// </summary>
-        public static void MapTo<Source, Target>(this Source source, Target target)
+        /// <typeparam name="TSource">The source type.</typeparam>
+        /// <typeparam name="TTarget">The target type.</typeparam>
+        /// <param name="source">The source instance.</param>
+        /// <param name="target">The target instance.</param>
+        public static void MapTo<TSource, TTarget>(this TSource source, TTarget target)
         {
-            var sourceType = typeof(Source);
-            var targetType = typeof(Target);
+            var sourceType = typeof(TSource);
+            var targetType = typeof(TTarget);
 
             try
             {
@@ -18,8 +22,7 @@ namespace AnyStatus.API.Utils
                 {
                     var targetProperty = targetType.GetProperty(sourceProperty.Name);
 
-                    if (targetProperty != null && 
-                        targetProperty.PropertyType == sourceProperty.PropertyType)
+                    if (targetProperty != null && targetProperty.PropertyType == sourceProperty.PropertyType)
                     {
                         targetProperty.SetValue(target, sourceProperty.GetValue(source, null), null);
                     }
@@ -27,7 +30,7 @@ namespace AnyStatus.API.Utils
             }
             catch (Exception ex)
             {
-                throw new Exception($"An error occurred while mapping {sourceType.FullName} to {targetType.FullName}", ex);
+                throw new Exception($"Error mapping {sourceType.FullName} to {targetType.FullName}", ex);
             }
         }
     }
