@@ -5,7 +5,7 @@ namespace AnyStatus.API
     [ExcludeFromCodeCoverage]
     public abstract class Dialog : IDialog
     {
-        public Dialog(string message, string title = "AnyStatus")
+        protected Dialog(string message, string title = "AnyStatus")
         {
             Title = title;
             Message = message;
@@ -14,5 +14,9 @@ namespace AnyStatus.API
         public string Title { get; set; }
 
         public string Message { get; set; }
+
+        public DialogIcon Icon { get; set; }
+
+        public DialogButton Button { get; set; }
     }
 }

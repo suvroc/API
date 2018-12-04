@@ -61,6 +61,8 @@
     <Compile Include="Common\Attributes\CommercialAttribute.cs" />
     <Compile Include="Common\Dialogs\ConfirmationDialog.cs" />
     <Compile Include="Common\Dialogs\Dialog.cs" />
+    <Compile Include="Common\Dialogs\DialogButton.cs" />
+    <Compile Include="Common\Dialogs\DialogIcon.cs" />
     <Compile Include="Common\Dialogs\ErrorDialog.cs" />
     <Compile Include="Common\Dialogs\FileDialog.cs" />
     <Compile Include="Common\Dialogs\IDialog.cs" />
