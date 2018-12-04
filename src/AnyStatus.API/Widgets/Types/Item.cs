@@ -278,8 +278,6 @@ namespace AnyStatus.API
             }
 
             item.Parent = this;
-
-            IsExpanded = true;
         }
 
         public virtual void Remove(Item item)
