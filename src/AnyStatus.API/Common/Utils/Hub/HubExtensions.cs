@@ -4,6 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace AnyStatus.API.Utils
 {
     [ExcludeFromCodeCoverage]
+    [Obsolete("Use mediator notifications instead.")]
     static public class PubSubExtensions
     {
         static private readonly Hub hub = new Hub();
