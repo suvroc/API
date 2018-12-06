@@ -72,6 +72,8 @@
     <Compile Include="Common\Dialogs\WarningDialog.cs" />
     <Compile Include="Common\Editors\FolderEditor.cs" />
     <Compile Include="Common\Editors\StateEditor.cs" />
+    <Compile Include="Common\Mediator\IMediator.cs" />
+    <Compile Include="Common\Mediator\INotification.cs" />
     <Compile Include="Common\Mediator\IRequest.cs" />
     <Compile Include="Common\Mediator\IRequestHandler.cs" />
     <Compile Include="Common\Mediator\IValidator.cs" />
