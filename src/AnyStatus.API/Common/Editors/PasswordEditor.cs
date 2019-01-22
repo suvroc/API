@@ -59,9 +59,7 @@ namespace AnyStatus.API
 
         private void OnLostFocus(object sender, RoutedEventArgs e)
         {
-            if (sender != null &&
-                sender is PasswordBox passwordBox &&
-                passwordBox.Password != _getPassword())
+            if (sender != null && sender is PasswordBox passwordBox && passwordBox.Password != _getPassword())
             {
                 _setPassword(passwordBox.Password);
             }
