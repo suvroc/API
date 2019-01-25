@@ -125,8 +125,8 @@ namespace AnyStatus.API
 
         [Required]
         [PropertyOrder(3)]
-        [DisplayName("Units")]
-        [Description("Required. The interval time units.")]
+        [DisplayName("Interval Units")]
+        [Description("Required.")]
         public IntervalUnits Units
         {
             get => _units;

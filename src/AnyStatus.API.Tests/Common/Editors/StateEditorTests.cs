@@ -10,9 +10,7 @@ namespace AnyStatus.API.Tests.Editors
         [TestMethod]
         public void CreateStateEditorTest()
         {
-            var editor = new StateEditor();
-
-            var element = editor.CreateElement(new object(), BindingMode.Default);
+            var element = StateEditor.CreateElement(new object(), BindingMode.Default);
 
             Assert.IsNotNull(element);
 

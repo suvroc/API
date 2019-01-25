@@ -15,7 +15,10 @@ namespace AnyStatus.API
     {
         private static readonly Lazy<List<KeyValuePair<string, int>>> States = new Lazy<List<KeyValuePair<string, int>>>(() =>
         {
-            var states = new List<KeyValuePair<string, int>> { new KeyValuePair<string, int>("Any", -1) };
+            var states = new List<KeyValuePair<string, int>>
+            {
+                new KeyValuePair<string, int>("Any", -1)
+            };
 
             states.AddRange(State.GetAll().Select(state => new KeyValuePair<string, int>(state.Metadata.DisplayName, state.Value)));
 
@@ -28,7 +31,7 @@ namespace AnyStatus.API
             return CreateElement(propertyItem, propertyItem.IsReadOnly ? BindingMode.OneWay : BindingMode.TwoWay);
         }
 
-        public FrameworkElement CreateElement(object bindingSource, BindingMode bindingMode)
+        public static FrameworkElement CreateElement(object bindingSource, BindingMode bindingMode)
         {
             var comboBox = new ComboBox
             {
