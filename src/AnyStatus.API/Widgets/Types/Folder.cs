@@ -14,7 +14,11 @@ namespace AnyStatus.API
 
         [XmlIgnore]
         [Browsable(false)]
-        public new int Interval { get; set; } = 0;
+        public new int Interval { get; set; }
+
+        [XmlIgnore]
+        [Browsable(false)]
+        public new IntervalUnits Units { get; set; }
 
         [XmlIgnore]
         [Browsable(false)]
