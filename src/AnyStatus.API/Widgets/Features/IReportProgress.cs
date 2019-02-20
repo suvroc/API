@@ -7,7 +7,7 @@ namespace AnyStatus.API
     {
         [XmlIgnore]
         [Browsable(false)]
-        bool ProgressEnabled { get; set; }
+        bool ShowProgress { get; set; }
 
         [XmlIgnore]
         [Browsable(false)]
