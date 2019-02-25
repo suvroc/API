@@ -396,6 +396,24 @@ namespace AnyStatus.API.Tests
             Assert.AreNotEqual(Notification.Empty, notification);
         }
 
+        [TestMethod]
+        public void FindItemByName_Using_GetNodeAndDescendants()
+        {
+            const string name = "SomeName";
+
+            var root = new WidgetMock();
+            var child = new WidgetMock();
+            var grandchild = new WidgetMock { Name = name };
+
+            root.Add(child);
+            child.Add(grandchild);
+
+            var actual = root.GetNodeAndDescendants().FirstOrDefault(item => item.Name == name);
+
+            Assert.IsNotNull(actual);
+            Assert.AreSame(grandchild, actual);
+        }
+
         #region Helpers
 
         public void AssertStateIsNone(Item item)

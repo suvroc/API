@@ -298,7 +298,18 @@ namespace AnyStatus.API
             return _items.Contains(item);
         }
 
-        #endregion Helpers
+        /// <summary>
+        /// Get node descendants.
+        /// Used for searching items in the tree.
+        /// Note that this method is lazy.
+        /// For example: var node = rootNode.GetNodeAndDescendants().FirstOrDefault(node => node.Name == "SomeName");
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Item> GetNodeAndDescendants()
+        {
+            return new[] { this }
+                .Concat(Items.SelectMany(child => child.GetNodeAndDescendants()));
+        }
 
         /// <summary>
         /// Show or hide property in property grid.
@@ -319,6 +330,8 @@ namespace AnyStatus.API
 
             field.SetValue(attribute, value);
         }
+
+        #endregion Helpers
 
         #region ICloneable
 
