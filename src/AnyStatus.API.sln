@@ -8,10 +8,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnyStatus.API.Tests", "AnyStatus.API.Tests\AnyStatus.API.Tests.csproj", "{C76591FD-0BAC-413C-BCE1-6FC6237CF105}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{593CEFEF-17FD-417A-B0AE-0DA60CEE05B5}"
-	ProjectSection(SolutionItems) = preProject
-		..\appveyor.yml = ..\appveyor.yml
-		..\OpenCover.cmd = ..\OpenCover.cmd
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnyStatus.API.Demo", "AnyStatus.API.Demo\AnyStatus.API.Demo.csproj", "{EF345A4F-DA6F-4875-9851-4B9E7A35C31D}"
 EndProject

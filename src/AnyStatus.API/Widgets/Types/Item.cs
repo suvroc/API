@@ -26,29 +26,24 @@ namespace AnyStatus.API
     {
         #region Fields
 
-        private const string StatePropertyName = nameof(State);
-
         private int _count;
         private Item _parent;
         private string _name;
         private int _interval;
-        private IntervalUnits _units;
-        private bool _isExpanded;
         private bool _isEnabled;
         private bool _isEditing;
+        private bool _isExpanded;
         private bool _isSelected;
+        private string _stateText;
+        private IntervalUnits _units;
         private bool _showNotifications;
         private bool _showErrorNotifications;
-
-        private readonly ObservableCollection<Item> _items = new ObservableCollection<Item>();
 
         [NonSerialized]
         private State _state;
 
         [NonSerialized]
         private State _previousState;
-
-        private string _stateText;
 
         #endregion Fields
 
@@ -57,7 +52,7 @@ namespace AnyStatus.API
         protected Item(bool aggregator) : this()
         {
             if (aggregator)
-                _items.CollectionChanged += OnCollectionChanged;
+                Items.CollectionChanged += OnCollectionChanged;
         }
 
         public Item()
@@ -93,7 +88,7 @@ namespace AnyStatus.API
         public Guid Id { get; set; }
 
         [Browsable(false)]
-        public ObservableCollection<Item> Items => _items;
+        public ObservableCollection<Item> Items { get; } = new ObservableCollection<Item>();
 
         [XmlIgnore]
         [Browsable(false)]
@@ -270,7 +265,7 @@ namespace AnyStatus.API
             if (item == null)
                 throw new ArgumentNullException(nameof(item));
 
-            _items.Add(item);
+            Items.Add(item);
 
             if (item.Id == Guid.Empty)
             {
@@ -285,17 +280,17 @@ namespace AnyStatus.API
             if (item == null)
                 throw new ArgumentNullException(nameof(item));
 
-            _items.Remove(item);
+            Items.Remove(item);
         }
 
         public void Clear()
         {
-            _items.Clear();
+            Items.Clear();
         }
 
         public bool Contains(Item item)
         {
-            return _items.Contains(item);
+            return Items.Contains(item);
         }
 
         /// <summary>
@@ -346,8 +341,8 @@ namespace AnyStatus.API
                 .ToList()
                 .ForEach(p => p.SetValue(clone, p.GetValue(this, null), null));
 
-            if (_items != null && _items.Any())
-                foreach (var childNode in _items.Where(i => i != null))
+            if (Items != null && Items.Any())
+                foreach (var childNode in Items.Where(i => i != null))
                     clone.Add((Item)childNode.Clone());
 
             clone.Id = Guid.NewGuid();
@@ -375,7 +370,7 @@ namespace AnyStatus.API
             }
         }
 
-        private void Subscribe(IList childNodes)
+        private void Subscribe(IEnumerable childNodes)
         {
             if (childNodes == null) return;
 
@@ -385,7 +380,7 @@ namespace AnyStatus.API
             }
         }
 
-        private void Unsubscribe(IList childNodes)
+        private void Unsubscribe(IEnumerable childNodes)
         {
             if (childNodes == null) return;
 
@@ -397,7 +392,7 @@ namespace AnyStatus.API
 
         private void OnChildPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == StatePropertyName)
+            if (e.PropertyName == nameof(State))
             {
                 Aggregate();
             }
@@ -405,10 +400,10 @@ namespace AnyStatus.API
 
         private void Aggregate()
         {
-            State = _items.Any() ? _items.Aggregate(ByPriority).State : State.None;
+            State = Items.Any() ? Items.Aggregate(ByPriority).State : State.None;
 
             Count = State == State.None || State == State.Disabled || State == State.Ok ? 0 :
-                CountChildrenByState(_items, State);
+                CountChildrenByState(Items, State);
 
             Item ByPriority(Item a, Item b)
             {
