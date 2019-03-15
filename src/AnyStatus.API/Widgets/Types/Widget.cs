@@ -28,13 +28,12 @@ namespace AnyStatus.API
                 this.Publish(new WidgetStateChanged(this, PreviousState, State));
         }
 
-
         [PropertyOrder(1)]
         [NewItemTypes(
             typeof(CommandTrigger),
             typeof(BatchScriptTrigger),
             typeof(NotificationTrigger))]
-        [Description("Use triggers to run custom commands in response to status changes.")]
+        [Description("Trigger an action on status change.")]
         public List<Trigger> Triggers { get; set; }
 
         [Obsolete("Replace with visitor.")]

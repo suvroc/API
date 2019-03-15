@@ -18,9 +18,9 @@ namespace AnyStatus.API
     /// Tree Node Item
     /// Widgets should not directly inherit this class. Use Widget class instead.
     /// </summary>
-    [Obsolete("Deprecated. Use Widget instead.")]
     [Serializable]
     [CategoryOrder("Misc", 0)]
+    [XmlType(TypeName = "Item")]
     [CategoryOrder("Notifications", 1)]
     public abstract class Item : NotifyPropertyChanged, ICloneable
     {
