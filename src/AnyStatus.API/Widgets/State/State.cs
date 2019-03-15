@@ -11,7 +11,7 @@ namespace AnyStatus.API
         public static readonly State Disabled = new State(2);
         public static readonly State Canceled = new State(3);
         public static readonly State Ok = new State(4);
-        public static readonly State Open = new State(5);
+        public static readonly State Opened = new State(5);
         public static readonly State Closed = new State(6);
         public static readonly State PartiallySucceeded = new State(7);
         public static readonly State Failed = new State(8);
