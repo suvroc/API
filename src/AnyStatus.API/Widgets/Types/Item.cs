@@ -156,8 +156,8 @@ namespace AnyStatus.API
         [Browsable(false)]
         [PropertyOrder(1)]
         [Category("Notifications")]
-        [DisplayName("Show internal error notifications")]
-        [Description("Show error and recovery notifications when internal errors occur. Uncheck to skip notifications in cases such as network outage.")]
+        [DisplayName("Internal Errors")]
+        [Description("Uncheck to disable notifications when errors occur. For example, when AnyStatus is unable to retrieve status information.")]
         public bool ShowErrorNotifications
         {
             get => _showErrorNotifications;
