@@ -34,7 +34,7 @@ namespace AnyStatus.API
         private bool _isEditing;
         private bool _isExpanded;
         private bool _isSelected;
-        private string _stateText;
+        private string _message;
         private IntervalUnits _units;
         private bool _showNotifications;
         private bool _showErrorNotifications;
@@ -111,7 +111,7 @@ namespace AnyStatus.API
         [PropertyOrder(2)]
         [DisplayName("Interval")]
         [Range(0, ushort.MaxValue, ErrorMessage = "Interval must be a number between 0 and 65535.")]
-        [Description("Required. The approximate interval between health checks of an individual widget. Use 0 to bypass.")]
+        [Description("Required. The approximate interval between checks. Use 0 to bypass.")]
         public int Interval
         {
             get => _interval;
@@ -121,7 +121,7 @@ namespace AnyStatus.API
         [Required]
         [PropertyOrder(3)]
         [DisplayName("Interval Units")]
-        [Description("Required.")]
+        [Description("Required. The interval time units.")]
         public IntervalUnits Units
         {
             get => _units;
@@ -157,13 +157,16 @@ namespace AnyStatus.API
         [PropertyOrder(1)]
         [Category("Notifications")]
         [DisplayName("Internal Errors")]
-        [Description("Uncheck to disable notifications when errors occur. For example, when AnyStatus is unable to retrieve status information.")]
+        [Description("Show or hide notifications when internal errors occur. For example, when AnyStatus is unable to retrieve the status information of a widget.")]
         public bool ShowErrorNotifications
         {
             get => _showErrorNotifications;
             set { _showErrorNotifications = value; OnPropertyChanged(); }
         }
 
+        /// <summary>
+        /// Indicates whether the tree-item is expanded or collapsed.
+        /// </summary>
         [XmlIgnore]
         [Browsable(false)]
         public bool IsExpanded
@@ -172,6 +175,9 @@ namespace AnyStatus.API
             set { _isExpanded = value; OnPropertyChanged(); }
         }
 
+        /// <summary>
+        /// The widget state (status).
+        /// </summary>
         [XmlIgnore]
         [Browsable(false)]
         public State State
@@ -185,14 +191,17 @@ namespace AnyStatus.API
             }
         }
 
+        /// <summary>
+        /// The widget message (tooltip).
+        /// </summary>
         [XmlIgnore]
         [Browsable(false)]
-        public string StateText
+        public string Message
         {
-            get => _stateText;
+            get => _message;
             set
             {
-                _stateText = value;
+                _message = value;
                 OnPropertyChanged();
             }
         }
