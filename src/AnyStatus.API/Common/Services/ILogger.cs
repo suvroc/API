@@ -4,8 +4,6 @@ namespace AnyStatus.API
 {
     public interface ILogger
     {
-        bool IsEnabled { get; set; }
-
         void Info(string message);
 
         void Debug(string message);
