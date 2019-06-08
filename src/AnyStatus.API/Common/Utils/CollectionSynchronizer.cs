@@ -11,10 +11,10 @@ namespace AnyStatus.API
     /// <typeparam name="TDestination">The destination collection.</typeparam>
     public class CollectionSynchronizer<TSource, TDestination>
     {
+        public Action<TSource> Add { get; set; }
+        public Action<TDestination> Remove { get; set; }
+        public Action<TSource, TDestination> Update { get; set; }
         public Func<TSource, TDestination, bool> Compare { get; set; }
-        public Action<TDestination> RemoveAction { get; set; }
-        public Action<TSource> AddAction { get; set; }
-        public Action<TSource, TDestination> UpdateAction { get; set; }
 
         /// <summary>
         /// Synchronize changes from source to destination collection.
@@ -38,7 +38,7 @@ namespace AnyStatus.API
 
                 if (sourceItem == null)
                 {
-                    RemoveAction(destinationItem);
+                    Remove(destinationItem);
                 }
             }
         }
@@ -58,11 +58,11 @@ namespace AnyStatus.API
 
                 if (destinationItem == null)
                 {
-                    AddAction(sourceItem);
+                    Add(sourceItem);
                 }
                 else
                 {
-                    UpdateAction(sourceItem, destinationItem);
+                    Update(sourceItem, destinationItem);
                 }
             }
         }
