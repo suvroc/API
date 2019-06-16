@@ -58,7 +58,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\Attributes\CommercialAttribute.cs" />
     <Compile Include="Common\Dialogs\ConfirmationDialog.cs" />
     <Compile Include="Common\Dialogs\Dialog.cs" />
     <Compile Include="Common\Dialogs\DialogButton.cs" />
@@ -153,7 +152,9 @@
     <None Include="Key.snk" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Common\Attributes\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>if $(ConfigurationName) == Debug_NuGet (
