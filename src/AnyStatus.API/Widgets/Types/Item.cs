@@ -99,8 +99,9 @@ namespace AnyStatus.API
         }
 
         [Required]
-
         [PropertyOrder(0)]
+        [DisplayName("Display Name")]
+        [Description("Required. The widget display name.")]
         public string Name
         {
             get => _name;
@@ -137,7 +138,7 @@ namespace AnyStatus.API
         [RefreshProperties(RefreshProperties.All)]
         [PropertyOrder(0)]
         [Category("Notifications")]
-        [DisplayName("Enabled")]
+        [DisplayName("Show Notifications")]
         [Description("Show desktop notifications when events occur.")]
         public bool ShowNotifications
         {
@@ -158,8 +159,8 @@ namespace AnyStatus.API
         [Browsable(false)]
         [PropertyOrder(1)]
         [Category("Notifications")]
-        [DisplayName("Internal Errors")]
-        [Description("Show or hide notifications when internal errors occur. For example, when AnyStatus is unable to retrieve the status information of a widget.")]
+        [DisplayName("Internal Error Notifications")]
+        [Description("Show error notifications when AnyStatus is unable to retrieve status information.")]
         public bool ShowErrorNotifications
         {
             get => _showErrorNotifications;
