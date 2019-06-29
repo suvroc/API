@@ -108,7 +108,8 @@ namespace AnyStatus.API
         }
 
         [Required]
-        [PropertyOrder(2)]
+        [PropertyOrder(0)]
+        [Category("Polling")]
         [DisplayName("Interval")]
         [Range(0, ushort.MaxValue, ErrorMessage = "Interval must be a number between 0 and 65535.")]
         [Description("Required. The approximate interval between checks. Use 0 to bypass.")]
@@ -119,7 +120,8 @@ namespace AnyStatus.API
         }
 
         [Required]
-        [PropertyOrder(3)]
+        [PropertyOrder(1)]
+        [Category("Polling")]
         [DisplayName("Interval Units")]
         [Description("Required. The interval time units.")]
         public IntervalUnits Units
