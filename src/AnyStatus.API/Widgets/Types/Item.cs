@@ -327,8 +327,7 @@ namespace AnyStatus.API
             SetAttributeProperty<BrowsableAttribute>(propertyName, "browsable", show);
         }
 
-        private void SetAttributeProperty<TAttribute>(string propertyName, string fieldName, object value)
-            where TAttribute : Attribute
+        private void SetAttributeProperty<TAttribute>(string propertyName, string fieldName, object value) where TAttribute : Attribute
         {
             var descriptor = TypeDescriptor.GetProperties(GetType())[propertyName];
             var attribute = (TAttribute)descriptor.Attributes[typeof(TAttribute)];
