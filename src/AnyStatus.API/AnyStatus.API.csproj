@@ -58,7 +58,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\Attributes\CommercialAttribute.cs" />
     <Compile Include="Common\Dialogs\ConfirmationDialog.cs" />
     <Compile Include="Common\Dialogs\Dialog.cs" />
     <Compile Include="Common\Dialogs\DialogButton.cs" />
@@ -88,6 +87,7 @@
     <Compile Include="Common\Triggers\NotificationTrigger.cs" />
     <Compile Include="Common\Triggers\StateTrigger.cs" />
     <Compile Include="Common\Triggers\Trigger.cs" />
+    <Compile Include="Common\Utils\CollectionSynchronizer.cs" />
     <Compile Include="Widgets\Events\WidgetRemoved.cs" />
     <Compile Include="Widgets\Types\Build.cs" />
     <Compile Include="Widgets\Features\HealthCheck.cs" />
@@ -152,7 +152,9 @@
     <None Include="Key.snk" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Common\Attributes\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

@@ -99,8 +99,9 @@ namespace AnyStatus.API
         }
 
         [Required]
-
         [PropertyOrder(0)]
+        [DisplayName("Display Name")]
+        [Description("Required. The widget display name.")]
         public string Name
         {
             get => _name;
@@ -108,7 +109,8 @@ namespace AnyStatus.API
         }
 
         [Required]
-        [PropertyOrder(2)]
+        [PropertyOrder(0)]
+        [Category("Polling")]
         [DisplayName("Interval")]
         [Range(0, ushort.MaxValue, ErrorMessage = "Interval must be a number between 0 and 65535.")]
         [Description("Required. The approximate interval between checks. Use 0 to bypass.")]
@@ -119,7 +121,8 @@ namespace AnyStatus.API
         }
 
         [Required]
-        [PropertyOrder(3)]
+        [PropertyOrder(1)]
+        [Category("Polling")]
         [DisplayName("Interval Units")]
         [Description("Required. The interval time units.")]
         public IntervalUnits Units
@@ -135,7 +138,7 @@ namespace AnyStatus.API
         [RefreshProperties(RefreshProperties.All)]
         [PropertyOrder(0)]
         [Category("Notifications")]
-        [DisplayName("Enabled")]
+        [DisplayName("Show Notifications")]
         [Description("Show desktop notifications when events occur.")]
         public bool ShowNotifications
         {
@@ -156,8 +159,8 @@ namespace AnyStatus.API
         [Browsable(false)]
         [PropertyOrder(1)]
         [Category("Notifications")]
-        [DisplayName("Internal Errors")]
-        [Description("Show or hide notifications when internal errors occur. For example, when AnyStatus is unable to retrieve the status information of a widget.")]
+        [DisplayName("Internal Error Notifications")]
+        [Description("Show error notifications when AnyStatus is unable to retrieve status information.")]
         public bool ShowErrorNotifications
         {
             get => _showErrorNotifications;
@@ -325,8 +328,7 @@ namespace AnyStatus.API
             SetAttributeProperty<BrowsableAttribute>(propertyName, "browsable", show);
         }
 
-        private void SetAttributeProperty<TAttribute>(string propertyName, string fieldName, object value)
-            where TAttribute : Attribute
+        private void SetAttributeProperty<TAttribute>(string propertyName, string fieldName, object value) where TAttribute : Attribute
         {
             var descriptor = TypeDescriptor.GetProperties(GetType())[propertyName];
             var attribute = (TAttribute)descriptor.Attributes[typeof(TAttribute)];
